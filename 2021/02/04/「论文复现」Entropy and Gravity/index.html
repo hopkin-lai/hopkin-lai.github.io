@@ -6,18 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Tag: 随笔 | HopLai的博客</title>
+  <title>「论文复现」Entropy and Gravity | HopLai的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="海南大学信息管理与信息系统专业毕业生，华南理工大学管理科学与工程专业硕士一年级就读">
-<meta property="og:type" content="website">
-<meta property="og:title" content="HopLai的博客">
-<meta property="og:url" content="http://example.com/tags/%E9%9A%8F%E7%AC%94/index.html">
+  <meta name="description" content="MathJax.Hub.Config({ tex2jax: {inlineMath: [[&#39;$&#39;, &#39;$&#39;]]}, messageStyle: &quot;none&quot; });         - [Paper：](#paper)  1. How to calculate to (Shannon) Entropy ? 1.1 计算香农熵中的概率： 1.2 计算每一个IPC code的香农熵   2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="「论文复现」Entropy and Gravity">
+<meta property="og:url" content="http://example.com/2021/02/04/%E3%80%8C%E8%AE%BA%E6%96%87%E5%A4%8D%E7%8E%B0%E3%80%8DEntropy%20and%20Gravity/index.html">
 <meta property="og:site_name" content="HopLai的博客">
-<meta property="og:description" content="海南大学信息管理与信息系统专业毕业生，华南理工大学管理科学与工程专业硕士一年级就读">
+<meta property="og:description" content="MathJax.Hub.Config({ tex2jax: {inlineMath: [[&#39;$&#39;, &#39;$&#39;]]}, messageStyle: &quot;none&quot; });         - [Paper：](#paper)  1. How to calculate to (Shannon) Entropy ? 1.1 计算香农熵中的概率： 1.2 计算每一个IPC code的香农熵   2">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2021/02/04/assets/img//count_i.png">
+<meta property="og:image" content="http://example.com/2021/02/04/assets/img/Entropy_i.png">
+<meta property="og:image" content="http://example.com/2021/02/04/assets/img//IPC%E5%85%B1%E7%8E%B0%E5%9B%BE.png">
+<meta property="og:image" content="http://example.com/2021/02/04/assets/img//Binding_force.png">
+<meta property="og:image" content="http://example.com/2021/02/04/assets/img//Entro-Binding.png">
+<meta property="article:published_time" content="2021-02-03T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-02-05T14:15:54.150Z">
 <meta property="article:author" content="Hop Lai">
-<meta property="article:tag" content="Digital Product,Python,SQL, Data Mining, Machine Learning,Natural Language Processing, Basketball">
+<meta property="article:tag" content="论文">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/02/04/assets/img//count_i.png">
   
     <link rel="alternative" href="/atom.xml" title="HopLai的博客" type="application/atom+xml">
   
@@ -153,60 +161,234 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-「论文复现」Entropy and Gravity" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/01/04/My-First-Blog-in-Hexo/" class="archive-article-date">
-  	<time datetime="2021-01-04T12:55:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-04</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/01/04/My-First-Blog-in-Hexo/">My First Blog in Hexo</a>
+    <h1 class="article-title" itemprop="name">
+      「论文复现」Entropy and Gravity
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2021/02/04/%E3%80%8C%E8%AE%BA%E6%96%87%E5%A4%8D%E7%8E%B0%E3%80%8DEntropy%20and%20Gravity/" class="archive-article-date">
+  	<time datetime="2021-02-03T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({ tex2jax: {inlineMath: [['$', '$']]}, messageStyle: "none" });
+</script>
+
+<!-- TOC -->
+
+<pre><code>    - [Paper：](#paper)</code></pre>
+<ul>
+<li><a href="#1-how-to-calculate-to-shannon-entropy-">1. How to calculate to (Shannon) Entropy ?</a><ul>
+<li><a href="#11-%E8%AE%A1%E7%AE%97%E9%A6%99%E5%86%9C%E7%86%B5%E4%B8%AD%E7%9A%84%E6%A6%82%E7%8E%87">1.1 计算香农熵中的概率：</a></li>
+<li><a href="#12-%E8%AE%A1%E7%AE%97%E6%AF%8F%E4%B8%80%E4%B8%AAipc-code%E7%9A%84%E9%A6%99%E5%86%9C%E7%86%B5">1.2 计算每一个IPC code的香农熵</a></li>
+</ul>
+</li>
+<li><a href="#2how-to-calculate-binding-force">2.How to Calculate Binding-force?</a><ul>
+<li><a href="#21-%E6%9E%84%E5%BB%BA%E4%B8%93%E5%88%A9%E6%95%B0%E6%8D%AE%E4%B8%ADipc%E7%9A%84%E5%85%B1%E7%8E%B0%E7%9F%A9%E9%98%B5">2.1 构建专利数据中IPC的共现矩阵</a></li>
+<li><a href="#22%E6%A0%B9%E6%8D%AE%E5%85%B1%E7%8E%B0%E7%9F%A9%E9%98%B5%E8%BF%9B%E8%A1%8C%E5%85%B3%E7%B3%BB%E5%9B%BE%E7%9A%84%E7%BB%98%E5%88%B6">2.2根据共现矩阵进行关系图的绘制</a></li>
+</ul>
+</li>
+<li><a href="#3-entropy-binding_force-visualization">3. Entropy-Binding_force Visualization</a></li>
+<li><a href="#end">End</a></li>
+</ul>
+<!-- /TOC -->
+
+<p>今天复现的是我最近读的两篇文章，方法还是挺传统的，看起来逻辑清晰、理论严谨、可视化效果和结果都比较令人信服，抱着学习的心态，复现一下。</p>
+<h4 id="Paper："><a href="#Paper：" class="headerlink" title="Paper："></a>Paper：</h4><ul>
+<li>Yongrae C , Minsung K , Wolfgang G . Entropy and Gravity Concepts as New Methodological Indexes to Investigate Technological Convergence: Patent Network-Based Approach[J]. Plos One, 2014, 9(6):e98009.</li>
+<li>Han E J , Sohn S Y . Technological convergence in standards for information and communication technologies[J]. Technological Forecasting &amp; Social Change, 2016, 106:1-10.</li>
+</ul>
+<p>其实，第二篇文章是第一篇文章的翻版，它引用了第一篇文章的所有概念和方法，换上了新的数据和加上了自己的一些思考。总的来说，这两篇文章读起来流畅，结论直观，可以作为新手学习的比较好的论文。</p>
+<p>可能用到的技术和方法： Python、Social Network Analysis、文献计量的传统方法和一点点《信息论》的概念。</p>
+<h2 id="1-How-to-calculate-to-Shannon-Entropy"><a href="#1-How-to-calculate-to-Shannon-Entropy" class="headerlink" title="1. How to calculate to (Shannon) Entropy ?"></a>1. How to calculate to (Shannon) Entropy ?</h2><p>首先就是解决如何计算香农熵的问题，也就是信息熵。根据信息熵的概念，我们认为：</p>
+<blockquote>
+<p>These papers also utilized the Shannon entropy to measure the technological fusion or interdisciplinarity among disparate technology or industry fields.<br>这些论文还利用香农熵来衡量不同技术或行业领域之间的技术融合或学科交叉。</p>
+</blockquote>
+<p>$$ Entropy_i = - \sum_j^n (P_{j|i} * log_2 (P_{j|i})$$<br>其中，<br>$$P_{j|i} = \frac{the;number;of;patents ;associated ;with ;both ;IPC ;j ;and ;i}{the;total;number;of;patents;assocaited; with;IPC;i}$$</p>
+<p>然后就是动手写代码了，首先还是要搞清楚你的数据结构是什么样的，不同的数据结构，写出来的代码肯定不同，甚至都不能顺利运行。我的数据是从德温特数据中批量下载下来的，有了PN号、摘要、IPC号等一些信息。信息熵只需要用到的是IPC号和专利PN号（唯一标识）。</p>
+<p>式子中的两个概率，就用循环嵌套就可以解决。<br>（数据一旦很大，循环就真的很慢，有时候一套下来要20分钟…..无语��）</p>
+<h3 id="1-1-计算香农熵中的概率："><a href="#1-1-计算香农熵中的概率：" class="headerlink" title="1.1 计算香农熵中的概率："></a>1.1 计算香农熵中的概率：</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 我的专利数据结构是这样的：</span></span><br><span class="line"><span class="comment"># 利用Excel自带的分列功能，将所有的IPC号单独分出来</span></span><br><span class="line">raw_data = pd.read_excel(<span class="string">r&quot;/Users/yourname/Documents/CaculateEntropy.xlsx&quot;</span>,header=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 首先建立一个IPC列表，记录的是这个数据集中所有的IPC号，然后进行去重处理</span></span><br><span class="line"><span class="keyword">del</span> (raw_data[<span class="string">&#x27;PN&#x27;</span>])   <span class="comment"># 先删掉无用的PN号这一列</span></span><br><span class="line"><span class="keyword">del</span>(raw_data[<span class="string">&#x27;IP&#x27;</span>])</span><br><span class="line">print(raw_data.head())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 遍历df中的每一个元素，然后读取成一列</span></span><br><span class="line">IPC = []</span><br><span class="line"><span class="keyword">for</span> index, row <span class="keyword">in</span> raw_data.iteritems():</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(row)):</span><br><span class="line">        IPC.append(row[i])</span><br><span class="line">        </span><br><span class="line">IPC = pd.DataFrame(IPC)</span><br><span class="line">IPC.columns = [<span class="string">&#x27;IPC&#x27;</span>]</span><br><span class="line">print(IPC.head(<span class="number">15</span>))</span><br><span class="line"><span class="comment"># 下面开始去重</span></span><br><span class="line">IPC.drop_duplicates(subset=<span class="string">&#x27;IPC&#x27;</span>,keep=<span class="string">&#x27;first&#x27;</span>,inplace=<span class="literal">True</span>)</span><br><span class="line"><span class="built_in">len</span>(IPC)   <span class="comment"># 去重后只剩下2525，也就是说</span></span><br><span class="line"><span class="comment"># 注意，这里有一个坑，去重之后直接替换的数据，这里的dataframe的index不再连续！！！记得修改成连续的数值，否则循环将报错。</span></span><br><span class="line">IPC = IPC.reset_index(drop=<span class="literal">True</span>)<span class="comment">#重设索引</span></span><br><span class="line">IPC[<span class="string">&quot;count_i&quot;</span>] = <span class="number">0</span></span><br><span class="line"><span class="comment"># 计算count_i: </span></span><br><span class="line">dat = pd.read_excel(<span class="string">r&#x27;/Users/CaculateEntropy.xlsx&#x27;</span>,header = <span class="number">0</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(IPC)):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(dat)):</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">str</span>(IPC[<span class="string">&#x27;IPC&#x27;</span>][i]) <span class="keyword">in</span> <span class="built_in">str</span>(dat[<span class="string">&#x27;IP&#x27;</span>][j]):</span><br><span class="line">            IPC[<span class="string">&#x27;count_i&#x27;</span>][i]  = IPC[<span class="string">&#x27;count_i&#x27;</span>][i] + <span class="number">1</span></span><br><span class="line">    print(<span class="built_in">str</span>(IPC[<span class="string">&#x27;IPC&#x27;</span>][i]) + <span class="string">&quot;已经计算好了&quot;</span> + <span class="built_in">str</span>(i))</span><br></pre></td></tr></table></figure>
+<p>那么每一个IPC code都会有一个 count_i，结果我就直接放截图了：</p>
+<p><img src="../assets/img//count_i.png" alt="count_i"> </p>
+<p>当然真实数据集远远不止这些……此时真的希望我的电脑能扛住，因为后面还有更多…..</p>
+<h3 id="1-2-计算每一个IPC-code的香农熵"><a href="#1-2-计算每一个IPC-code的香农熵" class="headerlink" title="1.2 计算每一个IPC code的香农熵"></a>1.2 计算每一个IPC code的香农熵</h3><p>我写到这里的时候突然脑子不好用了，想了半天应该怎么写好，只能先用两层循环试试，结果发现问题不小，两层循环都跑了我20多分钟。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 我用简单的双层循环来搞清楚逻辑</span></span><br><span class="line">Entropy_j_0 = <span class="number">0</span> </span><br><span class="line"><span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="built_in">len</span>(IPC)):</span><br><span class="line">    count_j_0 = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> m <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(dat)):</span><br><span class="line">        keywords =(<span class="built_in">str</span>(IPC[<span class="string">&#x27;IPC&#x27;</span>][<span class="number">0</span>])+<span class="string">&#x27;;&#x27;</span>+<span class="built_in">str</span>(IPC[<span class="string">&#x27;IPC&#x27;</span>][j]))</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">all</span>([w <span class="keyword">in</span> dat[<span class="string">&#x27;IP&#x27;</span>][m] <span class="keyword">and</span> w <span class="keyword">for</span> w <span class="keyword">in</span> keywords.split(<span class="string">&#x27;;&#x27;</span>)]):</span><br><span class="line">            count_j_0 += <span class="number">1</span></span><br><span class="line">    print(<span class="string">&quot;count_&#123;0&#125;_0 已经计算好了  &quot;</span>.<span class="built_in">format</span>(j) + <span class="built_in">str</span>(count_j_0) )</span><br><span class="line">    Entropy_j_0 += -((count_j_0 / IPC[<span class="string">&#x27;count_i&#x27;</span>][<span class="number">0</span>]) * log(count_j_0 / IPC[<span class="string">&#x27;count_i&#x27;</span>][<span class="number">0</span>]+<span class="number">0.0001</span>,<span class="number">2</span>)) <span class="comment"># log函数中加上0.0001是因为避免math.log（0，2）出现负无穷的bug</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>检查完成后发现，emmmm，基本上逻辑没啥问题，就是慢了点，能出结果最好。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下面是正式的三层循环</span></span><br><span class="line">IPC[<span class="string">&#x27;Entropy_i&#x27;</span>]  = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(IPC)):</span><br><span class="line">    Entropy_j_i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i+<span class="number">1</span>,<span class="built_in">len</span>(IPC)):</span><br><span class="line">        count_j_i = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> m <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(dat)):</span><br><span class="line">            keywords =(<span class="built_in">str</span>(IPC[<span class="string">&#x27;IPC&#x27;</span>][i])+<span class="string">&#x27;;&#x27;</span>+<span class="built_in">str</span>(IPC[<span class="string">&#x27;IPC&#x27;</span>][j]))</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">all</span>([w <span class="keyword">in</span> dat[<span class="string">&#x27;IP&#x27;</span>][m] <span class="keyword">and</span> w <span class="keyword">for</span> w <span class="keyword">in</span> keywords.split(<span class="string">&#x27;;&#x27;</span>) ]):</span><br><span class="line">                count_j_i += <span class="number">1</span></span><br><span class="line">        <span class="comment">#print(&quot;count_&#123;0&#125;_0 已经计算好了  &quot;.format(j) + str(count_j_0) )</span></span><br><span class="line">        Entropy_j_i += -((count_j_i / IPC[<span class="string">&#x27;count_i&#x27;</span>][i])*log(count_j_i/IPC[<span class="string">&#x27;count_i&#x27;</span>][i]+ <span class="number">0.0001</span>,<span class="number">2</span>))</span><br><span class="line">    print(<span class="string">&quot;Entropy_&#123;0&#125; 已经计算好了  &quot;</span>.<span class="built_in">format</span>(i) + <span class="built_in">str</span>(Entropy_j_i))</span><br><span class="line">    IPC[<span class="string">&#x27;Entropy_i&#x27;</span>] = Entropy_j_i</span><br><span class="line"></span><br><span class="line">IPC.to_excel(<span class="string">&quot;122.xlsx&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>其实，写到这一步，已经半夜12点了，我就把电脑扔一边，睡觉去了。<br><img src="../assets/img/Entropy_i.png" alt="Entropy_i"></p>
+<h2 id="2-How-to-Calculate-Binding-force"><a href="#2-How-to-Calculate-Binding-force" class="headerlink" title="2.How to Calculate Binding-force?"></a>2.How to Calculate Binding-force?</h2><p>要计算Binding-force，需要引入Social Network Analysis 的方法，计算网络节点的中心度（这里用到的是紧密性中心度，cloesness centrality）</p>
+<h3 id="2-1-构建专利数据中IPC的共现矩阵"><a href="#2-1-构建专利数据中IPC的共现矩阵" class="headerlink" title="2.1 构建专利数据中IPC的共现矩阵"></a>2.1 构建专利数据中IPC的共现矩阵</h3><p>构建共现矩阵的方法有很多，有基于文献关键词的、有基于文献作者合作的、还有基于文章共被引和共引的。这里我就依葫芦画瓢，改成专利的IPC号共现矩阵，也就是要找出，互相两个IPC号同时出现在多少个专利中。</p>
+<p>思路是这样的：</p>
+<pre><code>- 每篇文章关键词的二维数组formated_data。
+- 所有关键词的集合set_word。
+- 建立关键词长度+1的矩阵matrix。
+- 赋值矩阵的第一行与第一列为关键词。
+- 设置矩阵对角线为0。
+- 遍历formated_data，让取出的行关键词和取出的列关键词进行组合，共现则+1。</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">ipc = pd.read_excel(<span class="string">&quot;111.xlsx&quot;</span>,header=<span class="number">0</span>)</span><br><span class="line">ipc_word = <span class="built_in">list</span>(<span class="built_in">set</span>(ipc[<span class="string">&#x27;IPC&#x27;</span>]))  </span><br><span class="line"></span><br><span class="line">raw_data = pd.read_excel(<span class="string">r&quot;/Users/laihuapeng/Documents/Papers/smart city data/CaculateEntropy.xlsx&quot;</span>,header=<span class="number">0</span>)</span><br><span class="line">print(raw_data.head())</span><br><span class="line">dat = pd.DataFrame(raw_data[<span class="string">&#x27;IP&#x27;</span>])</span><br><span class="line">print(dat.head())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 遍历df中的每一个元素，然后读取成一列</span></span><br><span class="line">formated_data = []</span><br><span class="line"><span class="keyword">for</span> index, row <span class="keyword">in</span> dat.iteritems():</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(row)):</span><br><span class="line">        row[i] = row[i].split(<span class="string">&#x27;;&#x27;</span>)</span><br><span class="line">        formated_data.append(row[i])</span><br><span class="line"><span class="comment"># 初始化矩阵</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">build_matirx</span>(<span class="params">ipc_word</span>):</span></span><br><span class="line">    edge = <span class="built_in">len</span>(ipc_word) + <span class="number">1</span>  <span class="comment"># 建立矩阵，矩阵的高度和宽度为关键词集合的长度+1</span></span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;matrix = np.zeros((edge, edge), dtype=str)&#x27;&#x27;&#x27;</span>  <span class="comment"># 另一种初始化方法</span></span><br><span class="line">    matrix = [[<span class="string">&#x27;&#x27;</span> <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(edge)] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(edge)]  <span class="comment"># 初始化矩阵</span></span><br><span class="line">    matrix[<span class="number">0</span>][<span class="number">1</span>:] = np.array(ipc_word)</span><br><span class="line">    matrix = <span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">list</span>, <span class="built_in">zip</span>(*matrix)))</span><br><span class="line">    matrix[<span class="number">0</span>][<span class="number">1</span>:] = np.array(ipc_word)  <span class="comment"># 赋值矩阵的第一行与第一列</span></span><br><span class="line">    <span class="keyword">return</span> matrix</span><br><span class="line"><span class="comment"># 计算各个关键词的共现次数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">count_matrix</span>(<span class="params">matrix, formated_data</span>):</span></span><br><span class="line">    <span class="keyword">for</span> row <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(matrix)):</span><br><span class="line">        <span class="comment"># 遍历矩阵第一行，跳过下标为0的元素</span></span><br><span class="line">        <span class="keyword">for</span> col <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(matrix)):</span><br><span class="line">            <span class="comment"># 遍历矩阵第一列，跳过下标为0的元素</span></span><br><span class="line">            <span class="comment"># 实际上就是为了跳过matrix中下标为[0][0]的元素，因为[0][0]为空，不为关键词</span></span><br><span class="line">            <span class="keyword">if</span> matrix[<span class="number">0</span>][row] == matrix[col][<span class="number">0</span>]:</span><br><span class="line">                <span class="comment"># 如果取出的行关键词和取出的列关键词相同，则其对应的共现次数为0，即矩阵对角线为0</span></span><br><span class="line">                matrix[col][row] = <span class="built_in">str</span>(<span class="number">0</span>)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                counter = <span class="number">0</span>  <span class="comment"># 初始化计数器</span></span><br><span class="line">                <span class="keyword">for</span> ech <span class="keyword">in</span> formated_data:</span><br><span class="line">                    <span class="comment"># 遍历格式化后的原始数据，让取出的行关键词和取出的列关键词进行组合，</span></span><br><span class="line">                    <span class="comment"># 再放到每条原始数据中查询</span></span><br><span class="line">                    <span class="keyword">if</span> matrix[<span class="number">0</span>][row] <span class="keyword">in</span> ech <span class="keyword">and</span> matrix[col][<span class="number">0</span>] <span class="keyword">in</span> ech:</span><br><span class="line">                        counter += <span class="number">1</span></span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                        <span class="keyword">continue</span></span><br><span class="line">                matrix[col][row] = <span class="built_in">str</span>(counter)</span><br><span class="line">    <span class="keyword">return</span> matrix</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line">    <span class="comment">#formated_data, set_word = Get_file_keywords(&#x27;D:\\untitled\\test&#x27;)</span></span><br><span class="line">    print(ipc_word)</span><br><span class="line">    print(formated_data)</span><br><span class="line">    matrix = build_matirx(ipc_word)</span><br><span class="line">    matrix = count_matrix(matrix, formated_data)</span><br><span class="line">    data1 = pd.DataFrame(matrix)</span><br><span class="line">    data1.to_csv(<span class="string">&#x27;data.csv&#x27;</span>, index=<span class="number">0</span>, columns=<span class="literal">None</span>, encoding=<span class="string">&#x27;utf_8_sig&#x27;</span>)</span><br><span class="line">main()</span><br></pre></td></tr></table></figure>
+<h3 id="2-2根据共现矩阵进行关系图的绘制"><a href="#2-2根据共现矩阵进行关系图的绘制" class="headerlink" title="2.2根据共现矩阵进行关系图的绘制"></a>2.2根据共现矩阵进行关系图的绘制</h3><p>python也可以做网络关系图，但是出于美观考虑，采用gephi专业的作图软件做可能会更好一点，但是我实在没搞懂这个软件的逻辑，做出来的图真的太丑了。</p>
+<p><img src="../assets/img//IPC%E5%85%B1%E7%8E%B0%E5%9B%BE.png" alt="IPC网络图"></p>
+<p>那么，也许有人会问，有了网络图之后，可以干什么？其实就是通过网络图来求得Binding-force中非常重要的一个参数，紧密中心度（Closeness Centrality），下面给出Binding-force正式的定义：<br>$$<br>F_i=\sum_{j=1}^n \frac{M_j  M_i  C_i^2}{n}<br>$$<br>是不是感觉似曾相识，其实它是引用了高中物理万有引力公式的性质，万有引力公式揭示了一个天体对另一个天体对吸引力。<br>$$<br>F = G \frac{Mm}{r^2}<br>$$<br>而Binding-force（我翻译为结合力）也是揭示了一个IPC code对另一个IPC code的结合力，在同一个数据集中，结合力越强，意味着此IPC code的对其他IPC code的吸引作用越强。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">data = pd.read_csv(<span class="string">&#x27;/Users/laihuapeng/data的副本.csv&#x27;</span>)</span><br><span class="line">data = np.array(data)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 求解紧密中心性</span></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> networkx <span class="keyword">as</span> nx</span><br><span class="line"><span class="keyword">import</span> operator</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_closeness_centrality</span>():</span></span><br><span class="line">    G = nx.Graph()</span><br><span class="line">    filestr = <span class="string">&quot;&quot;</span>  </span><br><span class="line">  <span class="comment">#需要读入的共现矩阵</span></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span> (<span class="string">&quot;data的副本.csv&quot;</span>)  <span class="keyword">as</span> files:</span><br><span class="line">        <span class="keyword">for</span> line <span class="keyword">in</span> files:</span><br><span class="line">            filestr += line.strip()</span><br><span class="line"></span><br><span class="line">  <span class="comment">#将字符串转换成列表</span></span><br><span class="line">    matrix = data</span><br><span class="line">    <span class="comment">#matrix = eval(filestr)</span></span><br><span class="line"></span><br><span class="line">    nodes = <span class="built_in">range</span>(<span class="built_in">len</span>(matrix))</span><br><span class="line">    </span><br><span class="line">    G.add_nodes_from(nodes)</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(matrix)):</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(matrix)):</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span>(matrix[i][j] == <span class="number">1</span>):</span><br><span class="line">                </span><br><span class="line">                G.add_edge(i, j)</span><br><span class="line">    </span><br><span class="line">    cc = nx.algorithms.bipartite.centrality.closeness_centrality(G,G.nodes())</span><br><span class="line">  </span><br><span class="line">    print(<span class="string">&quot;节点编号及其接近中心性最大值为：&quot;</span>)</span><br><span class="line">    cc_list = <span class="built_in">sorted</span>(cc.items(), key=operator.itemgetter(<span class="number">1</span>))</span><br><span class="line">    print(cc_list) </span><br><span class="line">get_closeness_centrality()</span><br></pre></td></tr></table></figure>
+<p>有了紧密中心度，自然就可以求Binding-force了</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="comment">## Binding force:</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(ipc)):</span><br><span class="line">    Force_i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(ipc)):</span><br><span class="line">        <span class="keyword">if</span> i != j :</span><br><span class="line">            Force_i += ipc[<span class="string">&#x27;count_i&#x27;</span>][i] * ipc[<span class="string">&#x27;count_i&#x27;</span>][j]* math.<span class="built_in">pow</span>(ipc[<span class="string">&#x27;Closeness Centrality&#x27;</span>][i],<span class="number">2</span>) / <span class="built_in">len</span>(ipc)</span><br><span class="line">        <span class="keyword">else</span> :</span><br><span class="line">            Force_i += <span class="number">0</span> </span><br><span class="line">    ipc.loc[i,<span class="string">&#x27;Binding force&#x27;</span>] = Force_i</span><br><span class="line">    print(<span class="string">&#x27;Binding-force-&#123;0&#125; 已经计算好了：&#x27;</span>.<span class="built_in">format</span>(i),Force_i)</span><br><span class="line">ipc.to_excel(<span class="string">&#x27;333.xlsx&#x27;</span>,encoding = <span class="string">&quot;UTF-8-sig&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>计算结果如下图所示：<br><img src="../assets/img//Binding_force.png" alt="Binding-force"></p>
+<h2 id="3-Entropy-Binding-force-Visualization"><a href="#3-Entropy-Binding-force-Visualization" class="headerlink" title="3. Entropy-Binding_force Visualization"></a>3. Entropy-Binding_force Visualization</h2><p>我也像论文中一样，使用一个二维图来展示，IPC code在这两个变量下的图形吧：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">ipc = pd.read_excel(<span class="string">&#x27;333.xlsx&#x27;</span>,encoding=<span class="string">&quot;UTF-8-sig&quot;</span>)</span><br><span class="line">x = np.array(ipc[<span class="string">&#x27;Binding force&#x27;</span>].values)</span><br><span class="line">y = np.array((ipc[<span class="string">&#x27;Entropy_i&#x27;</span>].values))</span><br><span class="line">txt = <span class="built_in">list</span>(ipc[<span class="string">&#x27;IPC&#x27;</span>].values)</span><br><span class="line">plt.figure(figsize=(<span class="number">10</span>,<span class="number">8</span>))</span><br><span class="line">plt.scatter(x,y,color=<span class="string">&#x27;black&#x27;</span>,alpha=<span class="number">0.7</span>,marker= <span class="string">&#x27;*&#x27;</span>)</span><br><span class="line">plt.xlabel(<span class="string">&#x27;Binding-force&#x27;</span>,fontsize = <span class="number">15</span>,color = <span class="string">&#x27;black&#x27;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&#x27;Entropy&#x27;</span>,fontsize = <span class="number">15</span>,color = <span class="string">&#x27;black&#x27;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="../assets/img//Entro-Binding.png" alt="Visualization"></p>
+<h2 id="End"><a href="#End" class="headerlink" title="End"></a>End</h2><p>当然，论文中还有其他内容，但是相对来说就没有那么复杂了，建立一个线性回归的方程，进行预测，实质上就是为了说明有哪些IPC code可能会成为会聚的点。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>咖啡就好，奶茶不要<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">论文</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/02/04/%E3%80%8C%E8%AE%BA%E6%96%87%E5%A4%8D%E7%8E%B0%E3%80%8DEntropy%20and%20Gravity/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2021/02/03/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%88%AC%E5%8F%96B%E7%AB%99%E5%BC%B9%E5%B9%95%E5%B9%B6%E5%88%B6%E4%BD%9C%E8%AF%8D%E4%BA%91%E5%9B%BE/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">正则表达式爬取B站弹幕并制作词云图</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -229,9 +411,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,
