@@ -16,7 +16,7 @@
 <meta property="og:description" content="1.Python操作MySQL 1.1 Download necessary package 1.2 DB-API 1.2.1 Connect 函数 1.2.2 游标对象 Cursor 1.2.3 数据库具体操作     2. Python操作sqlite3 数据库    这里不再重复学习SQL的基础操作（增删改查），我一般来说就是查看《MySQL必知必会》这本手册来查缺补漏。我的电脑配置如">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-02-14T14:01:33.000Z">
-<meta property="article:modified_time" content="2021-02-16T06:51:17.056Z">
+<meta property="article:modified_time" content="2021-02-16T07:38:15.873Z">
 <meta property="article:author" content="Hop Lai">
 <meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
@@ -236,11 +236,8 @@
 <td>connect</td>
 <td>链接数据库函数</td>
 </tr>
-<tr>
-<td>Python 调用 MySQL 需要导入相应的库，代码为：</td>
-<td></td>
-</tr>
 </tbody></table>
+<p>Python 调用 MySQL 需要导入相应的库，代码为：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pymysql</span><br></pre></td></tr></table></figure>
 <p>相应的函数： </p>
 <table>
@@ -282,7 +279,39 @@
 </ul>
 <p>实例代码如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conn = pymysql.Connect(host=<span class="string">&#x27;127.0.0.1&#x27;</span>,port=<span class="number">3306</span>,user=<span class="string">&#x27;root&#x27;</span>,passwd=<span class="string">&#x27;dyx240030&#x27;</span>,db=<span class="string">&#x27;imooc&#x27;</span>,charset=<span class="string">&#x27;utf8&#x27;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="1-2-2-游标对象-Cursor"><a href="#1-2-2-游标对象-Cursor" class="headerlink" title="1.2.2 游标对象 Cursor"></a>1.2.2 游标对象 Cursor</h4><p>游标是SQL 的一种数据访问机制 ，游标是一种处理数据的方法。众所周知，使用SQL的select查询操作返回的结果是一个包含一行或者是多行的数据集，如果我们要对查询的结果再进行查询，比如（查看结果的第一行、下一行、最后一行、前十行等等操作）简单的通过select语句是无法完成的，因为这时候索要查询的结果不是数据表，而是已经查询出来的结果集。所以要对数据库进行操作仍然需要使用游标对象。<br>| Function |  Description |<br>| —-| —–|<br>|execute(op[,args])|  执行数据库操作，参数就是SQL语句|<br>|fetchone()|取得结果集下一行|<br>|fetchmany(size)|取得结果集size行|<br>|fetchall()| 取得结果集剩下所有行|<br>|rowcount()|最后一次执行影响对行数|<br>|close()|关闭cursor|</p>
+<h4 id="1-2-2-游标对象-Cursor"><a href="#1-2-2-游标对象-Cursor" class="headerlink" title="1.2.2 游标对象 Cursor"></a>1.2.2 游标对象 Cursor</h4><p>游标是SQL 的一种数据访问机制 ，游标是一种处理数据的方法。众所周知，使用SQL的select查询操作返回的结果是一个包含一行或者是多行的数据集，如果我们要对查询的结果再进行查询，比如（查看结果的第一行、下一行、最后一行、前十行等等操作）简单的通过select语句是无法完成的，因为这时候索要查询的结果不是数据表，而是已经查询出来的结果集。所以要对数据库进行操作仍然需要使用游标对象。</p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>execute(op[,args])</td>
+<td>执行数据库操作，参数就是SQL语句</td>
+</tr>
+<tr>
+<td>fetchone()</td>
+<td>取得结果集下一行</td>
+</tr>
+<tr>
+<td>fetchmany(size)</td>
+<td>取得结果集size行</td>
+</tr>
+<tr>
+<td>fetchall()</td>
+<td>取得结果集剩下所有行</td>
+</tr>
+<tr>
+<td>rowcount()</td>
+<td>最后一次执行影响对行数</td>
+</tr>
+<tr>
+<td>close()</td>
+<td>关闭cursor</td>
+</tr>
+</tbody></table>
 <h4 id="1-2-3-数据库具体操作"><a href="#1-2-3-数据库具体操作" class="headerlink" title="1.2.3 数据库具体操作"></a>1.2.3 数据库具体操作</h4><ul>
 <li><p>1.查询数据库名称</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    conn = pymysql.connect(host=<span class="string">&#x27;localhost&#x27;</span>, db=db, user=user, passwd=pas, port=<span class="number">3306</span>, charset=<span class="string">&#x27;utf8&#x27;</span>)</span><br><span class="line">    cur = conn.cursor()</span><br><span class="line">    <span class="comment"># 显示受影响的数据库数</span></span><br><span class="line">    res = cur.execute(<span class="string">&quot;show databases&quot;</span>)</span><br><span class="line">    print(res)</span><br><span class="line">    <span class="comment"># 返回查询结果</span></span><br><span class="line">    <span class="keyword">for</span> data <span class="keyword">in</span> cur.fetchall():</span><br><span class="line">        print(<span class="string">&#x27;%s&#x27;</span> % data)</span><br><span class="line">    cur.close()</span><br><span class="line">    conn.close()</span><br><span class="line"><span class="keyword">except</span> pymysql.Error <span class="keyword">as</span> e:</span><br><span class="line">    print(<span class="string">&#x27;MySQL Error %d: %s&#x27;</span> % (e.args[<span class="number">0</span>], e.args[<span class="number">1</span>]))</span><br></pre></td></tr></table></figure></li>
@@ -298,11 +327,58 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    conn = pymysql.connect(host=<span class="string">&#x27;localhost&#x27;</span>,db=db,user=user,passwd=pas,port=<span class="number">3306</span>,charset=<span class="string">&#x27;utf8&#x27;</span>)</span><br><span class="line">    cur = conn.cursor()</span><br><span class="line">    sql = <span class="string">&quot;insert into students values(%s, %s, %s)&quot;</span></span><br><span class="line">    cur.execute(sql,(<span class="string">&#x27;3&#x27;</span>, <span class="string">&#x27;Leborn James&#x27;</span>, <span class="string">&#x27;male&#x27;</span>))</span><br><span class="line">    </span><br><span class="line">    print(<span class="string">&#x27;插入数据：&#x27;</span>)</span><br><span class="line">    cur.execute(<span class="string">&quot;select * from students&quot;</span>)</span><br><span class="line">    <span class="keyword">for</span> data <span class="keyword">in</span> cur.fetchall():</span><br><span class="line">        print(<span class="string">&#x27;%s %s %s&#x27;</span>% data)</span><br><span class="line">    cur.close()</span><br><span class="line">    conn.commit()</span><br><span class="line">    conn.close()</span><br><span class="line"><span class="keyword">except</span> pymysql.Error <span class="keyword">as</span> e:</span><br><span class="line">    print(<span class="string">&#x27;MySQL Error %d: %s&#x27;</span> % (e.args[<span class="number">0</span>], e.args[<span class="number">1</span>]))    </span><br></pre></td></tr></table></figure>
 <p>结果如下：</p>
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">插入数据：</span><br><span class="line">  3 Leborn James male</span><br></pre></td></tr></table></figure>
-<h2 id="2-Python操作sqlite3-数据库"><a href="#2-Python操作sqlite3-数据库" class="headerlink" title="2. Python操作sqlite3 数据库"></a>2. Python操作sqlite3 数据库</h2><p>SQLite 3 的使用方法与前文介绍的 pymysql 库类似，首先必须创建一个表示数据库的连接对象，然后有选择地创建光标对象，再定义 SQL 语句执行，最后关闭对象和连接。</p>
-<p>sqlite3 常用方法总结：<br>|模块|    含义|<br>|–|–|<br>|sqlite.connect(…)    |打开一个到 SQLite 数据库文件 database 的连接<br>|connection.cursor()    |创建一个 curor，将在 Python 数据库编程中用到|<br>|cursor.execute(sql)    |执行一个 SQL 语句，注意SQL 语句可以被参数化|<br>|cursor.executescript(sql)    |一旦接收到脚本，就会执行多个 SQL 语句。SQL语句应用分号分隔|<br>|connection.commit()    |提交当前的事务|<br>|connection.rollback()    |回滚至上一次调用 commit() 对数据库所做的更改|<br>|connection.close()|    关闭数据库连接|<br>|cursor.fetchone()    |获取查询结果集中的下一行，返回一个单一的序列，当没有更多可用的数据时返回 None|<br>|cursor.fetchmany()    |获取查询结果集中的下一行组数据，返回一个列表|<br>|cursor.fetchall()    |获取查询结果集中所有的数据行，返回一个列表|</p>
+<h2 id="2-Python操作sqlite3-数据库"><a href="#2-Python操作sqlite3-数据库" class="headerlink" title="2. Python操作sqlite3 数据库"></a>2. Python操作sqlite3 数据库</h2><p>SQLite 3 的使用方法与前文介绍的 pymysql 库类似，首先必须创建一个表示数据库的连接对象，然后有选择地创建光标对象，再定义 SQL 语句执行，最后关闭对象和连接。sqlite3 常用方法总结：</p>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>sqlite.connect(…)</td>
+<td>打开一个到 SQLite 数据库文件 database 的连接</td>
+</tr>
+<tr>
+<td>connection.cursor()</td>
+<td>创建一个 curor，将在 Python 数据库编程中用到</td>
+</tr>
+<tr>
+<td>cursor.execute(sql)</td>
+<td>执行一个 SQL 语句，注意SQL 语句可以被参数化</td>
+</tr>
+<tr>
+<td>cursor.executescript(sql)</td>
+<td>一旦接收到脚本，就会执行多个 SQL 语句。SQL语句应用分号分隔</td>
+</tr>
+<tr>
+<td>connection.commit()</td>
+<td>提交当前的事务</td>
+</tr>
+<tr>
+<td>connection.rollback()</td>
+<td>回滚至上一次调用 commit() 对数据库所做的更改</td>
+</tr>
+<tr>
+<td>connection.close()</td>
+<td>关闭数据库连接</td>
+</tr>
+<tr>
+<td>cursor.fetchone()</td>
+<td>获取查询结果集中的下一行，返回一个单一的序列，当没有更多可用的数据时返回 None</td>
+</tr>
+<tr>
+<td>cursor.fetchmany()</td>
+<td>获取查询结果集中的下一行组数据，返回一个列表</td>
+</tr>
+<tr>
+<td>cursor.fetchall()</td>
+<td>获取查询结果集中所有的数据行，返回一个列表</td>
+</tr>
+</tbody></table>
 <p>sqlite3 实例：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sqlite3</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 连接数据库，如果数据库不存在则创建</span></span><br><span class="line">conn = sqlite3.connect(<span class="string">&#x27;test.db&#x27;</span>)</span><br><span class="line">cur = conn.cursor()</span><br><span class="line">print(<span class="string">&#x27;数据库创建成功\n&#x27;</span>)</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 创建表 PEOPLE（序号、姓名、年龄、公司、薪水）</span></span><br><span class="line">cur.execute(<span class="string">&#x27;create table people&#x27;</span></span><br><span class="line">            <span class="string">&#x27;(id int primary key not null,&#x27;</span></span><br><span class="line">            <span class="string">&#x27;name text not null,&#x27;</span></span><br><span class="line">            <span class="string">&#x27;age int not null,&#x27;</span></span><br><span class="line">            <span class="string">&#x27;company char(50),&#x27;</span></span><br><span class="line">            <span class="string">&#x27;salary real);&#x27;</span>)</span><br><span class="line">print(<span class="string">&#x27;prople 表创建成功！\n&#x27;</span>)</span><br><span class="line">conn.commit()</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 插入数据</span></span><br><span class="line">cur.execute(<span class="string">&#x27;insert into people(id, name, age, company, salary) &#x27;</span></span><br><span class="line">            <span class="string">&#x27;values(1, &quot;小杨&quot;,26, &quot;华为&quot;, 10000.00)&#x27;</span>);</span><br><span class="line">cur.execute(<span class="string">&#x27;insert into people(id, name, age, company, salary) &#x27;</span></span><br><span class="line">            <span class="string">&#x27;values(2, &quot;小颜&quot;,26, &quot;百度&quot;, 8800.00)&#x27;</span>);</span><br><span class="line">cur.execute(<span class="string">&#x27;insert into people(id, name, age, company, salary) &#x27;</span></span><br><span class="line">            <span class="string">&#x27;values(3, &quot;小红&quot;,28, &quot;腾讯&quot;, 98000.00)&#x27;</span>);</span><br><span class="line">conn.commit()</span><br><span class="line">print(<span class="string">&#x27;插入数据成功！\n&#x27;</span>)</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 查询操作</span></span><br><span class="line">cursor = cur.execute(<span class="string">&#x27;select id, name, age, company, salary from people&#x27;</span>)</span><br><span class="line">print(<span class="string">&#x27;数据查询成功！&#x27;</span>)</span><br><span class="line">print(<span class="string">&#x27;序号&#x27;</span>, <span class="string">&#x27;姓名&#x27;</span>, <span class="string">&#x27;年龄&#x27;</span>, <span class="string">&#x27;公司&#x27;</span>, <span class="string">&#x27;薪水&#x27;</span>)</span><br><span class="line"><span class="keyword">for</span> row <span class="keyword">in</span> cursor:</span><br><span class="line">    print(row[<span class="number">0</span>], row[<span class="number">1</span>], row[<span class="number">2</span>], row[<span class="number">3</span>], row[<span class="number">4</span>])</span><br><span class="line">print(<span class="string">&#x27;&#x27;</span>)</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 更新操作</span></span><br><span class="line">cur.execute(<span class="string">&#x27;update people set company=&quot;华为&quot; where id=2&#x27;</span>)</span><br><span class="line">conn.commit()</span><br><span class="line">print(<span class="string">&#x27;数据更新成功！&#x27;</span>)</span><br><span class="line">cursor = cur.execute(<span class="string">&#x27;select id, name, company from people&#x27;</span>)</span><br><span class="line"><span class="keyword">for</span> row <span class="keyword">in</span> cursor:</span><br><span class="line">    print(row[<span class="number">0</span>], row[<span class="number">1</span>], row[<span class="number">2</span>])</span><br><span class="line">print(<span class="string">&#x27;&#x27;</span>)</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 删除操作</span></span><br><span class="line">cur.execute(<span class="string">&#x27;delete from people where company=&quot;华为&quot;;&#x27;</span>)</span><br><span class="line">conn.commit()</span><br><span class="line">print(<span class="string">&#x27;数据删除成功！&#x27;</span>)</span><br><span class="line">cursor = cur.execute(<span class="string">&#x27;select id, name, company from people&#x27;</span>)</span><br><span class="line"><span class="keyword">for</span> row <span class="keyword">in</span> cursor:</span><br><span class="line">    print(row[<span class="number">0</span>], row[<span class="number">1</span>], row[<span class="number">2</span>])</span><br><span class="line">print(<span class="string">&#x27;&#x27;</span>)</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 关闭连接</span></span><br><span class="line">conn.close()</span><br></pre></td></tr></table></figure>
-<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">数据库创建成功</span><br><span class="line"></span><br><span class="line">prople 表创建成功！</span><br><span class="line"></span><br><span class="line">插入数据成功！</span><br><span class="line"></span><br><span class="line">数据查询成功！</span><br><span class="line">序号 姓名 年龄 公司 薪水</span><br><span class="line">1 小杨 26 华为 10000.0</span><br><span class="line">2 小颜 26 百度 8800.0</span><br><span class="line">3 小红 28 腾讯 98000.0</span><br><span class="line"></span><br><span class="line">数据更新成功！</span><br><span class="line">1 小杨 华为</span><br><span class="line">2 小颜 华为</span><br><span class="line">3 小红 腾讯</span><br><span class="line"></span><br><span class="line">数据删除成功！</span><br><span class="line">3 小红 腾讯</span><br><span class="line"></span><br></pre></td></tr></table></figure></code></pre>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">数据库创建成功</span><br><span class="line"></span><br><span class="line">player 表创建成功！</span><br><span class="line"></span><br><span class="line">插入数据成功！</span><br><span class="line"></span><br><span class="line">数据查询成功！</span><br><span class="line">序号 姓名 年龄 球队 得分</span><br><span class="line">1 Michael Jordan 26 Chicago Bulls 32.0</span><br><span class="line">2 Leborn James 26 Cleveland  Cavaliers 27.0</span><br><span class="line">3 Kobe Byrant 28 Los Angeles Lakers 25.5</span><br><span class="line"></span><br><span class="line">数据更新成功！</span><br><span class="line">1 Michael Jordan Chicago Bulls</span><br><span class="line">2 Leborn James Los Angeles Lakers</span><br><span class="line">3 Kobe Byrant Los Angeles Lakers</span><br><span class="line"></span><br><span class="line">数据删除成功！</span><br><span class="line">1 Michael Jordan Chicago Bulls</span><br><span class="line"></span><br></pre></td></tr></table></figure></code></pre>
 
       
 
@@ -570,11 +646,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
