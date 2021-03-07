@@ -165,6 +165,165 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-模糊数学笔记01" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/02/%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6%E7%AC%94%E8%AE%B001/">模糊数学笔记01</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/02/%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6%E7%AC%94%E8%AE%B001/" class="archive-article-date">
+  	<time datetime="2021-03-01T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({ tex2jax: {inlineMath: [['$', '$']]}, messageStyle: "none" });
+</script>
+
+
+<h2 id="0-绪论–模糊数学的引入"><a href="#0-绪论–模糊数学的引入" class="headerlink" title="0 绪论–模糊数学的引入"></a>0 绪论–模糊数学的引入</h2><p>在现实生活中有很多模糊现象存在，例如自然口语表达中很多概念存在模糊性：</p>
+<ul>
+<li>个子很高的人</li>
+<li>年纪大的老人</li>
+<li>很胖的人  等等概念具有非常大的模糊性</li>
+</ul>
+<p>典型的问题有：</p>
+<ul>
+<li><p>秃顶悖论：如果一个有X根头发的人被称为秃子，那么，有X + 1根头发的人也是秃子。所以，(X + 1) + 1根头发的还是秃子。以此类推，无论你有几根头发都是秃子。</p>
+</li>
+<li><p>朋友悖论：如果一个刚认识的人被称为你的新朋友，那么刚认识+1 s的人也是你的新朋友，以此类推，认识50年的人也是你的新朋友。</p>
+</li>
+<li><p>著名的沙堆问题：从一个沙堆里拿走一粒沙子，它仍然是沙堆，那么类推下去，最后只剩一粒沙子它也是沙堆。这显然和人们的常识相背离。</p>
+</li>
+</ul>
+<p>以上问题说明，$\color{red}{精确的数学语言与模糊的思维习惯产生了矛盾}$。</p>
+<p>模糊数学就希望通过精确的数学方法研究和处理模糊性和模糊现象，Zadeh提出Fuzzy Sets希望通过语言变量来替代数值变量。</p>
+<p>那么$\color{green}{经典二值模型与模糊逻辑的关系}$是什么<br>在模糊数学中，一个命题不再是非真即假，取消了非此即彼的概念，可以被认为是部分属于，而$\color{orange}{隶属度}$就是表述二值之间的过渡状态的值。</p>
+<p>模糊数学解决了从单一的二值到二值之间连续取值的问题。</p>
+<p>（0，1）   ———————————— [0,1]</p>
+<p>模糊数学的应用有：</p>
+<ul>
+<li>模糊聚类</li>
+<li>模糊模式识别</li>
+<li>模糊综合评价</li>
+<li>模糊控制</li>
+<li>模糊逻辑</li>
+<li>模糊决策</li>
+<li>模糊自动机</li>
+<li>模糊神经网络 </li>
+<li>等等</li>
+</ul>
+<p>在这里通过一个引例来区分模糊数学中隶属函数和数理统计中的概率的区别。<br>假设有以下两瓶水：</p>
+<ul>
+<li>A 是纯净水的概率为95%</li>
+<li>B 是纯净水的隶属度为95%<br>显然，我们会选择B，因为A是纯净水的概率为95%，但是一旦当另外5%发生，那么A不是纯净水的事实就是确定的了。而B属于纯净水的程度是95%，也许只是不那么纯而已。</li>
+</ul>
+<h2 id="01-模糊数学F集的基本概念"><a href="#01-模糊数学F集的基本概念" class="headerlink" title="01 模糊数学F集的基本概念"></a>01 模糊数学F集的基本概念</h2><p>设在论域 U 上给定了一个映射<br>$$<br>A: U  → [0,1],且<br>u → A（u）<br>$$</p>
+<p>对于某个模糊集，我们称之为F集，$A（u)$ 被称为A的隶属函数（或称 u 对A对隶属度）</p>
+<p>我们来看一个例子：<br>P4 例3<br>设U = {1,2,3,4,5,6} , A表示“靠近4”的数集，则A $\in$ $\mathcal{F}$ （U） ，各数属于A的程度$A（u_{i})$ 如下表所示</p>
+<table>
+<thead>
+<tr>
+<th>u</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A(u)</td>
+<td>0</td>
+<td>0.2</td>
+<td>0.8</td>
+<td>1</td>
+<td>0.8</td>
+<td>0.2</td>
+</tr>
+</tbody></table>
+<p>那么A可以用不同的方式来表达：</p>
+<ul>
+<li>虚偶表示法：A = {(1,0),(2,0.2),(3,0.8),(4,1),(5,0.8),(6,0.2)}</li>
+<li>Zadeh表示法：$\frac{0}{1}+\frac{0.2}{2}+\frac{0.8}{3}+\frac{1}{4}+\frac{0.8}{5}+\frac{0.2}{6}$</li>
+<li>矢量表示法：A = (0,0.2,0.8,1,0.8,0.2)</li>
+</ul>
+<p>注意：在第三种表示方法中，由于没有顺序，隶属度是0的项也不能舍弃，且次序不能随意调换。</p>
+<h2 id="02-F集的运算"><a href="#02-F集的运算" class="headerlink" title="02 F集的运算"></a>02 F集的运算</h2><p>这里我们主要定义取大 和 取小运算，也就是交集和并集运算</p>
+<p>(A $\bigcup$ B)(u) = A(u) $\bigvee$ B(u) = max (A(u),B(u))</p>
+<p>(A $\bigcap$ B)(u) = A(u) $\bigwedge$ B(u) = min (A(u),B(u))</p>
+<h3 id="并、交、余的运算性质"><a href="#并、交、余的运算性质" class="headerlink" title="并、交、余的运算性质"></a>并、交、余的运算性质</h3><p>幂等律<br>A $\bigcup$A = A, A $\bigcap$ A = A</p>
+<p>交换律<br>A $\bigcup$ B = B $\bigcup$ A, A $\bigcap$ B = B $\bigcap$ A</p>
+<p>结合律<br>(A $\bigcup$ B)$\bigcup$ C = A $\bigcup$ (B$\bigcup$ C),<br>(A $\bigcap$ B)$\bigcap$ C = A $\bigcap$ (B$\bigcap$C )</p>
+<p>吸收律<br>(A $\bigcup$ B) $\bigcap$ A = A，<br>(A $\bigcap$ B)$\bigcup$ A = A</p>
+<p>分配律<br>(A $\bigcup$ B)$\bigcap$ C =(A $\bigcap$ C)$\bigcup$(B $\bigcap$ C),<br>(A $\bigcap$ B)$\bigcup$ C =(A $\bigcup$ C)$\bigcap$(B $\bigcup$ C),</p>
+<p>0-1 律<br>A $\bigcup$ $\phi$ = A, A$\bigcap$ $\phi$ = $\phi$, A $\bigcup$ U = U ， A $\bigcap$ U= A</p>
+<p>还原律<br>$(A^c)^c$ = A</p>
+<p>对偶律<br> (A $\bigcup$ B ) $^c$ = $A^c$ $\bigcap$   $B^c$<br> (A $\bigcap$ B ) $^c$ = $A^c$ $\bigcup$   $B^c$  </p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">模糊数学</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/02/%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6%E7%AC%94%E8%AE%B001/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Python-Database-fundmentals" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1170,6 +1329,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Python  爬虫</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">模糊数学</a>
               </li>
             
             <div class="clearfix"></div>
