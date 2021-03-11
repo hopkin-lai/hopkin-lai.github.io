@@ -165,6 +165,172 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-模糊数学笔记02" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/09/%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6%E7%AC%94%E8%AE%B002/">模糊数学笔记02</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/09/%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6%E7%AC%94%E8%AE%B002/" class="archive-article-date">
+  	<time datetime="2021-03-08T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({ tex2jax: {inlineMath: [['$', '$']]}, messageStyle: "none" });
+</script>
+
+<!-- TOC -->
+
+<ul>
+<li><a href="#1-f%E9%9B%86%E7%9A%84%E5%85%B6%E4%BB%96%E7%AE%97%E5%AD%90">1. F集的其他算子</a></li>
+<li><a href="#2-f%E9%9B%86%E7%9A%84%E6%88%AA%E9%9B%86">2. F集的截集</a><ul>
+<li><a href="#21-%E6%88%AA%E9%9B%86%E7%9A%84%E6%80%A7%E8%B4%A8">2.1 截集的性质</a></li>
+<li><a href="#22-%E5%88%86%E8%A7%A3%E5%AE%9A%E7%90%86">2.2. 分解定理</a></li>
+</ul>
+</li>
+<li><a href="#3f%E9%9B%86%E7%9A%84%E6%A8%A1%E7%B3%8A%E5%BA%A6">3.F集的模糊度</a></li>
+</ul>
+<!-- /TOC -->
+
+<h2 id="1-F集的其他算子"><a href="#1-F集的其他算子" class="headerlink" title="1. F集的其他算子"></a>1. F集的其他算子</h2><p>在模糊数学中，除了上一节课的取大（$\bigvee$） 、取小（$\bigwedge$）运算外，还有很多新算子，本节的内容主要是想说明，模糊数学中可以根据自己的所需应用各种算子。</p>
+<h2 id="2-F集的截集"><a href="#2-F集的截集" class="headerlink" title="2. F集的截集"></a>2. F集的截集</h2><p>在F集和普通集合相互转化中的一个重要概念就是$\lambda$水平截集。</p>
+<ul>
+<li>$\lambda$截集</li>
+</ul>
+<p>$A_{\lambda}$ = {$u| u \in U, A(u) \geqslant \lambda$}</p>
+<ul>
+<li>$\lambda$强截集</li>
+</ul>
+<p>$A_{\lambda}$ = {$u| u \in U, A(u) &gt; \lambda$}</p>
+<ul>
+<li>$SuppA$,大于0的截集</li>
+</ul>
+<p>$SuppA$ = {$u| u \in U, A(u) &gt; 0$}</p>
+<ul>
+<li>$KerA$,大于1的截集</li>
+</ul>
+<p>$KerA$ = {$u| u \in U, A(u) = 1$}</p>
+<h3 id="2-1-截集的性质"><a href="#2-1-截集的性质" class="headerlink" title="2.1 截集的性质"></a>2.1 截集的性质</h3><p>$\color{orange}{我实在是太懒了，因为手敲数学代码太累了，我直接写在纸上吧。}$</p>
+<ul>
+<li>性质1：</li>
+</ul>
+<p>$A \subset B$  $\implies$ $A_\lambda \subset B_\lambda$</p>
+<ul>
+<li>性质2:</li>
+</ul>
+<p>$\lambda ≤ \mu$ $\implies$ $A_\lambda \supset A_\mu$</p>
+<ul>
+<li>性质3：<br><img src="../assets/img/%E6%88%AA%E9%9B%86%E6%80%A7%E8%B4%A81.jpeg" alt="\lambda截集性质3"></li>
+<li>性质4：<br><img src="../assets/img/%E6%80%A7%E8%B4%A84.jpeg"></li>
+</ul>
+<p>上述式子表明：</p>
+<blockquote>
+<p>各模糊集先“并”后求截集所得的集合包含先求截集后“并”得的集合；</p>
+</blockquote>
+<blockquote>
+<p>而若是“交运算” 和截集，则运算次序无关</p>
+</blockquote>
+<h3 id="2-2-分解定理"><a href="#2-2-分解定理" class="headerlink" title="2.2. 分解定理"></a>2.2. 分解定理</h3><p>分解定理是模糊集合三大定理之一（分解、表现、扩张定理），它反映了模糊集和普通相互转化的关系。</p>
+<p>那么为什么要学习分解定理呢？</p>
+<p>实际上，我们的目的是为了</p>
+<blockquote>
+<p>$\color{lightblue}{推论}:$已知模糊集的所有截集，则可以反求模糊集本身。</p>
+</blockquote>
+<ul>
+<li>分解定理1:</li>
+</ul>
+<p>$$<br>A=\bigcup_{\lambda \in[0,1]} \lambda A_{\lambda}<br>$$<br>上述定理也可以写成：</p>
+<p>$$<br>A(x)=\bigvee_{\lambda \in[0,1]}\left[\lambda \wedge \chi_{A_{\lambda}}(x)\right]<br>$$</p>
+<p>或者<br>$$<br>A(x)=\bigvee\left{\lambda \in[0,1] ; x \in A_{\lambda}\right}<br>$$</p>
+<p>分解定理与普通集合的转化关系图可以这样表示：</p>
+<p><img src="../assets/img/%E6%A8%A1%E7%B3%8A%E9%9B%86%E5%92%8C%E7%BB%8F%E5%85%B8%E9%9B%86%E7%9A%84%E8%BD%AC%E5%8C%96.jpeg">​    </p>
+<ul>
+<li><p>分解定理2：<br>实际上，就是在分解定理1的基础上，推广到了强截集<br>$$<br>A=\bigcup_{\lambda \in[0,1]} \lambda A_{\underset{.}{\lambda}}<br>$$</p>
+</li>
+<li><p>分解定理3:</p>
+</li>
+</ul>
+<p>$$<br>A=\bigcup_{\lambda \in[0,1]} \lambda H_{\lambda}<br>$$<br>实际上，分解定理3就是在集合套的概念上的一个推广，$H_\lambda$是集合值映射，可以认为是在$A_\lambda$ 和<br>$A_{\underset{.}{\lambda}}$之间的一个集合，但是要注意</p>
+<p>  $H_\lambda$既不是F集也不是普通集，只有在 $\lambda$确定值时，$H_\lambda$才变成普通集。</p>
+<p>它实际上一个集合大家族。</p>
+<p>$\color{lightblue}{在上课的时候，集合套和表现定理其实讲的很少很少，在这做个标记，复习时候再看}$</p>
+<h2 id="3-F集的模糊度"><a href="#3-F集的模糊度" class="headerlink" title="3.F集的模糊度"></a>3.F集的模糊度</h2><p>实际问题中，当用F集来刻画模糊性概念时，常常还需要用一个数量来刻画这一个概念的整体模糊度，这个数量就是所谓的模糊度。</p>
+<p>定义如下</p>
+<p>$若映射 d:F(U)\rightarrow [0,1]满足条件：$</p>
+<p>$$<br>(1)当且仅当A \in F(U)时，d(A) = 0\tag{清晰性}<br>$$</p>
+<p>$$<br>(2)\forall u \in U,当且仅当A(u) \equiv \frac{1}{2}\tag{模糊性}<br>$$</p>
+<p>$$<br>(3)\forall u \in U,B(u)\le A(u) \le \frac{1}{2},d(B)\le d(A)\tag{单调性}<br>$$</p>
+<p>$$<br>(4)A \in F(u),d(A) = d(A^c)\tag{对称性}<br>$$</p>
+<p>之所以介绍模糊度这个概念，是因为满足定理的三个条件，就可以构造自己的模糊度，也就是上面三个  对称性、单调性、$f(0)=0$。这三个条件 </p>
+<p>具体的：<br>我们有Haming模糊度、Euclid模糊度。其实就是看每一个元素的隶属度与1的距离。</p>
+<p>我们单独讲一下模糊熵（Fuzzy Shannon）。一听就是知道离不开Shannon老爷子（$\color{lightblue}{信息论之父}$）真的是到哪都能见到他。</p>
+<p>要懂得如何证明Shannon Function是F集的模糊度，书上有完整的证明过程，我这就bu<br>赘述了。</p>
+<p>课后习题是13、14、20、21、25、26、27、28.</p>
+<p>这节讲的主要内容就是在模糊集的概念上，多推展的几个定义和简单计算，下一章开始我们可能会更多的接触到模糊数学的应用和范例。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">模糊数学</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/09/%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6%E7%AC%94%E8%AE%B002/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-模糊数学笔记01" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -189,9 +355,19 @@
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({ tex2jax: {inlineMath: [['$', '$']]}, messageStyle: "none" });
 </script>
+<!-- TOC -->
 
+<ul>
+<li><a href="#00-%E7%BB%AA%E8%AE%BA--%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6%E7%9A%84%E5%BC%95%E5%85%A5">00 绪论–模糊数学的引入</a></li>
+<li><a href="#01-%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6f%E9%9B%86%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5">01 模糊数学F集的基本概念</a></li>
+<li><a href="#02-f%E9%9B%86%E7%9A%84%E8%BF%90%E7%AE%97">02 F集的运算</a><ul>
+<li><a href="#%E5%B9%B6%E4%BA%A4%E4%BD%99%E7%9A%84%E8%BF%90%E7%AE%97%E6%80%A7%E8%B4%A8">并、交、余的运算性质</a></li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
 
-<h2 id="0-绪论–模糊数学的引入"><a href="#0-绪论–模糊数学的引入" class="headerlink" title="0 绪论–模糊数学的引入"></a>0 绪论–模糊数学的引入</h2><p>在现实生活中有很多模糊现象存在，例如自然口语表达中很多概念存在模糊性：</p>
+<h2 id="00-绪论–模糊数学的引入"><a href="#00-绪论–模糊数学的引入" class="headerlink" title="00 绪论–模糊数学的引入"></a>00 绪论–模糊数学的引入</h2><p>在现实生活中有很多模糊现象存在，例如自然口语表达中很多概念存在模糊性：</p>
 <ul>
 <li>个子很高的人</li>
 <li>年纪大的老人</li>
@@ -716,7 +892,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Python 爬虫</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Python爬虫</a>
         		</li>
       		
 		</ul>
@@ -1006,7 +1182,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Python  爬虫</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Python爬虫</a>
         		</li>
       		
 		</ul>
@@ -1313,7 +1489,7 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Python 爬虫</a>
+                <a href="javascript:void(0)" class="js-tag color4">Python爬虫</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1330,10 +1506,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">模糊数学</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Python  爬虫</a>
               </li>
             
             <div class="clearfix"></div>
