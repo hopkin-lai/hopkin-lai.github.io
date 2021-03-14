@@ -6,20 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Assignment01 | HopLai的博客</title>
+  <title>模糊数学笔记03 | HopLai的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="大数据分析与挖掘 2021.03 第一次作业1.斐波那契数列： 1， 1， 2， 3， 5， 8， 13， ….，写一个程序打印斐波那契数列的前 n 项谨记 python空列表不能赋值 123456789def fibonacci(n):    li &#x3D; []    for i in range(n):        if i &lt; 2:            li.append(1)">
+  <meta name="description" content="这一章开始进行F模式识别的学习。(Pattern Recognition)是机器学习的起源，目的在于让机器帮助我们自动识别事物。 模式识别的流程如下图所示：  F模式识别问题一般可以分为两种：一类模式库是模糊的，而待识别对象是分明的，要用F模式识别的直接方法解决；另一类模式库和待识别对象都是模糊的，要用F模式识别的间接方法来解决。 具体的应用步骤应该在后续的学习中，研究例子来掌握。 F集的贴近度贴">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Assignment01">
-<meta property="og:url" content="http://example.com/2021/03/12/Assignment01/index.html">
+<meta property="og:title" content="模糊数学笔记03">
+<meta property="og:url" content="http://example.com/2021/03/16/%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6%E7%AC%94%E8%AE%B003/index.html">
 <meta property="og:site_name" content="HopLai的博客">
-<meta property="og:description" content="大数据分析与挖掘 2021.03 第一次作业1.斐波那契数列： 1， 1， 2， 3， 5， 8， 13， ….，写一个程序打印斐波那契数列的前 n 项谨记 python空列表不能赋值 123456789def fibonacci(n):    li &#x3D; []    for i in range(n):        if i &lt; 2:            li.append(1)">
+<meta property="og:description" content="这一章开始进行F模式识别的学习。(Pattern Recognition)是机器学习的起源，目的在于让机器帮助我们自动识别事物。 模式识别的流程如下图所示：  F模式识别问题一般可以分为两种：一类模式库是模糊的，而待识别对象是分明的，要用F模式识别的直接方法解决；另一类模式库和待识别对象都是模糊的，要用F模式识别的间接方法来解决。 具体的应用步骤应该在后续的学习中，研究例子来掌握。 F集的贴近度贴">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-03-11T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-03-12T09:33:33.369Z">
+<meta property="og:image" content="http://example.com/assets/img/pattern_recognition.jpeg">
+<meta property="article:published_time" content="2021-03-15T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-03-14T12:36:54.381Z">
 <meta property="article:author" content="Hop Lai">
-<meta property="article:tag" content="python">
+<meta property="article:tag" content="模糊数学">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/img/pattern_recognition.jpeg">
   
     <link rel="alternative" href="/atom.xml" title="HopLai的博客" type="application/atom+xml">
   
@@ -165,86 +167,43 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Assignment01" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-模糊数学笔记03" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Assignment01
+      模糊数学笔记03
     </h1>
   
 
         
-        <a href="/2021/03/12/Assignment01/" class="archive-article-date">
-  	<time datetime="2021-03-11T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-12</time>
+        <a href="/2021/03/16/%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6%E7%AC%94%E8%AE%B003/" class="archive-article-date">
+  	<time datetime="2021-03-15T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-16</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="大数据分析与挖掘-2021-03-第一次作业"><a href="#大数据分析与挖掘-2021-03-第一次作业" class="headerlink" title="大数据分析与挖掘 2021.03 第一次作业"></a>大数据分析与挖掘 2021.03 第一次作业</h2><h4 id="1-斐波那契数列：-1，-1，-2，-3，-5，-8，-13，-…-，写一个程序打印斐波那契数列的前-n-项"><a href="#1-斐波那契数列：-1，-1，-2，-3，-5，-8，-13，-…-，写一个程序打印斐波那契数列的前-n-项" class="headerlink" title="1.斐波那契数列： 1， 1， 2， 3， 5， 8， 13， ….，写一个程序打印斐波那契数列的前 n 项"></a>1.斐波那契数列： 1， 1， 2， 3， 5， 8， 13， ….，写一个程序打印斐波那契数列的前 n 项</h4><p>谨记 python空列表不能赋值</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fibonacci</span>(<span class="params">n</span>):</span></span><br><span class="line">    li = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">        <span class="keyword">if</span> i &lt; <span class="number">2</span>:</span><br><span class="line">            li.append(<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            li.append(li[i-<span class="number">1</span>]+li[i-<span class="number">2</span>])</span><br><span class="line">    <span class="keyword">return</span> li</span><br><span class="line">fibonacci(<span class="number">15</span>)</span><br></pre></td></tr></table></figure>
+        <p>这一章开始进行F模式识别的学习。(Pattern Recognition)是机器学习的起源，目的在于让机器帮助我们自动识别事物。</p>
+<p>模式识别的流程如下图所示：</p>
+<p><img src="/assets/img/pattern_recognition.jpeg"></p>
+<p>F模式识别问题一般可以分为两种：一类模式库是模糊的，而待识别对象是分明的，要用F模式识别的直接方法解决；另一类模式库和待识别对象都是模糊的，要用F模式识别的间接方法来解决。</p>
+<p>具体的应用步骤应该在后续的学习中，研究例子来掌握。</p>
+<h2 id="F集的贴近度"><a href="#F集的贴近度" class="headerlink" title="F集的贴近度"></a>F集的贴近度</h2><p>贴近度是对两个F集接近程度对一种度量：</p>
+<ul>
+<li><p>定义 1 </p>
+<p>设 $A, B, C \in \mathcal{F}(U)$, 若映射</p>
+</li>
+</ul>
+<p>$$<br> N: \mathscr{F}(U) \times \mathscr{F}(U) \longrightarrow[0,1]<br>$$</p>
+<p>满足条件：</p>
+<p>（1）$N(A, B)=N(B, A)$</p>
+<p>（2）<br>$$<br>N(A,A) =1,<br>N(A, \varnothing)=0<br>$$</p>
+<p>（3）<br>若$A \subseteq B \subseteq C$, 则 $N(A,C) ≤ N(A,B) \bigwedge N(B,C)$</p>
 
-
-
-<pre><code>[1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610]</code></pre>
-<h4 id="2-求解方程（要求利用二分法）"><a href="#2-求解方程（要求利用二分法）" class="headerlink" title="2.求解方程（要求利用二分法）"></a>2.求解方程（要求利用二分法）</h4><p>注意判断语句中有精度丢失问题</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Func</span>(<span class="params">x</span>):</span></span><br><span class="line">    <span class="keyword">return</span> math.<span class="built_in">pow</span>(x,<span class="number">3</span>) - <span class="number">2</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">BiSearch</span>(<span class="params">start,end,epsilon</span>):</span></span><br><span class="line">    e = epsilon</span><br><span class="line">    <span class="keyword">while</span> (Func((start+end)/<span class="number">2</span>))  != e :</span><br><span class="line">        <span class="keyword">if</span> Func(start) * Func((start+end)/<span class="number">2</span>) &gt; <span class="number">0</span>:</span><br><span class="line">            start = (start + end)/<span class="number">2</span></span><br><span class="line">        <span class="keyword">elif</span> Func(start) * Func((start+end)/<span class="number">2</span>) &lt; <span class="number">0</span>:</span><br><span class="line">            end = (start + end)/<span class="number">2</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> (start + end)/<span class="number">2</span></span><br><span class="line">        </span><br><span class="line">BiSearch(<span class="number">0</span>,<span class="number">3</span>,<span class="number">0.1</span>)</span><br></pre></td></tr></table></figure>
-
-
-
-<pre><code>1.2599210498948732</code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">math.<span class="built_in">pow</span>(<span class="number">1.2599210498948732</span>,<span class="number">3</span>) <span class="comment"># 精度丢失</span></span><br></pre></td></tr></table></figure>
-
-
-
-<pre><code>2.0</code></pre>
-<h4 id="3-一个班有-50-人，我敢打赌，几乎一定有两个人是同一天生日。假设一年有-365-天，请问，我赌输的概率是多-少？"><a href="#3-一个班有-50-人，我敢打赌，几乎一定有两个人是同一天生日。假设一年有-365-天，请问，我赌输的概率是多-少？" class="headerlink" title="3.一个班有 50 人，我敢打赌，几乎一定有两个人是同一天生日。假设一年有 365 天，请问，我赌输的概率是多 少？"></a>3.一个班有 50 人，我敢打赌，几乎一定有两个人是同一天生日。假设一年有 365 天，请问，我赌输的概率是多 少？</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">probNoSameDOB</span>(<span class="params">prob=<span class="number">1</span>,n=<span class="number">50</span>,days = <span class="number">365</span></span>):</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">        prob *= (days-i)/days</span><br><span class="line">    <span class="keyword">return</span> prob</span><br><span class="line">probNoSameDOB()</span><br></pre></td></tr></table></figure>
-
-
-
-<pre><code>0.029626420422011596</code></pre>
-<h4 id="4-给一个列表，写一个循环，把的元素顺序倒过来。比如-a-1-2-3-倒过来变成-3-2-1"><a href="#4-给一个列表，写一个循环，把的元素顺序倒过来。比如-a-1-2-3-倒过来变成-3-2-1" class="headerlink" title="4.给一个列表，写一个循环，把的元素顺序倒过来。比如 a = [1, 2, 3] 倒过来变成 [3, 2, 1]"></a>4.给一个列表，写一个循环，把的元素顺序倒过来。比如 a = [1, 2, 3] 倒过来变成 [3, 2, 1]</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line"><span class="comment"># 其实可以直接sort</span></span><br><span class="line">a.sort(reverse=<span class="literal">True</span>)</span><br><span class="line">print(a)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 一定要用循环的话，我只记得冒泡排序了：</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(a)):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i+<span class="number">1</span>,<span class="built_in">len</span>(a)-i):</span><br><span class="line">        <span class="keyword">if</span> a[i] &lt; a[j]:</span><br><span class="line">            temp = a[i]</span><br><span class="line">            a[i] = a[j]</span><br><span class="line">            a[j] = temp</span><br><span class="line">print(a)</span><br></pre></td></tr></table></figure>
-<pre><code>[5, 4, 3, 2, 1]
-[5, 4, 3, 2, 1]</code></pre>
-<h4 id="6-给一个列表，写一个循环，统计每个元素出现的次数，提示：用-Dict"><a href="#6-给一个列表，写一个循环，统计每个元素出现的次数，提示：用-Dict" class="headerlink" title="6.给一个列表，写一个循环，统计每个元素出现的次数，提示：用 Dict"></a>6.给一个列表，写一个循环，统计每个元素出现的次数，提示：用 Dict</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">li = [<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">7</span>,<span class="number">7</span>,<span class="number">7</span>]</span><br><span class="line">dic = &#123;&#125;</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(li)):</span><br><span class="line">    <span class="keyword">if</span> li[i]  <span class="keyword">in</span> dic:</span><br><span class="line">        dic[li[i]] += <span class="number">1</span></span><br><span class="line">    <span class="keyword">elif</span> li[i] <span class="keyword">not</span> <span class="keyword">in</span> dic:</span><br><span class="line">        dic[li[i]] = <span class="number">1</span></span><br><span class="line">print(dic)</span><br></pre></td></tr></table></figure>
-<pre><code>&#123;1: 2, 2: 3, 3: 1, 4: 1, 5: 1, 6: 1, 7: 4&#125;</code></pre>
-<h4 id="7-给一个数字的列表，找出所有大于平均数的值（百度一下，不用循环的方法）"><a href="#7-给一个数字的列表，找出所有大于平均数的值（百度一下，不用循环的方法）" class="headerlink" title="7.给一个数字的列表，找出所有大于平均数的值（百度一下，不用循环的方法）"></a>7.给一个数字的列表，找出所有大于平均数的值（百度一下，不用循环的方法）</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np </span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">x = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]</span><br><span class="line"><span class="comment"># 这是用循环的方法</span></span><br><span class="line">x_big = [i <span class="keyword">for</span> i <span class="keyword">in</span> x  <span class="keyword">if</span> i &gt; np.mean(x)]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 不用循环的我真的没想到，随便用pandas糊弄了一下</span></span><br><span class="line">df = pd.DataFrame(x)</span><br><span class="line">df = df[df.values&gt;np.mean(x)]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">print(x_big)</span><br><span class="line">print(<span class="built_in">list</span>(df.values))</span><br></pre></td></tr></table></figure>
-<pre><code>[6, 7, 8, 9]
-[array([6]), array([7]), array([8]), array([9])]</code></pre>
-<h4 id="8-农夫过河问题"><a href="#8-农夫过河问题" class="headerlink" title="8.农夫过河问题"></a>8.农夫过河问题</h4><p>我是看了一些资料以后才知道怎么做的</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">IsSafe</span>(<span class="params">status</span>):</span></span><br><span class="line">    <span class="keyword">if</span> status[<span class="number">1</span>] == status[<span class="number">2</span>] <span class="keyword">and</span> status[<span class="number">0</span>] != status[<span class="number">1</span>]:<span class="comment"># wolf 和 goat 在一起，且人不在，那就是false</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="keyword">if</span> status[<span class="number">2</span>] == status[<span class="number">3</span>] <span class="keyword">and</span> status[<span class="number">0</span>] != status[<span class="number">2</span>]:<span class="comment"># goat 和 cai 在一起，且人不在，那就是false</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">NewStatus</span>(<span class="params">status</span>):</span></span><br><span class="line">    new_status_list = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">4</span>):</span><br><span class="line">        <span class="keyword">if</span> status[<span class="number">0</span>] != status[i]: <span class="comment">#  如果某个物品不和man在同一侧，那就可以跳过，因为必须要有man才能过河</span></span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">            </span><br><span class="line">        new_status = [status[<span class="number">0</span>],status[<span class="number">1</span>],status[<span class="number">2</span>],status[<span class="number">3</span>]]</span><br><span class="line">        <span class="comment"># 下面开始渡河</span></span><br><span class="line">        new_status[<span class="number">0</span>] = <span class="keyword">not</span> new_status[<span class="number">0</span>] <span class="comment"># man自己过河</span></span><br><span class="line">        new_status[i] = new_status[<span class="number">0</span>]</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 判断是否安全</span></span><br><span class="line">        <span class="keyword">if</span> IsSafe(new_status) == <span class="literal">True</span>:</span><br><span class="line">            new_status_list.append(new_status)</span><br><span class="line">    <span class="keyword">return</span> new_status_list</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Done</span>(<span class="params">status</span>):</span></span><br><span class="line">    <span class="comment"># 如果完成，那应该全部返回True，可作为我们后面的判断条件：</span></span><br><span class="line">    <span class="keyword">return</span> status[<span class="number">0</span>] <span class="keyword">and</span> status[<span class="number">1</span>] <span class="keyword">and</span> status[<span class="number">2</span>] <span class="keyword">and</span> status[<span class="number">3</span>]</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">print_history_status</span>(<span class="params">history_status</span>):</span></span><br><span class="line">    <span class="keyword">for</span> status <span class="keyword">in</span> history_status:</span><br><span class="line">        print(readable_status(status, <span class="literal">False</span>) + <span class="string">&quot;≈≈≈≈≈≈≈≈≈≈&quot;</span> + readable_status(status, <span class="literal">True</span>))</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Search</span>(<span class="params">his_status</span>):</span></span><br><span class="line">    <span class="keyword">global</span> loop</span><br><span class="line">    <span class="comment"># his_status是出现过的所有的状态</span></span><br><span class="line">    current_status = his_status[<span class="built_in">len</span>(his_status)-<span class="number">1</span>]</span><br><span class="line">    <span class="comment"># 根据当前状态生成可能的新状态</span></span><br><span class="line">    new_status_list = NewStatus(current_status)</span><br><span class="line">    <span class="keyword">for</span> new_status <span class="keyword">in</span> new_status_list:</span><br><span class="line">        <span class="keyword">if</span> new_status <span class="keyword">in</span> his_status:</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        his_status.append(new_status)</span><br><span class="line">        <span class="keyword">if</span> Done(new_status) == <span class="literal">True</span>:</span><br><span class="line">            loop += <span class="number">1</span></span><br><span class="line">            print(<span class="string">&quot;scheme:&quot;</span> ,loop)</span><br><span class="line">            print_history_status(his_status)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            Search(his_status)</span><br><span class="line">        </span><br><span class="line">        his_status.pop()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">readable_status</span>(<span class="params">status, is_across</span>):</span></span><br><span class="line">    result = <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">4</span>):</span><br><span class="line">        <span class="keyword">if</span> status[i] == is_across:</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(result) != <span class="number">0</span>:</span><br><span class="line">                result += <span class="string">&quot;,&quot;</span></span><br><span class="line">            result += status_name[i]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;[&quot;</span> + result + <span class="string">&quot;]&quot;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="comment"># 初始局面</span></span><br><span class="line">    </span><br><span class="line">    status_name = [<span class="string">&#x27;man&#x27;</span>,<span class="string">&#x27;wolf&#x27;</span>,<span class="string">&#x27;goat&#x27;</span>,<span class="string">&#x27;cai&#x27;</span>]</span><br><span class="line">    initial_status = [<span class="literal">False</span>,<span class="literal">False</span>,<span class="literal">False</span>,<span class="literal">False</span>]</span><br><span class="line">    final_status = [<span class="literal">True</span>,<span class="literal">True</span>,<span class="literal">True</span>,<span class="literal">True</span>]</span><br><span class="line">    loop = <span class="number">0</span></span><br><span class="line">    <span class="comment"># 局面队列</span></span><br><span class="line">    his_status = [initial_status]</span><br><span class="line">    Search(his_status)</span><br><span class="line">    print(<span class="string">&quot;finish search, find &quot;</span> + <span class="built_in">str</span>(loop) + <span class="string">&quot; scheme&quot;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<pre><code>scheme: 1
-[man,wolf,goat,cai]≈≈≈≈≈≈≈≈≈≈[]
-[wolf,cai]≈≈≈≈≈≈≈≈≈≈[man,goat]
-[man,wolf,cai]≈≈≈≈≈≈≈≈≈≈[goat]
-[cai]≈≈≈≈≈≈≈≈≈≈[man,wolf,goat]
-[man,goat,cai]≈≈≈≈≈≈≈≈≈≈[wolf]
-[goat]≈≈≈≈≈≈≈≈≈≈[man,wolf,cai]
-[man,goat]≈≈≈≈≈≈≈≈≈≈[wolf,cai]
-[]≈≈≈≈≈≈≈≈≈≈[man,wolf,goat,cai]
-scheme: 2
-[man,wolf,goat,cai]≈≈≈≈≈≈≈≈≈≈[]
-[wolf,cai]≈≈≈≈≈≈≈≈≈≈[man,goat]
-[man,wolf,cai]≈≈≈≈≈≈≈≈≈≈[goat]
-[wolf]≈≈≈≈≈≈≈≈≈≈[man,goat,cai]
-[man,wolf,goat]≈≈≈≈≈≈≈≈≈≈[cai]
-[goat]≈≈≈≈≈≈≈≈≈≈[man,wolf,cai]
-[man,goat]≈≈≈≈≈≈≈≈≈≈[wolf,cai]
-[]≈≈≈≈≈≈≈≈≈≈[man,wolf,goat,cai]
-finish search, find 2 scheme</code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
       
 
       
@@ -278,7 +237,7 @@ finish search, find 2 scheme</code></pre>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">模糊数学</a>
         		</li>
       		
 		</ul>
@@ -334,7 +293,7 @@ finish search, find 2 scheme</code></pre>
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/03/12/Assignment01/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/03/16/%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6%E7%AC%94%E8%AE%B003/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -348,18 +307,9 @@ finish search, find 2 scheme</code></pre>
   
 <nav id="article-nav">
   
-    <a href="/2021/03/16/%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6%E7%AC%94%E8%AE%B003/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          模糊数学笔记03
-        
-      </div>
-    </a>
   
-  
-    <a href="/2021/03/09/%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6%E7%AC%94%E8%AE%B002/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">模糊数学笔记02</div>
+    <a href="/2021/03/12/Assignment01/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Assignment01</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -389,7 +339,7 @@ finish search, find 2 scheme</code></pre>
   
 
   
-  <div id="SOHUCS" sid="Assignment01" ></div> 
+  <div id="SOHUCS" sid="模糊数学笔记03" ></div> 
 <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
 <script type="text/javascript">
     window.changyan.api.config({
