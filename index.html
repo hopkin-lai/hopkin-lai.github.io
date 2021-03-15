@@ -254,6 +254,569 @@
 
 
   
+    <article id="post-第二章：机器学习基础" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/15/%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/">ch02-Task01 Fundamental Machine Learning</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/15/%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" class="archive-article-date">
+  	<time datetime="2021-03-14T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- TOC -->
+
+<ul>
+<li><a href="#1%E5%AF%BC%E8%AE%BA-introduction">1.导论 Introduction</a><ul>
+<li><a href="#11-%E5%9B%9E%E5%BD%92">1.1 回归</a></li>
+</ul>
+</li>
+<li><a href="#12-%E5%88%86%E7%B1%BB">1.2 分类</a><ul>
+<li><a href="#13-%E6%97%A0%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0">1.3 无监督学习</a></li>
+</ul>
+</li>
+<li><a href="#2-%E4%BD%BF%E7%94%A8sklearn%E6%9E%84%E5%BB%BA%E5%AE%8C%E6%95%B4%E7%9A%84%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E9%A1%B9%E7%9B%AE%E6%B5%81%E7%A8%8B">2. 使用sklearn构建完整的机器学习项目流程</a></li>
+</ul>
+<!-- /TOC -->
+
+
+
+
+<h1 id="1-导论-Introduction"><a href="#1-导论-Introduction" class="headerlink" title="1.导论 Introduction"></a>1.导论 Introduction</h1><p>什么是机器学习？机器学习的一个重要的目标就是利用数学模型来理解数据，发现数据中的规律，用作数据的分析和预测。数据通常由一组向量组成，这组向量中的每个向量都是一个样本，我们用$x_i$来表示一个样本，其中$i=1,2,3,…,N$,共N个样本，每个样本$x_i=(x_{i1},x_{i2},…,x_{ip},y_i)$共p+1个维度，前p个维度的每个维度我们称为一个特征，最后一个维度$y_i$我们称为因变量(响应变量)。特征用来描述影响因变量的因素，如：我们要探寻身高是否会影响体重的关系的时候，身高就是一个特征，体重就是一个因变量。通常在一个数据表dataframe里面，一行表示一个样本$x_i$，一列表示一个特征。<br>根据数据是否有因变量，机器学习的任务可分为：<strong>有监督学习</strong>和<strong>无监督学习</strong>。</p>
+<ul>
+<li>有监督学习：给定某些特征去估计因变量，即因变量存在的时候，我们称这个机器学习任务为有监督学习。如：我们使用房间面积，房屋所在地区，环境等级等因素去预测某个地区的房价。          </li>
+<li>无监督学习：给定某些特征但不给定因变量，建模的目的是学习数据本身的结构和关系。如：我们给定某电商用户的基本信息和消费记录，通过观察数据中的哪些类型的用户彼此间的行为和属性类似，形成一个客群。注意，我们本身并不知道哪个用户属于哪个客群，即没有给定因变量。      </li>
+</ul>
+<p><img src="../assets/img/input/1.1.png" alt="jupyter">        </p>
+<p>根据因变量的是否连续，有监督学习又分为<strong>回归</strong>和<strong>分类</strong>：</p>
+<ul>
+<li>回归：因变量是连续型变量，如：房价，体重等。</li>
+<li>分类：因变量是离散型变量，如：是否患癌症，西瓜是好瓜还是坏瓜等。</li>
+</ul>
+<p>为了更好地叙述后面的内容，我们对数据的形式作出如下约定：<br>第i个样本：$x_i=(x_{i1},x_{i2},…,x_{ip},y_i)^T,i=1,2,…,N$<br>因变量$y=(y_1,y_2,…,y_N)^T$<br>第k个特征:$x^{(k)}=(x_{1k},x_{2k},…,x_{Nk})^T$<br>特征矩阵$X=(x_1,x_2,…,x_N)^T$</p>
+<p>在学习机器学习中，我们经常使用scikit-learn简称sklearn工具库来探索机器学习项目，下面我们开始使用sklearn来演示这几个具体的概念：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 引入相关科学计算包</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">%matplotlib inline </span><br><span class="line">plt.style.use(<span class="string">&quot;ggplot&quot;</span>)      </span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line"></span><br><span class="line"><span class="comment"># 关掉那讨厌的警告⚠️</span></span><br><span class="line"><span class="keyword">import</span> warnings</span><br><span class="line">warnings.filterwarnings(<span class="string">&#x27;ignore&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="1-1-回归"><a href="#1-1-回归" class="headerlink" title="1.1 回归"></a>1.1 回归</h2><p>首先，我们先来看看有监督学习中回归的例子，我们使用sklearn内置数据集Boston房价数据集。sklearn中所有内置数据集都封装在datasets对象内：<br>返回的对象有：</p>
+<ul>
+<li>data:特征X的矩阵(ndarray)</li>
+<li>target:因变量的向量(ndarray)</li>
+<li>feature_names:特征名称(ndarray)</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> datasets</span><br><span class="line">boston = datasets.load_boston()     <span class="comment"># 返回一个类似于字典的类，加载速度取决于网速</span></span><br><span class="line">X = boston.data</span><br><span class="line">y = boston.target</span><br><span class="line">features = boston.feature_names</span><br><span class="line">boston_data = pd.DataFrame(X,columns=features)</span><br><span class="line">boston_data[<span class="string">&quot;Price&quot;</span>] = y</span><br><span class="line">boston_data.head()</span><br></pre></td></tr></table></figure>
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th &#123;
+    vertical-align: top;
+&#125;
+
+.dataframe thead th &#123;
+    text-align: right;
+&#125;</code></pre>
+<p></style></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>CRIM</th>
+      <th>ZN</th>
+      <th>INDUS</th>
+      <th>CHAS</th>
+      <th>NOX</th>
+      <th>RM</th>
+      <th>AGE</th>
+      <th>DIS</th>
+      <th>RAD</th>
+      <th>TAX</th>
+      <th>PTRATIO</th>
+      <th>B</th>
+      <th>LSTAT</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.00632</td>
+      <td>18.0</td>
+      <td>2.31</td>
+      <td>0.0</td>
+      <td>0.538</td>
+      <td>6.575</td>
+      <td>65.2</td>
+      <td>4.0900</td>
+      <td>1.0</td>
+      <td>296.0</td>
+      <td>15.3</td>
+      <td>396.90</td>
+      <td>4.98</td>
+      <td>24.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.02731</td>
+      <td>0.0</td>
+      <td>7.07</td>
+      <td>0.0</td>
+      <td>0.469</td>
+      <td>6.421</td>
+      <td>78.9</td>
+      <td>4.9671</td>
+      <td>2.0</td>
+      <td>242.0</td>
+      <td>17.8</td>
+      <td>396.90</td>
+      <td>9.14</td>
+      <td>21.6</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.02729</td>
+      <td>0.0</td>
+      <td>7.07</td>
+      <td>0.0</td>
+      <td>0.469</td>
+      <td>7.185</td>
+      <td>61.1</td>
+      <td>4.9671</td>
+      <td>2.0</td>
+      <td>242.0</td>
+      <td>17.8</td>
+      <td>392.83</td>
+      <td>4.03</td>
+      <td>34.7</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.03237</td>
+      <td>0.0</td>
+      <td>2.18</td>
+      <td>0.0</td>
+      <td>0.458</td>
+      <td>6.998</td>
+      <td>45.8</td>
+      <td>6.0622</td>
+      <td>3.0</td>
+      <td>222.0</td>
+      <td>18.7</td>
+      <td>394.63</td>
+      <td>2.94</td>
+      <td>33.4</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.06905</td>
+      <td>0.0</td>
+      <td>2.18</td>
+      <td>0.0</td>
+      <td>0.458</td>
+      <td>7.147</td>
+      <td>54.2</td>
+      <td>6.0622</td>
+      <td>3.0</td>
+      <td>222.0</td>
+      <td>18.7</td>
+      <td>396.90</td>
+      <td>5.33</td>
+      <td>36.2</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">boston_data.describe()  <span class="comment"># 大致看一下数据状况</span></span><br></pre></td></tr></table></figure>
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th &#123;
+    vertical-align: top;
+&#125;
+
+.dataframe thead th &#123;
+    text-align: right;
+&#125;</code></pre>
+<p></style></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>CRIM</th>
+      <th>ZN</th>
+      <th>INDUS</th>
+      <th>CHAS</th>
+      <th>NOX</th>
+      <th>RM</th>
+      <th>AGE</th>
+      <th>DIS</th>
+      <th>RAD</th>
+      <th>TAX</th>
+      <th>PTRATIO</th>
+      <th>B</th>
+      <th>LSTAT</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>506.000000</td>
+      <td>506.000000</td>
+      <td>506.000000</td>
+      <td>506.000000</td>
+      <td>506.000000</td>
+      <td>506.000000</td>
+      <td>506.000000</td>
+      <td>506.000000</td>
+      <td>506.000000</td>
+      <td>506.000000</td>
+      <td>506.000000</td>
+      <td>506.000000</td>
+      <td>506.000000</td>
+      <td>506.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>3.613524</td>
+      <td>11.363636</td>
+      <td>11.136779</td>
+      <td>0.069170</td>
+      <td>0.554695</td>
+      <td>6.284634</td>
+      <td>68.574901</td>
+      <td>3.795043</td>
+      <td>9.549407</td>
+      <td>408.237154</td>
+      <td>18.455534</td>
+      <td>356.674032</td>
+      <td>12.653063</td>
+      <td>22.532806</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>8.601545</td>
+      <td>23.322453</td>
+      <td>6.860353</td>
+      <td>0.253994</td>
+      <td>0.115878</td>
+      <td>0.702617</td>
+      <td>28.148861</td>
+      <td>2.105710</td>
+      <td>8.707259</td>
+      <td>168.537116</td>
+      <td>2.164946</td>
+      <td>91.294864</td>
+      <td>7.141062</td>
+      <td>9.197104</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.006320</td>
+      <td>0.000000</td>
+      <td>0.460000</td>
+      <td>0.000000</td>
+      <td>0.385000</td>
+      <td>3.561000</td>
+      <td>2.900000</td>
+      <td>1.129600</td>
+      <td>1.000000</td>
+      <td>187.000000</td>
+      <td>12.600000</td>
+      <td>0.320000</td>
+      <td>1.730000</td>
+      <td>5.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>0.082045</td>
+      <td>0.000000</td>
+      <td>5.190000</td>
+      <td>0.000000</td>
+      <td>0.449000</td>
+      <td>5.885500</td>
+      <td>45.025000</td>
+      <td>2.100175</td>
+      <td>4.000000</td>
+      <td>279.000000</td>
+      <td>17.400000</td>
+      <td>375.377500</td>
+      <td>6.950000</td>
+      <td>17.025000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>0.256510</td>
+      <td>0.000000</td>
+      <td>9.690000</td>
+      <td>0.000000</td>
+      <td>0.538000</td>
+      <td>6.208500</td>
+      <td>77.500000</td>
+      <td>3.207450</td>
+      <td>5.000000</td>
+      <td>330.000000</td>
+      <td>19.050000</td>
+      <td>391.440000</td>
+      <td>11.360000</td>
+      <td>21.200000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>3.677083</td>
+      <td>12.500000</td>
+      <td>18.100000</td>
+      <td>0.000000</td>
+      <td>0.624000</td>
+      <td>6.623500</td>
+      <td>94.075000</td>
+      <td>5.188425</td>
+      <td>24.000000</td>
+      <td>666.000000</td>
+      <td>20.200000</td>
+      <td>396.225000</td>
+      <td>16.955000</td>
+      <td>25.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>88.976200</td>
+      <td>100.000000</td>
+      <td>27.740000</td>
+      <td>1.000000</td>
+      <td>0.871000</td>
+      <td>8.780000</td>
+      <td>100.000000</td>
+      <td>12.126500</td>
+      <td>24.000000</td>
+      <td>711.000000</td>
+      <td>22.000000</td>
+      <td>396.900000</td>
+      <td>37.970000</td>
+      <td>50.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 看一下一氧化氮浓度(/千万分之一)与房价是否有相关性</span></span><br><span class="line">sns.scatterplot(boston_data[<span class="string">&#x27;NOX&#x27;</span>],boston_data[<span class="string">&#x27;Price&#x27;</span>],color=<span class="string">&quot;lightblue&quot;</span>,alpha=<span class="number">0.8</span>)</span><br><span class="line">plt.title(<span class="string">&quot;Price~NOX&quot;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="../assets/img/output/output_7_0.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sns.scatterplot(boston_data[<span class="string">&#x27;DIS&#x27;</span>],boston_data[<span class="string">&#x27;Price&#x27;</span>],color = <span class="string">&#x27;red&#x27;</span>,alpha=<span class="number">.6</span>)</span><br><span class="line">plt.title(<span class="string">&quot;Price-DIS&quot;</span>)</span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 怎么乍一眼看过去，距离越远，价格反而越贵呢？</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<p><img src="../assets/img/output/output_8_0.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">plt.subplots(<span class="number">3</span>,<span class="number">1</span>,figsize=(<span class="number">15</span>,<span class="number">12</span>))</span><br><span class="line">sns.axes_style(<span class="string">&quot;darkgrid&quot;</span>)</span><br><span class="line">plt.subplot(<span class="number">221</span>)</span><br><span class="line">sns.scatterplot(boston_data[<span class="string">&#x27;RM&#x27;</span>],boston_data[<span class="string">&#x27;Price&#x27;</span>],color = <span class="string">&#x27;red&#x27;</span>,alpha=<span class="number">.6</span>)</span><br><span class="line">plt.title(<span class="string">&quot;Price-RM&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">sns.axes_style(<span class="string">&quot;dark&quot;</span>)</span><br><span class="line">plt.subplot(<span class="number">222</span>)</span><br><span class="line">sns.scatterplot(boston_data[<span class="string">&#x27;PTRATIO&#x27;</span>],boston_data[<span class="string">&#x27;Price&#x27;</span>],color = <span class="string">&#x27;red&#x27;</span>,alpha=<span class="number">.6</span>)</span><br><span class="line">plt.title(<span class="string">&quot;Price-PTRATIO&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">sns.axes_style(<span class="string">&quot;ticks&quot;</span>)</span><br><span class="line">plt.subplot(<span class="number">223</span>)</span><br><span class="line">sns.scatterplot(boston_data[<span class="string">&#x27;RAD&#x27;</span>],boston_data[<span class="string">&#x27;Price&#x27;</span>],color = <span class="string">&#x27;red&#x27;</span>,alpha=<span class="number">.6</span>)</span><br><span class="line">plt.title(<span class="string">&quot;Price-RAD&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">plt.subplot(<span class="number">224</span>)</span><br><span class="line">sns.scatterplot(boston_data[<span class="string">&#x27;LSTAT&#x27;</span>],boston_data[<span class="string">&#x27;Price&#x27;</span>],color = <span class="string">&#x27;red&#x27;</span>,alpha=<span class="number">.6</span>)</span><br><span class="line">plt.title(<span class="string">&quot;Price-LSTAT&quot;</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 可见第一张图和第四张图还是很能说明问题的</span></span><br></pre></td></tr></table></figure>
+
+
+<p><img src="../assets/img/output/output_9_0.png" alt="png"></p>
+<p>我们可以看到，数据给定任务所需要的因变量，因变量为波士顿房价Price是一个连续型变量，所以这是一个回归的例子。</p>
+<p>各个特征的相关解释：</p>
+<ul>
+<li>CRIM：各城镇的人均犯罪率</li>
+<li>ZN：规划地段超过25,000平方英尺的住宅用地比例</li>
+<li>INDUS：城镇非零售商业用地比例</li>
+<li>CHAS：是否在查尔斯河边(=1是)</li>
+<li>NOX：一氧化氮浓度(/千万分之一)</li>
+<li>RM：每个住宅的平均房间数</li>
+<li>AGE：1940年以前建造的自住房屋的比例</li>
+<li>DIS：到波士顿五个就业中心的加权距离</li>
+<li>RAD：放射状公路的可达性指数</li>
+<li>TAX：全部价值的房产税率(每1万美元)</li>
+<li>PTRATIO：按城镇分配的学生与教师比例</li>
+<li>B：1000(Bk - 0.63)^2其中Bk是每个城镇的黑人比例</li>
+<li>LSTAT：较低地位人口</li>
+<li>Price：房价</li>
+</ul>
+<h1 id="1-2-分类"><a href="#1-2-分类" class="headerlink" title="1.2 分类"></a>1.2 分类</h1><p>我们来看看一个分类的例子，我们来看看大名鼎鼎的iris数据集：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> datasets</span><br><span class="line">iris = datasets.load_iris()</span><br><span class="line">X = iris.data</span><br><span class="line">y = iris.target</span><br><span class="line">features = iris.feature_names</span><br><span class="line">iris_data = pd.DataFrame(X,columns=features)</span><br><span class="line">iris_data[<span class="string">&#x27;target&#x27;</span>] = y</span><br><span class="line">iris_data.head()</span><br></pre></td></tr></table></figure>
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th &#123;
+    vertical-align: top;
+&#125;
+
+.dataframe thead th &#123;
+    text-align: right;
+&#125;</code></pre>
+<p></style></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal length (cm)</th>
+      <th>sepal width (cm)</th>
+      <th>petal length (cm)</th>
+      <th>petal width (cm)</th>
+      <th>target</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>5.1</td>
+      <td>3.5</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4.9</td>
+      <td>3.0</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4.7</td>
+      <td>3.2</td>
+      <td>1.3</td>
+      <td>0.2</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4.6</td>
+      <td>3.1</td>
+      <td>1.5</td>
+      <td>0.2</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5.0</td>
+      <td>3.6</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 可视化特征</span></span><br><span class="line">marker = [<span class="string">&#x27;s&#x27;</span>,<span class="string">&#x27;x&#x27;</span>,<span class="string">&#x27;o&#x27;</span>]</span><br><span class="line"><span class="keyword">for</span> index,c <span class="keyword">in</span> <span class="built_in">enumerate</span>(np.unique(y)):</span><br><span class="line">    plt.scatter(x=iris_data.loc[y==c,<span class="string">&quot;sepal length (cm)&quot;</span>],y=iris_data.loc[y==c,<span class="string">&quot;sepal width (cm)&quot;</span>],alpha=<span class="number">0.8</span>,label=c,marker=marker[c])</span><br><span class="line">plt.xlabel(<span class="string">&quot;sepal length (cm)&quot;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&quot;sepal width (cm)&quot;</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="../assets/img/output/output_15_0.png" alt="png"></p>
+<p>我们可以看到：每种不同的颜色和点的样式为一种类型的鸢尾花，数据集有三种不同类型的鸢尾花。因此因变量是一个类别变量，因此通过特征预测鸢尾花类别的问题是一个分类问题。</p>
+<p>各个特征的相关解释：</p>
+<ul>
+<li>sepal length (cm)：花萼长度(厘米)</li>
+<li>sepal width (cm)：花萼宽度(厘米)</li>
+<li>petal length (cm)：花瓣长度(厘米)</li>
+<li>petal width (cm)：花瓣宽度(厘米)</li>
+</ul>
+<h2 id="1-3-无监督学习"><a href="#1-3-无监督学习" class="headerlink" title="1.3 无监督学习"></a>1.3 无监督学习</h2><p>我们可以使用sklearn生成符合自身需求的数据集，下面我们用其中几个函数例子来生成无因变量的数据集：<br><a target="_blank" rel="noopener" href="https://scikit-learn.org/stable/modules/classes.html?highlight=datasets#module-sklearn.datasets">https://scikit-learn.org/stable/modules/classes.html?highlight=datasets#module-sklearn.datasets</a>  </p>
+<p><img src="../assets/img/input/1.2.png" alt="jupyter"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 生成月牙型非凸集</span></span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> datasets</span><br><span class="line">x, y = datasets.make_moons(n_samples=<span class="number">2000</span>, shuffle=<span class="literal">True</span>,</span><br><span class="line">                  noise=<span class="number">0.05</span>, random_state=<span class="literal">None</span>)</span><br><span class="line"><span class="keyword">for</span> index,c <span class="keyword">in</span> <span class="built_in">enumerate</span>(np.unique(y)):</span><br><span class="line">    plt.scatter(x[y==c,<span class="number">0</span>],x[y==c,<span class="number">1</span>],s=<span class="number">7</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>我曾经在本科毕设期间做过这种非凸、非线性的分类问题，一般的分类器往往不具备分类能力。一般有两种思路：(1)将数据进行转化，到高维空间，变成线性可分，继续用线性分类器。（2）直接使用非线性分类器 </p>
+</blockquote>
+<p><img src="../assets/img/output/output_20_0.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 生成符合正态分布的聚类数据</span></span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> datasets</span><br><span class="line">x, y = datasets.make_blobs(n_samples=<span class="number">5000</span>, n_features=<span class="number">2</span>, centers=<span class="number">3</span>)</span><br><span class="line"><span class="keyword">for</span> index,c <span class="keyword">in</span> <span class="built_in">enumerate</span>(np.unique(y)):</span><br><span class="line">    plt.scatter(x[y==c, <span class="number">0</span>], x[y==c, <span class="number">1</span>],s=<span class="number">7</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="../assets/img/output/output_21_0.png" alt="png"></p>
+<h1 id="2-使用sklearn构建完整的机器学习项目流程"><a href="#2-使用sklearn构建完整的机器学习项目流程" class="headerlink" title="2. 使用sklearn构建完整的机器学习项目流程"></a>2. 使用sklearn构建完整的机器学习项目流程</h1><p>一般来说，一个完整的机器学习项目分为以下步骤：</p>
+<ul>
+<li>明确项目任务：回归/分类</li>
+<li>收集数据集并选择合适的特征。</li>
+<li>选择度量模型性能的指标。</li>
+<li>选择具体的模型并进行训练以优化模型。</li>
+<li>评估模型的性能并调参。</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Machine Learning</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/15/%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Assignment01" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1525,77 +2088,10 @@ finish search, find 2 scheme</code></pre>
 
 
   
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/01/02/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2021/01/02/hello-world/" class="archive-article-date">
-  	<time datetime="2021-01-02T05:46:04.642Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/01/02/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+    </nav>
   
 
 
@@ -1718,11 +2214,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1731,6 +2227,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">模糊数学</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
               </li>
             
             <div class="clearfix"></div>
