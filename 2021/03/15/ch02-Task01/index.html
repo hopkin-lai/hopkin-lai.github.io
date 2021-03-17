@@ -11,24 +11,24 @@
   <meta name="description" content="1.导论 Introduction 1.1 回归   1.2 分类 1.3 无监督学习   2. 使用sklearn构建完整的机器学习项目流程       1.导论 Introduction什么是机器学习？机器学习的一个重要的目标就是利用数学模型来理解数据，发现数据中的规律，用作数据的分析和预测。数据通常由一组向量组成，这组向量中的每个向量都是一个样本，我们用$x_i$来表示一个样本，其中$">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ch02-Task01 Fundamental Machine Learning">
-<meta property="og:url" content="http://example.com/2021/03/15/%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:url" content="http://example.com/2021/03/15/ch02-Task01/index.html">
 <meta property="og:site_name" content="HopLai的博客">
 <meta property="og:description" content="1.导论 Introduction 1.1 回归   1.2 分类 1.3 无监督学习   2. 使用sklearn构建完整的机器学习项目流程       1.导论 Introduction什么是机器学习？机器学习的一个重要的目标就是利用数学模型来理解数据，发现数据中的规律，用作数据的分析和预测。数据通常由一组向量组成，这组向量中的每个向量都是一个样本，我们用$x_i$来表示一个样本，其中$">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2021/03/15/assets/img/input/1.1.png">
-<meta property="og:image" content="http://example.com/2021/03/15/assets/img/output/output_7_0.png">
-<meta property="og:image" content="http://example.com/2021/03/15/assets/img/output/output_8_0.png">
-<meta property="og:image" content="http://example.com/2021/03/15/assets/img/output/output_9_0.png">
-<meta property="og:image" content="http://example.com/2021/03/15/assets/img/output/output_15_0.png">
-<meta property="og:image" content="http://example.com/2021/03/15/assets/img/input/1.2.png">
-<meta property="og:image" content="http://example.com/2021/03/15/assets/img/output/output_20_0.png">
-<meta property="og:image" content="http://example.com/2021/03/15/assets/img/output/output_21_0.png">
+<meta property="og:image" content="http://example.com/assets/img/input/1.1.png">
+<meta property="og:image" content="http://example.com/assets/img/output/output_7_0.png">
+<meta property="og:image" content="http://example.com/assets/img/output/output_8_0.png">
+<meta property="og:image" content="http://example.com/assets/img/output/output_9_0.png">
+<meta property="og:image" content="http://example.com/assets/img/output/output_15_0.png">
+<meta property="og:image" content="http://example.com/assets/img/input/1.2.png">
+<meta property="og:image" content="http://example.com/assets/img/output/output_20_0.png">
+<meta property="og:image" content="http://example.com/assets/img/output/output_21_0.png">
 <meta property="article:published_time" content="2021-03-14T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-03-15T09:02:46.733Z">
+<meta property="article:modified_time" content="2021-03-17T12:06:27.591Z">
 <meta property="article:author" content="Hop Lai">
 <meta property="article:tag" content="Machine Learning">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2021/03/15/assets/img/input/1.1.png">
+<meta name="twitter:image" content="http://example.com/assets/img/input/1.1.png">
   
     <link rel="alternative" href="/atom.xml" title="HopLai的博客" type="application/atom+xml">
   
@@ -174,7 +174,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-第二章：机器学习基础" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-ch02-Task01" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -186,7 +186,7 @@
   
 
         
-        <a href="/2021/03/15/%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" class="archive-article-date">
+        <a href="/2021/03/15/ch02-Task01/" class="archive-article-date">
   	<time datetime="2021-03-14T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-15</time>
 </a>
         
@@ -217,7 +217,7 @@
 <li>有监督学习：给定某些特征去估计因变量，即因变量存在的时候，我们称这个机器学习任务为有监督学习。如：我们使用房间面积，房屋所在地区，环境等级等因素去预测某个地区的房价。          </li>
 <li>无监督学习：给定某些特征但不给定因变量，建模的目的是学习数据本身的结构和关系。如：我们给定某电商用户的基本信息和消费记录，通过观察数据中的哪些类型的用户彼此间的行为和属性类似，形成一个客群。注意，我们本身并不知道哪个用户属于哪个客群，即没有给定因变量。      </li>
 </ul>
-<p><img src="../assets/img/input/1.1.png" alt="jupyter">        </p>
+<p><img src="/assets/img/input/1.1.png" alt="jupyter">        </p>
 <p>根据因变量的是否连续，有监督学习又分为<strong>回归</strong>和<strong>分类</strong>：</p>
 <ul>
 <li>回归：因变量是连续型变量，如：房价，体重等。</li>
@@ -249,7 +249,7 @@
 .dataframe thead th &#123;
     text-align: right;
 &#125;</code></pre>
-<p></style></p>
+<p></style><p></p>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -380,7 +380,7 @@
 .dataframe thead th &#123;
     text-align: right;
 &#125;</code></pre>
-<p></style></p>
+<p></style><p></p>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -548,15 +548,15 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 看一下一氧化氮浓度(/千万分之一)与房价是否有相关性</span></span><br><span class="line">sns.scatterplot(boston_data[<span class="string">&#x27;NOX&#x27;</span>],boston_data[<span class="string">&#x27;Price&#x27;</span>],color=<span class="string">&quot;lightblue&quot;</span>,alpha=<span class="number">0.8</span>)</span><br><span class="line">plt.title(<span class="string">&quot;Price~NOX&quot;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 
 
-<p><img src="../assets/img/output/output_7_0.png" alt="png"></p>
+<p><img src="/assets/img/output/output_7_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sns.scatterplot(boston_data[<span class="string">&#x27;DIS&#x27;</span>],boston_data[<span class="string">&#x27;Price&#x27;</span>],color = <span class="string">&#x27;red&#x27;</span>,alpha=<span class="number">.6</span>)</span><br><span class="line">plt.title(<span class="string">&quot;Price-DIS&quot;</span>)</span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 怎么乍一眼看过去，距离越远，价格反而越贵呢？</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 
-<p><img src="../assets/img/output/output_8_0.png" alt="png"></p>
+<p><img src="/assets/img/output/output_8_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">plt.subplots(<span class="number">3</span>,<span class="number">1</span>,figsize=(<span class="number">15</span>,<span class="number">12</span>))</span><br><span class="line">sns.axes_style(<span class="string">&quot;darkgrid&quot;</span>)</span><br><span class="line">plt.subplot(<span class="number">221</span>)</span><br><span class="line">sns.scatterplot(boston_data[<span class="string">&#x27;RM&#x27;</span>],boston_data[<span class="string">&#x27;Price&#x27;</span>],color = <span class="string">&#x27;red&#x27;</span>,alpha=<span class="number">.6</span>)</span><br><span class="line">plt.title(<span class="string">&quot;Price-RM&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">sns.axes_style(<span class="string">&quot;dark&quot;</span>)</span><br><span class="line">plt.subplot(<span class="number">222</span>)</span><br><span class="line">sns.scatterplot(boston_data[<span class="string">&#x27;PTRATIO&#x27;</span>],boston_data[<span class="string">&#x27;Price&#x27;</span>],color = <span class="string">&#x27;red&#x27;</span>,alpha=<span class="number">.6</span>)</span><br><span class="line">plt.title(<span class="string">&quot;Price-PTRATIO&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">sns.axes_style(<span class="string">&quot;ticks&quot;</span>)</span><br><span class="line">plt.subplot(<span class="number">223</span>)</span><br><span class="line">sns.scatterplot(boston_data[<span class="string">&#x27;RAD&#x27;</span>],boston_data[<span class="string">&#x27;Price&#x27;</span>],color = <span class="string">&#x27;red&#x27;</span>,alpha=<span class="number">.6</span>)</span><br><span class="line">plt.title(<span class="string">&quot;Price-RAD&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">plt.subplot(<span class="number">224</span>)</span><br><span class="line">sns.scatterplot(boston_data[<span class="string">&#x27;LSTAT&#x27;</span>],boston_data[<span class="string">&#x27;Price&#x27;</span>],color = <span class="string">&#x27;red&#x27;</span>,alpha=<span class="number">.6</span>)</span><br><span class="line">plt.title(<span class="string">&quot;Price-LSTAT&quot;</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 可见第一张图和第四张图还是很能说明问题的</span></span><br></pre></td></tr></table></figure>
 
 
-<p><img src="../assets/img/output/output_9_0.png" alt="png"></p>
+<p><img src="/assets/img/output/output_9_0.png" alt="png"></p>
 <p>我们可以看到，数据给定任务所需要的因变量，因变量为波士顿房价Price是一个连续型变量，所以这是一个回归的例子。</p>
 <p>各个特征的相关解释：</p>
 <ul>
@@ -593,7 +593,7 @@
 .dataframe thead th &#123;
     text-align: right;
 &#125;</code></pre>
-<p></style></p>
+<p></style><p></p>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -656,7 +656,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 可视化特征</span></span><br><span class="line">marker = [<span class="string">&#x27;s&#x27;</span>,<span class="string">&#x27;x&#x27;</span>,<span class="string">&#x27;o&#x27;</span>]</span><br><span class="line"><span class="keyword">for</span> index,c <span class="keyword">in</span> <span class="built_in">enumerate</span>(np.unique(y)):</span><br><span class="line">    plt.scatter(x=iris_data.loc[y==c,<span class="string">&quot;sepal length (cm)&quot;</span>],y=iris_data.loc[y==c,<span class="string">&quot;sepal width (cm)&quot;</span>],alpha=<span class="number">0.8</span>,label=c,marker=marker[c])</span><br><span class="line">plt.xlabel(<span class="string">&quot;sepal length (cm)&quot;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&quot;sepal width (cm)&quot;</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 
 
-<p><img src="../assets/img/output/output_15_0.png" alt="png"></p>
+<p><img src="/assets/img/output/output_15_0.png" alt="png"></p>
 <p>我们可以看到：每种不同的颜色和点的样式为一种类型的鸢尾花，数据集有三种不同类型的鸢尾花。因此因变量是一个类别变量，因此通过特征预测鸢尾花类别的问题是一个分类问题。</p>
 <p>各个特征的相关解释：</p>
 <ul>
@@ -666,16 +666,16 @@
 <li>petal width (cm)：花瓣宽度(厘米)</li>
 </ul>
 <h2 id="1-3-无监督学习"><a href="#1-3-无监督学习" class="headerlink" title="1.3 无监督学习"></a>1.3 无监督学习</h2><p>我们可以使用sklearn生成符合自身需求的数据集，下面我们用其中几个函数例子来生成无因变量的数据集：<br><a target="_blank" rel="noopener" href="https://scikit-learn.org/stable/modules/classes.html?highlight=datasets#module-sklearn.datasets">https://scikit-learn.org/stable/modules/classes.html?highlight=datasets#module-sklearn.datasets</a>  </p>
-<p><img src="../assets/img/input/1.2.png" alt="jupyter"></p>
+<p><img src="/assets/img/input/1.2.png" alt="jupyter"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 生成月牙型非凸集</span></span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> datasets</span><br><span class="line">x, y = datasets.make_moons(n_samples=<span class="number">2000</span>, shuffle=<span class="literal">True</span>,</span><br><span class="line">                  noise=<span class="number">0.05</span>, random_state=<span class="literal">None</span>)</span><br><span class="line"><span class="keyword">for</span> index,c <span class="keyword">in</span> <span class="built_in">enumerate</span>(np.unique(y)):</span><br><span class="line">    plt.scatter(x[y==c,<span class="number">0</span>],x[y==c,<span class="number">1</span>],s=<span class="number">7</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>我曾经在本科毕设期间做过这种非凸、非线性的分类问题，一般的分类器往往不具备分类能力。一般有两种思路：(1)将数据进行转化，到高维空间，变成线性可分，继续用线性分类器。（2）直接使用非线性分类器 </p>
 </blockquote>
-<p><img src="../assets/img/output/output_20_0.png" alt="png"></p>
+<p><img src="/assets/img/output/output_20_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 生成符合正态分布的聚类数据</span></span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> datasets</span><br><span class="line">x, y = datasets.make_blobs(n_samples=<span class="number">5000</span>, n_features=<span class="number">2</span>, centers=<span class="number">3</span>)</span><br><span class="line"><span class="keyword">for</span> index,c <span class="keyword">in</span> <span class="built_in">enumerate</span>(np.unique(y)):</span><br><span class="line">    plt.scatter(x[y==c, <span class="number">0</span>], x[y==c, <span class="number">1</span>],s=<span class="number">7</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 
 
-<p><img src="../assets/img/output/output_21_0.png" alt="png"></p>
+<p><img src="/assets/img/output/output_21_0.png" alt="png"></p>
 <h1 id="2-使用sklearn构建完整的机器学习项目流程"><a href="#2-使用sklearn构建完整的机器学习项目流程" class="headerlink" title="2. 使用sklearn构建完整的机器学习项目流程"></a>2. 使用sklearn构建完整的机器学习项目流程</h1><p>一般来说，一个完整的机器学习项目分为以下步骤：</p>
 <ul>
 <li>明确项目任务：回归/分类</li>
@@ -774,7 +774,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/03/15/%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/03/15/ch02-Task01/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -788,11 +788,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/03/16/%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6%E7%AC%94%E8%AE%B003/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2021/03/15/%E3%80%8C%E8%AE%BA%E6%96%87%E7%B2%BE%E8%AF%BB%E3%80%8D%E6%96%87%E6%9C%AC%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%9C%A8%E7%BB%8F%E6%B5%8E%E4%B8%8E%E9%87%91%E8%9E%8D%E9%A2%86%E5%9F%9F%E7%9A%84%E5%BA%94%E7%94%A8/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          模糊数学笔记03
+          「论文精读」文本大数据在经济与金融学中的应用
         
       </div>
     </a>
@@ -829,7 +829,7 @@
   
 
   
-  <div id="SOHUCS" sid="第二章：机器学习基础" ></div> 
+  <div id="SOHUCS" sid="ch02-Task01" ></div> 
 <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
 <script type="text/javascript">
     window.changyan.api.config({
@@ -956,15 +956,7 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Python爬虫</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -972,7 +964,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Python爬虫</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">论文</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -980,7 +980,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
             
             <div class="clearfix"></div>

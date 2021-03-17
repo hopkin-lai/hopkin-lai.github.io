@@ -254,19 +254,521 @@
 
 
   
-    <article id="post-第二章：机器学习基础" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-ch02-Task02" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/03/15/%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/">ch02-Task01 Fundamental Machine Learning</a>
+      <a class="article-title" href="/2021/03/16/ch02-Task02/">ch02-Task02 使用sklearn构建完整的机器学习项目流程</a>
     </h1>
   
 
         
-        <a href="/2021/03/15/%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" class="archive-article-date">
+        <a href="/2021/03/16/ch02-Task02/" class="archive-article-date">
+  	<time datetime="2021-03-15T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- TOC -->
+
+<ul>
+<li><a href="#2-%E4%BD%BF%E7%94%A8sklearn%E6%9E%84%E5%BB%BA%E5%AE%8C%E6%95%B4%E7%9A%84%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E9%A1%B9%E7%9B%AE%E6%B5%81%E7%A8%8B">2. 使用sklearn构建完整的机器学习项目流程</a><ul>
+<li><a href="#21-%E4%BD%BF%E7%94%A8sklearn%E6%9E%84%E5%BB%BA%E5%AE%8C%E6%95%B4%E7%9A%84%E5%9B%9E%E5%BD%92%E9%A1%B9%E7%9B%AE">2.1 使用sklearn构建完整的回归项目</a></li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+
+<h1 id="2-使用sklearn构建完整的机器学习项目流程"><a href="#2-使用sklearn构建完整的机器学习项目流程" class="headerlink" title="2. 使用sklearn构建完整的机器学习项目流程"></a>2. 使用sklearn构建完整的机器学习项目流程</h1><p>一般来说，一个完整的机器学习项目分为以下步骤：</p>
+<ul>
+<li>明确项目任务：回归/分类 </li>
+<li>收集数据集并选择合适的特征。(<strong>特征工程</strong>)</li>
+<li>选择度量模型性能的指标。（<strong>f1 score、ROC曲线等等</strong>）</li>
+<li>选择具体的模型并进行训练以优化模型。</li>
+<li>评估模型的性能并调参。</li>
+</ul>
+<h2 id="2-1-使用sklearn构建完整的回归项目"><a href="#2-1-使用sklearn构建完整的回归项目" class="headerlink" title="2.1 使用sklearn构建完整的回归项目"></a>2.1 使用sklearn构建完整的回归项目</h2><p>(1) 收集数据集并选择合适的特征：<br>在数据集上我们使用我们比较熟悉的Boston房价数据集，原因是：        </p>
+<ul>
+<li>第一个，我们通过这些简单的数据集快速让我们上手sklearn，以及掌握sklearn的相关操作。</li>
+<li>第二个，我们用简单的数据集能更加清晰地介绍机器学习的相关模型，避免在处理数据上花费较大的精力。</li>
+</ul>
+<p>如果您对具体的项目感兴趣，我们会在第六章给出三个大型的案例让大家体验。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> datasets</span><br><span class="line">boston = datasets.load_boston()     <span class="comment"># 返回一个类似于字典的类</span></span><br><span class="line">X = boston.data</span><br><span class="line">y = boston.target</span><br><span class="line">features = boston.feature_names</span><br><span class="line">boston_data = pd.DataFrame(X,columns=features)</span><br><span class="line">boston_data[<span class="string">&quot;Price&quot;</span>] = y</span><br><span class="line">boston_data.head()</span><br></pre></td></tr></table></figure>
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th &#123;
+    vertical-align: top;
+&#125;
+
+.dataframe thead th &#123;
+    text-align: right;
+&#125;</code></pre>
+<p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>CRIM</th>
+      <th>ZN</th>
+      <th>INDUS</th>
+      <th>CHAS</th>
+      <th>NOX</th>
+      <th>RM</th>
+      <th>AGE</th>
+      <th>DIS</th>
+      <th>RAD</th>
+      <th>TAX</th>
+      <th>PTRATIO</th>
+      <th>B</th>
+      <th>LSTAT</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.00632</td>
+      <td>18.0</td>
+      <td>2.31</td>
+      <td>0.0</td>
+      <td>0.538</td>
+      <td>6.575</td>
+      <td>65.2</td>
+      <td>4.0900</td>
+      <td>1.0</td>
+      <td>296.0</td>
+      <td>15.3</td>
+      <td>396.90</td>
+      <td>4.98</td>
+      <td>24.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.02731</td>
+      <td>0.0</td>
+      <td>7.07</td>
+      <td>0.0</td>
+      <td>0.469</td>
+      <td>6.421</td>
+      <td>78.9</td>
+      <td>4.9671</td>
+      <td>2.0</td>
+      <td>242.0</td>
+      <td>17.8</td>
+      <td>396.90</td>
+      <td>9.14</td>
+      <td>21.6</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.02729</td>
+      <td>0.0</td>
+      <td>7.07</td>
+      <td>0.0</td>
+      <td>0.469</td>
+      <td>7.185</td>
+      <td>61.1</td>
+      <td>4.9671</td>
+      <td>2.0</td>
+      <td>242.0</td>
+      <td>17.8</td>
+      <td>392.83</td>
+      <td>4.03</td>
+      <td>34.7</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.03237</td>
+      <td>0.0</td>
+      <td>2.18</td>
+      <td>0.0</td>
+      <td>0.458</td>
+      <td>6.998</td>
+      <td>45.8</td>
+      <td>6.0622</td>
+      <td>3.0</td>
+      <td>222.0</td>
+      <td>18.7</td>
+      <td>394.63</td>
+      <td>2.94</td>
+      <td>33.4</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.06905</td>
+      <td>0.0</td>
+      <td>2.18</td>
+      <td>0.0</td>
+      <td>0.458</td>
+      <td>7.147</td>
+      <td>54.2</td>
+      <td>6.0622</td>
+      <td>3.0</td>
+      <td>222.0</td>
+      <td>18.7</td>
+      <td>396.90</td>
+      <td>5.33</td>
+      <td>36.2</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+<p>各个特征的相关解释：</p>
+<ul>
+<li>CRIM：各城镇的人均犯罪率</li>
+<li>ZN：规划地段超过25,000平方英尺的住宅用地比例</li>
+<li>INDUS：城镇非零售商业用地比例</li>
+<li>CHAS：是否在查尔斯河边(=1是)</li>
+<li>NOX：一氧化氮浓度(/千万分之一)</li>
+<li>RM：每个住宅的平均房间数</li>
+<li>AGE：1940年以前建造的自住房屋的比例</li>
+<li>DIS：到波士顿五个就业中心的加权距离</li>
+<li>RAD：放射状公路的可达性指数</li>
+<li>TAX：全部价值的房产税率(每1万美元)</li>
+<li>PTRATIO：按城镇分配的学生与教师比例</li>
+<li>B：1000(Bk - 0.63)^2其中Bk是每个城镇的黑人比例</li>
+<li>LSTAT：较低地位人口</li>
+<li>Price：房价</li>
+</ul>
+<p>(2) 选择度量模型性能的指标：                      </p>
+<ul>
+<li><p>MSE均方误差：$\text{MSE}(y, \hat{y}) = \frac{1}{n_\text{samples}} \sum_{i=0}^{n_\text{samples} - 1} (y_i - \hat{y}_i)^2.$</p>
+</li>
+<li><p>MAE平均绝对误差:$\text{MAE}(y, \hat{y}) = \frac{1}{n_{\text{samples}}} \sum_{i=0}^{n_{\text{samples}}-1} \left| y_i - \hat{y}_i \right|$</p>
+</li>
+<li><p>$R^2$决定系数：$R^2(y, \hat{y}) = 1 - \frac{\sum_{i=1}^{n} (y_i - \hat{y}<em>i)^2}{\sum</em>{i=1}^{n} (y_i - \bar{y})^2}$ 这个在计量经济学中常用，就是表征你的回归方程的解释力度有多少。</p>
+</li>
+<li><p>解释方差得分:$explained_{}variance(y, \hat{y}) = 1 - \frac{Var{ y - \hat{y}}}{Var{y}}$</p>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics">https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics</a></p>
+<p><img src="/assets/img/input/1.3.png" alt="jupyter"><br>在这个案例中，我们使用MSE均方误差为模型的性能度量指标。</p>
+<p>(3) 选择具体的模型并进行训练</p>
+<ul>
+<li><p><strong>线性回归模型</strong><br>回归这个概念是19世纪80年代由英国统计学家郎西斯.高尔顿在研究父子身高关系提出来的，他发现：在同一族群中，子代的平均身高介于父代的身高以及族群的平均身高之间。具体而言，高个子父亲的儿子的身高有低于其父亲身高的趋势，而矮个子父亲的儿子身高则有高于父亲的身高的趋势。也就是说，子代的身高有向族群平均身高”平均”的趋势，这就是统计学上”回归”的最初含义。回归分析是一种预测性的建模技术，它研究的是因变量（目标）和自变量（特征）之间的关系。这种技术通常用于预测分析，时间序列模型以及发现变量之间的因果关系。通常使用曲线/线来拟合数据点，目标是使曲线到数据点的距离差异最小。而线性回归就是回归问题中的一种，线性回归假设目标值与特征之间线性相关，即满足一个多元一次方程。通过构建损失函数，来求解损失函数最小时的参数w ：<br>假设：数据集$D = {(x_1,y_1),…,(x_N,y_N) }$，$x_i \in R^p,y_i \in R,i = 1,2,…,N$，$X = (x_1,x_2,…,x_N)^T,Y=(y_1,y_2,…,y_N)^T$<br>假设X和Y之间存在线性关系，模型的具体形式为$\hat{y}=f(w) =w^Tx$<br><img src="/assets/img/input/1.4.png" alt="jupyter"><br>(a) 最小二乘估计：<br>我们需要衡量真实值$y_i$与线性回归模型的预测值$w^Tx_i$之间的差距，在这里我们和使用二范数的平方和L(w)来描述这种差距，即：<br>$$<br>L(w) = \sum\limits_{i=1}^{N}||w^Tx_i-y_i||<em>2^2=\sum\limits</em>{i=1}^{N}(w^Tx_i-y_i)^2 = (w^TX^T-Y^T)(w^TX^T-Y^T)^T = w^TX^TXw - 2w^TX^TY+YY^T\<br>因此，我们需要找到使得L(w)最小时对应的参数w，即：\<br>\hat{w} = argmin;L(w)\<br>为了达到求解最小化L(w)问题，我们应用高等数学的知识，使用求导来解决这个问题： \<br>\frac{\partial L(w)}{\partial w} = 2X^TXw-2X^TY = 0,因此： \<br>\hat{w} = (X^TX)^{-1}X^TY<br>$$<br>(b) 几何解释：<br>在线性代数中，我们知道两个向量a和b相互垂直可以得出：$&lt;a,b&gt; = a.b = a^Tb = 0$,而平面X的法向量为Y-Xw，与平面X互相垂直，因此：$X^T(Y-Xw) = 0$，即：$w = (X^TX)^{-1}X^TY$<br><img src="/assets/img/input/1.5.png" alt="jupyter"><br>(c) 概率视角：<br>假设噪声$\epsilon \backsim N(0,\sigma^2),y=f(w)+\epsilon=w^Tx+\epsilon$，因此：$y|x_i,w ~ N(w^Tx,\sigma^2)$<br>我们使用极大似然估计MLE对参数w进行估计：<br>$$<br>L(w) = log;P(Y|X;w) = log;\prod_{i=1}^N P(y_i|x_i;w) = \sum\limits_{i=1}^{N} log; P(y_i|x_i;w)\<br>= \sum\limits_{i=1}^{N}log(\frac{1}{\sqrt{2\pi \sigma}}exp(-\frac{(y_i-w^Tx_i)^2}{2\sigma^2})) = \sum\limits_{i=1}^{N}[log(\frac{1}{\sqrt{2\pi}\sigma})-\frac{1}{2\sigma^2}(y_i-w^Tx_i)^2] \<br>argmax_w L(w) = argmin_w[l(w) = \sum\limits_{i = 1}^{N}(y_i-w^Tx_i)^2]\<br>因此：线性回归的最小二乘估计&lt;==&gt;噪声\epsilon\backsim N(0,\sigma^2)的极大似然估计<br>$$</p>
+<p>总结： 上述三个视角可以从解释为什么求解的线性方程具有回归最优性（其实第三种视角我有点迷，没太看懂）</p>
+<p>下面，我们使用sklearn的线性回归实例来演示：<br><a target="_blank" rel="noopener" href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html#sklearn.linear_model.LinearRegression">https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html#sklearn.linear_model.LinearRegression</a></p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> linear_model      <span class="comment"># 引入线性回归方法</span></span><br><span class="line">lin_reg = linear_model.LinearRegression()       <span class="comment"># 创建线性回归的类</span></span><br><span class="line">lin_reg.fit(X,y)        <span class="comment"># 输入特征X和因变量y进行训练</span></span><br><span class="line">print(<span class="string">&quot;模型系数：&quot;</span>,lin_reg.coef_)             <span class="comment"># 输出模型的系数</span></span><br><span class="line">print(<span class="string">&quot;模型得分：&quot;</span>,lin_reg.score(X,y))    <span class="comment"># 输出模型的决定系数R^2</span></span><br></pre></td></tr></table></figure>
+<pre><code>模型系数： [-1.08011358e-01  4.64204584e-02  2.05586264e-02  2.68673382e+00
+ -1.77666112e+01  3.80986521e+00  6.92224640e-04 -1.47556685e+00
+  3.06049479e-01 -1.23345939e-02 -9.52747232e-01  9.31168327e-03
+ -5.24758378e-01]
+模型得分： 0.7406426641094095</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> mean_squared_error</span><br><span class="line">y_pred = lin_reg.predict(X)</span><br><span class="line">mean_squared_error(y,y_pred) <span class="comment"># 打印MSE</span></span><br></pre></td></tr></table></figure>
+<p>21.894831181729202</p>
+<ul>
+<li><p><strong>线性回归的推广</strong><br> 在线性回归中，我们假设因变量与特征之间的关系是线性关系，这样的假设使得模型很简单，但是缺点也是显然的，那就是当数据存在非线性关系时，我们使用线性回归模型进行预测会导致预测性能极其低下，因为模型的形式本身是线性的，无法表达数据中的非线性关系。我们一个很自然的想法就是去推广线性回归模型，使得推广后的模型更能表达非线性的关系。<br> (a) 多项式回归：<br> 为了体现因变量和特征的非线性关系，一个很自然而然的想法就是将标准的线性回归模型：<br> $$<br> y_i = w_0 + w_1x_i + \epsilon_i<br> $$<br> 换成一个多项式函数：<br> $$<br> y_i = w_0 + w_1x_i + w_2x_i^2 + …+w_dx_i^d + \epsilon<br> $$<br> 对于多项式的阶数d不能取过大，一般不大于3或者4，因为d越大，多项式曲线就会越光滑，在X的边界处有异常的波动。（图中的边界处的4阶多项式拟合曲线的置信区间(虚线表示置信区间)明显增大，预测效果的稳定性下降。）   </p>
+<p> <img src="/assets/img/input/1.6.1.png" alt="jupyter"> <img src="/assets/img/input/1.6.2.png" alt="jupyter">                             </p>
+<p> (b) 广义可加模型(GAM)：<br> 广义可加模型GAM实际上是线性模型推广至非线性模型的一个框架，在这个框架中，每一个变量都用一个非线性函数来代替，但是模型本身保持整体可加性。GAM模型不仅仅可以用在线性回归的推广，还可以将线性分类模型进行推广。具体的推广形式是：<br> 标准的线性回归模型：<br> $$<br> y_i = w_0 + w_1x_{i1} +…+w_px_{ip} + \epsilon_i<br> $$<br> GAM模型框架：<br> $$<br> y_i = w_0 + \sum\limits_{j=1}^{p}f_{j}(x_{ij}) + \epsilon_i<br> $$<br> GAM模型的优点与不足：             </p>
+<pre><code>- 优点：简单容易操作，能够很自然地推广线性回归模型至非线性模型，使得模型的预测精度有所上升；由于模型本身是可加的，因此GAM还是能像线性回归模型一样把其他因素控制不变的情况下单独对某个变量进行推断，极大地保留了线性回归的易于推断的性质。
+- 缺点：GAM模型会经常忽略一些有意义的交互作用，比如某两个特征共同影响因变量，不过GAM还是能像线性回归一样加入交互项$x^&#123;(i)&#125; \times x^&#123;(j)&#125;$的形式进行建模；但是GAM模型本质上还是一个可加模型，如果我们能摆脱可加性模型形式，可能还会提升模型预测精度，详情请看后面的算法。</code></pre>
+</li>
+</ul>
+<p>(a) 多项式回归实例介绍：<br><a target="_blank" rel="noopener" href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.PolynomialFeatures.html?highlight=poly#sklearn.preprocessing.PolynomialFeatures">https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.PolynomialFeatures.html?highlight=poly#sklearn.preprocessing.PolynomialFeatures</a><br>sklearn.preprocessing.PolynomialFeatures(degree=2, *, interaction_only=False, include_bias=True, order=’C’):               </p>
+<ul>
+<li>参数：<br>degree：特征转换的阶数。<br>interaction_onlyboolean：是否只包含交互项，默认False 。<br>include_bias：是否包含截距项，默认True。<br>order：str in {‘C’, ‘F’}, default ‘C’，输出数组的顺序。     </li>
+</ul>
+   <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> PolynomialFeatures</span><br><span class="line">X_arr = np.arange(<span class="number">6</span>).reshape(<span class="number">3</span>, <span class="number">2</span>)</span><br><span class="line">print(<span class="string">&quot;原始X为：\n&quot;</span>,X_arr)</span><br><span class="line"></span><br><span class="line">poly = PolynomialFeatures(<span class="number">2</span>)</span><br><span class="line">print(<span class="string">&quot;2次转化X：\n&quot;</span>,poly.fit_transform(X_arr))</span><br><span class="line"></span><br><span class="line">poly = PolynomialFeatures(interaction_only=<span class="literal">True</span>)</span><br><span class="line">print(<span class="string">&quot;2次转化X：\n&quot;</span>,poly.fit_transform(X_arr))</span><br></pre></td></tr></table></figure>
+<pre><code>原始X为：
+ [[0 1]
+ [2 3]
+ [4 5]]
+2次转化X：
+ [[ 1.  0.  1.  0.  0.  1.]
+ [ 1.  2.  3.  4.  6.  9.]
+ [ 1.  4.  5. 16. 20. 25.]]
+2次转化X：
+ [[ 1.  0.  1.  0.]
+ [ 1.  2.  3.  6.]
+ [ 1.  4.  5. 20.]]</code></pre>
+<p>(b) GAM模型实例介绍：<br>安装pygam：pip install pygam<br><a target="_blank" rel="noopener" href="https://github.com/dswah/pyGAM/blob/master/doc/source/notebooks/quick_start.ipynb">https://github.com/dswah/pyGAM/blob/master/doc/source/notebooks/quick_start.ipynb</a>                     </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">!pip install pygam  <span class="comment"># 因为我第一次用这个，后面使用可以忽略此行代码</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> pygam <span class="keyword">import</span> LinearGAM</span><br><span class="line">gam = LinearGAM().fit(boston_data[boston.feature_names], y)</span><br><span class="line">gam.summary()</span><br></pre></td></tr></table></figure>
+
+<pre><code>=============================================== ==========================================================
+Distribution:                        NormalDist Effective DoF:                                    103.2423
+Link Function:                     IdentityLink Log Likelihood:                                 -1589.7653
+Number of Samples:                          506 AIC:                                             3388.0152
+                                                AICc:                                            3442.7649
+                                                GCV:                                               13.7683
+                                                Scale:                                              8.8269
+                                                Pseudo R-Squared:                                   0.9168
+==========================================================================================================
+Feature Function                  Lambda               Rank         EDoF         P &gt; x        Sig. Code   
+================================= ==================== ============ ============ ============ ============
+s(0)                              [0.6]                20           11.1         2.20e-11     ***         
+s(1)                              [0.6]                20           12.8         8.15e-02     .           
+s(2)                              [0.6]                20           13.5         2.59e-03     **          
+s(3)                              [0.6]                20           3.8          2.76e-01                 
+s(4)                              [0.6]                20           11.4         1.11e-16     ***         
+s(5)                              [0.6]                20           10.1         1.11e-16     ***         
+s(6)                              [0.6]                20           10.4         8.22e-01                 
+s(7)                              [0.6]                20           8.5          4.44e-16     ***         
+s(8)                              [0.6]                20           3.5          5.96e-03     **          
+s(9)                              [0.6]                20           3.4          1.33e-09     ***         
+s(10)                             [0.6]                20           1.8          3.26e-03     **          
+s(11)                             [0.6]                20           6.4          6.25e-02     .           
+s(12)                             [0.6]                20           6.5          1.11e-16     ***         
+intercept                                              1            0.0          2.23e-13     ***         
+==========================================================================================================
+Significance codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+WARNING: Fitting splines and a linear function to a feature introduces a model identifiability problem
+         which can cause p-values to appear significant when they are not.
+
+WARNING: p-values calculated in this manner behave correctly for un-penalized models or models with
+         known smoothing parameters, but when smoothing parameters have been estimated, the p-values
+         are typically lower than they should be, meaning that the tests reject the null too readily.</code></pre>
+<ul>
+<li><strong>回归树：</strong><br>基于树的回归方法主要是依据分层和分割的方式将特征空间划分为一系列简单的区域。对某个给定的待预测的自变量，用他所属区域中训练集的平均数或者众数对其进行预测。由于划分特征空间的分裂规则可以用树的形式进行概括，因此这类方法称为决策树方法。决策树由结点(node)和有向边(diredcted edge)组成。结点有两种类型：内部结点(internal node)和叶结点(leaf node)。内部结点表示一个特征或属性，叶结点表示一个类别或者某个值。区域$R_1,R_2$等称为叶节点，将特征空间分开的点为内部节点。<br><img src="/assets/img/input/1.7.png" alt="jupyter"><br>建立回归树的过程大致可以分为以下两步：          <ul>
+<li>将自变量的特征空间(即$x^{(1)},x^{(2)},x^{(3)},…,x^{(p)}$)的可能取值构成的集合分割成J个互不重叠的区域$R_1,R_2,…,R_j$。        </li>
+<li>对落入区域$R_j$的每个观测值作相同的预测，预测值等于$R_j$上训练集的因变量的简单算术平均。<br>具体来说，就是：<br>a.  选择最优切分特征j以及该特征上的最优点s：<br>遍历特征j以及固定j后遍历切分点s，选择使得下式最小的(j,s)  $min_{j,s}[min_{c_1}\sum\limits_{x_i\in R_1(j,s)}(y_i-c_1)^2 + min_{c_2}\sum\limits_{x_i\in R_2(j,s)}(y_i-c_2)^2 ]$<br>b. 按照(j,s)分裂特征空间：$R_1(j,s) = {x|x^{j} \le s }和R_2(j,s) = {x|x^{j} &gt; s },\hat{c}<em>m = \frac{1}{N_m}\sum\limits_{x \in R_m(j,s)}y_i,;m=1,2$<br>c. 继续调用步骤1，2直到满足停止条件，就是每个区域的样本数小于等于5。<br>d. 将特征空间划分为J个不同的区域，生成回归树：$f(x) = \sum\limits</em>{m=1}^{J}\hat{c}<em>mI(x \in R_m)$<br>如以下生成的关于运动员在棒球大联盟数据的回归树：<br><img src="/assets/img/input/1.8.png" alt="jupyter"><br>回归树与线性模型的比较：<br>线性模型的模型形式与树模型的模型形式有着本质的区别，具体而言，线性回归对模型形式做了如下假定：$f(x) = w_0 + \sum\limits</em>{j=1}^{p}w_jx^{(j)}$，而回归树则是$f(x) = \sum\limits_{m=1}^{J}\hat{c}_mI(x \in R_m)$。那问题来了，哪种模型更优呢？这个要视具体情况而言，$\color{orange}{如果特征变量与因变量的关系能很好的用线性关系来表达，那么线性回归通常有着不错的预测效果，拟合效果则优于不能揭示线性结构的回归树。反之，如果特征变量与因变量的关系呈现高度复杂的非线性，那么树方法比传统方法更优。}$<br><img src="/assets/img/input/1.9.1.png" alt="jupyter"><br>树模型的优缺点：                 </li>
+<li>树模型的解释性强，在解释性方面可能比线性回归还要方便。</li>
+<li>树模型更接近人的决策方式。</li>
+<li>树模型可以用图来表示，非专业人士也可以轻松解读。</li>
+<li>树模型可以直接做定性的特征而不需要像线性回归一样哑元化。</li>
+<li>树模型能很好处理缺失值和异常值，对异常值不敏感，但是这个对线性模型来说却是致命的。</li>
+<li>树模型的预测准确性一般无法达到其他回归模型的水平，但是改进的方法很多。</li>
+</ul>
+</li>
+</ul>
+<p>   sklearn使用回归树的实例：<br><a target="_blank" rel="noopener" href="https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeRegressor.html?highlight=tree#sklearn.tree.DecisionTreeRegressor">https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeRegressor.html?highlight=tree#sklearn.tree.DecisionTreeRegressor</a><br>sklearn.tree.DecisionTreeRegressor(*, criterion=’mse’, splitter=’best’, max_depth=None, min_samples_split=2, min_samples_leaf=1, min_weight_fraction_leaf=0.0, max_features=None, random_state=None, max_leaf_nodes=None, min_impurity_decrease=0.0, min_impurity_split=None, presort=’deprecated’, ccp_alpha=0.0）                                                 </p>
+<ul>
+<li>参数：(列举几个重要的，常用的，详情请看上面的官网)<br>criterion：{“ mse”，“ friedman_mse”，“ mae”}，默认=“ mse”。衡量分割标准的函数 。<br>splitter：{“best”, “random”}, default=”best”。分割方式。<br>max_depth：树的最大深度。<br>min_samples_split：拆分内部节点所需的最少样本数，默认是2。<br>min_samples_leaf：在叶节点处需要的最小样本数。默认是1。<br>min_weight_fraction_leaf：在所有叶节点处（所有输入样本）的权重总和中的最小加权分数。如果未提供sample_weight，则样本的权重相等。默认是0。                      </li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.tree <span class="keyword">import</span> DecisionTreeRegressor    </span><br><span class="line">reg_tree = DecisionTreeRegressor(criterion = <span class="string">&quot;mse&quot;</span>,min_samples_leaf = <span class="number">5</span>)</span><br><span class="line">reg_tree.fit(X,y)</span><br><span class="line">reg_tree.score(X,y)</span><br></pre></td></tr></table></figure>
+<p>0.9376307599929274</p>
+<ul>
+<li><p>支持向量机回归(SVR)<br> 在介绍支持向量回归SVR之前，我们先来了解下约束优化的相关知识：          </p>
+<pre><code>- 约束优化问题(P)：                   
+$$
+min f(x)  \\
+s.t.\;\;\;g_i(x) \le 0,\; i=1,2,...,m\\
+\;\;\;\;\; h_j(x) = 0,\; j=1,2,...,l
+$$                         </code></pre>
+<p> 我们假设$x^*$为满足以上条件的局部最优解，$p^* = f(x^*)$，我们的目的就是要找到$x^*$与$p^*$，满足不等式和等式约束的x集合成为可行域，记作S。</p>
+<ul>
+<li><p>KKT条件(最优解的一阶必要条件)<br>因为KKT条件是最优化的相关内容，在本次开源学习中并不是重点，因此在这里我用一个更加简单的例子说明KKT条件，严格的证明请参见凸优化相关书籍。<br>在这个例子中，我们考虑：($x^*$为我们的最优解)<br>$$<br>minf(x)\<br>s.t.;g_1(x) \le 0,;x \in R^n\<br>;;;g_2(x) \le 0\<br>;;;g_3(x) \le 0<br>$$<br><img src="/assets/img/input/1.11.png" alt="jupyter"></p>
+<p>我们可以看到：$-\nabla f(x^*)$可以由$\nabla g_1(x^*)$与$\nabla g_2(x^*)$线性表出，因此有：$-\nabla f(x^*) = \lambda_1 \nabla g_1(x^*) + \lambda_2 \nabla g_2(x^*)$，其中$\lambda_1,\lambda_2 \ge 0$，即：<br>$$<br>\nabla f(x^*) + \lambda_1 \nabla g_1(x^*) + \lambda_2 \nabla g_2(x^*) = 0,;;;其中\lambda_1,\lambda_2 \ge 0<br>$$<br>我们把没有起作用的约束$g_3(x)$也放到式子里面去，目的也就是为了书写方便，即要求：<br>$$<br>\nabla f(x^*) + \lambda_1 \nabla g_1(x^*) + \lambda_2 \nabla g_2(x^*) + \lambda_3 \nabla g_3(x^*)= 0,;;;其中\lambda_1,\lambda_2 \ge 0,\lambda_3 = 0<br>$$<br>由于点$x^*$位于方程$g_1(x)=0$与$g_2(x)=0$上，因此：$\lambda_1 g_1(x^*)  = 0,\lambda_2  g_2(x^*) = 0 , \lambda_3  g_3(x^*)= 0$                        </p>
+<p>因此，KKT条件就是：假设$x^*$为最优化问题(P)的局部最优解，且$x^*$ 在某个适当的条件下 ,有：<br>$$<br>\nabla f(x^*) + \sum\limits_{i=1}^{m}\lambda_i \nabla g(x^*) + \sum\limits_{j=1}^{l}\mu_j \nabla h_j(x^*) = 0(对偶条件)\<br>\lambda_i \ge 0,;i = 1,2,…,m(对偶条件)\<br>g_i(x^*) \le 0(原问题条件)\<br>h_j(x^*) = 0(原问题条件)\<br>\lambda_i g(x^*) = 0(互补松弛定理)<br>$$                              </p>
+</li>
+</ul>
+</li>
+<li><p>对偶理论：<br>为什么要引入对偶问题呢？是因为原问题与对偶问题就像是一个问题两个角度去看，如利润最大与成本最低等。有时侯原问题上难以解决，但是在对偶问题上就会变得很简单。再者，任何一个原问题在变成对偶问题后都会变成一个凸优化的问题，这点我们后面会有介绍。下面我们来引入对偶问题：<br>首先，我们的原问题(P)是：<br>   $$<br>   min f(x)  \<br>   s.t.;;;g_i(x) \le 0,; i=1,2,…,m\<br>   ;;;;; h_j(x) = 0,; j=1,2,…,l<br>   $$<br>   引入拉格朗日函数：$L(x,\lambda,\mu) = f(x) + \sum\limits_{i=1}^{m}\lambda_i g_i(x) + \sum\limits_{j=1}^{l}\mu_j h_j(x)$<br>   拉格朗日对偶函数：<br>   $$<br>   d(\lambda,\mu)  =  min_{x\in X}{ f(x) + \sum\limits_{i=1}^{m}\lambda_i g_i(x) + \sum\limits_{j=1}^{l}\mu_j h_j(x)} ,其中X为满足条件的x变量\<br>   \le min_{x\in S}{ f(x) + \sum\limits_{i=1}^{m}\lambda_i g_i(x) + \sum\limits_{j=1}^{l}\mu_j h_j(x) },由于g_i(x) \le 0,h_j(x) = 0,\lambda_i \ge 0 ,其中S为可行域\<br>   \le min_{x\in S}{f(x) }<br>   $$<br>   因此：拉格朗日对偶函数$d(\lambda,\mu)$是原问题最优解的函数值$p^*$的下界，即每个不同的$\lambda$与$\mu$确定的$d(\lambda,\mu)$都是$p^*$的下界，但是我们希望下界越大越好，因为越大就更能接近真实的$p^*$。因此：<br>   拉格朗日对偶问题(D)转化为：<br>   $$<br>   max_{\lambda,\mu}d(\lambda,\mu)\<br>   s.t. \lambda_i \ge 0,i = 1,2,…,m\<br>   也就是：\<br>   max_{\lambda \ge 0,\mu};min_{x \in S} L(x,\lambda,\mu)<br>   $$<br>   我们可以观察到，对偶问题是关于$\lambda$和$\mu$的线性函数，因此对偶问题是一个凸优化问题，凸优化问题在最优化理论较为简单。<br>   弱对偶定理：对偶问题(D)的最优解$D^*$一定小于原问题最优解$P^*$，这点在刚刚的讨论得到了充分的证明，一定成立。<br>   强对偶定理：对偶问题(D)的最优解$D^*$在一定的条件下等于原问题最优解$P^*$，条件非常多样化且不是唯一的，也就是说这是个开放性的问题，在这里我给出一个最简单的条件，即：$f(x)$与$g_i(x)$为凸函数，$h_j(x)$为线性函数，X是凸集，$x^*$满足KKT条件，那么$D^* = P^*$。 </p>
+<ul>
+<li>支持向量回归SVR<br>在介绍完了相关的优化知识以后，我们开始正式学习支持向量回归SVR。<br><img src="/assets/img/input/1.10.png" alt="jupyter"><br>在线性回归的理论中，每个样本点都要计算平方损失，但是SVR却是不一样的。SVR认为：落在$f(x)$的$\epsilon$邻域空间中的样本点不需要计算损失，这些都是预测正确的，其余的落在$\epsilon$邻域空间以外的样本才需要计算损失，因此：<br><img src="/assets/img/input/1.12.png" alt="jupyter"><br>$$<br>min_{w,b,\xi_i,\hat{\xi}<em>i} \frac{1}{2}||w||^2 +C \sum\limits</em>{i=1}^{N}(\xi_i,\hat{\xi}<em>i)\<br>s.t.;;; f(x_i) - y_i \le \epsilon + \xi_i\<br>;;;;;y_i - f(x_i) \le  \epsilon +\hat{\xi}_i\<br>;;;;; \xi_i,\hat{\xi}_i \le 0,i = 1,2,…,N<br>$$<br>引入拉格朗日函数：<br>$$<br>\begin{array}{l}<br>L(w, b, \alpha, \hat{\alpha}, \xi, \xi, \mu, \hat{\mu}) \<br>\quad=\frac{1}{2}|w|^{2}+C \sum</em>{i=1}^{N}\left(\xi_{i}+\widehat{\xi}<em>{i}\right)-\sum</em>{i=1}^{N} \xi_{i} \mu_{i}-\sum_{i=1}^{N} \widehat{\xi}<em>{i} \widehat{\mu}</em>{i} \<br>\quad+\sum_{i=1}^{N} \alpha_{i}\left(f\left(x_{i}\right)-y_{i}-\epsilon-\xi_{i}\right)+\sum_{i=1}^{N} \widehat{\alpha}<em>{i}\left(y</em>{i}-f\left(x_{i}\right)-\epsilon-\widehat{\xi}<em>{i}\right)<br>\end{array}<br>$$<br>再令$L(w, b, \alpha, \hat{\alpha}, \xi, \xi, \mu, \hat{\mu})$对$w,b,\xi,\hat{\xi}$求偏导等于0，得： $w=\sum</em>{i=1}^{N}\left(\widehat{\alpha}<em>{i}-\alpha</em>{i}\right) x_{i}$。<br>上述过程中需满足KKT条件，即要求：<br>$$<br>\left{\begin{array}{c}<br>\alpha_{i}\left(f\left(x_{i}\right)-y_{i}-\epsilon-\xi_{i}\right)=0 \<br>\hat{\alpha_{i}}\left(y_{i}-f\left(x_{i}\right)-\epsilon-\hat{\xi}<em>{i}\right)=0 \<br>\alpha</em>{i} \widehat{\alpha}<em>{i}=0, \xi</em>{i} \hat{\xi}<em>{i}=0 \<br>\left(C-\alpha</em>{i}\right) \xi_{i}=0,\left(C-\widehat{\alpha}<em>{i}\right) \hat{\xi}</em>{i}=0<br>\end{array}\right.<br>$$<br>SVR的解形如:$f(x)=\sum_{i=1}^{N}\left(\widehat{\alpha}<em>{i}-\alpha</em>{i}\right) x_{i}^{T} x+b$                                                  </li>
+</ul>
+</li>
+</ul>
+<p>sklearn中使用SVR实例：<br>sklearn.svm.SVR(*, kernel=’rbf’, degree=3, gamma=’scale’, coef0=0.0, tol=0.001, C=1.0, epsilon=0.1, shrinking=True, cache_size=200, verbose=False, max_iter=-1)<br><a target="_blank" rel="noopener" href="https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVR.html?highlight=svr#sklearn.svm.SVR">https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVR.html?highlight=svr#sklearn.svm.SVR</a>                        </p>
+<ul>
+<li>参数：<br>kernel：核函数，{‘linear’, ‘poly’, ‘rbf’, ‘sigmoid’, ‘precomputed’}, 默认=’rbf’。(后面会详细介绍)<br>degree：多项式核函数的阶数。默认 = 3。<br>C：正则化参数，默认=1.0。(后面会详细介绍)<br>epsilon：SVR模型允许的不计算误差的邻域大小。默认0.1。              </li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.svm <span class="keyword">import</span> SVR</span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> StandardScaler     <span class="comment"># 标准化数据</span></span><br><span class="line"><span class="keyword">from</span> sklearn.pipeline <span class="keyword">import</span> make_pipeline   <span class="comment"># 使用管道，把预处理和模型形成一个流程</span></span><br><span class="line"></span><br><span class="line">reg_svr = make_pipeline(StandardScaler(), SVR(C=<span class="number">1.0</span>, epsilon=<span class="number">0.2</span>))</span><br><span class="line">reg_svr.fit(X, y)</span><br><span class="line">reg_svr.score(X,y)</span><br></pre></td></tr></table></figure>
+
+<pre><code>0.7024525421955277</code></pre>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Machine Learning</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/16/ch02-Task02/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-「论文精读」文本大数据分析在经济与金融领域的应用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/15/%E3%80%8C%E8%AE%BA%E6%96%87%E7%B2%BE%E8%AF%BB%E3%80%8D%E6%96%87%E6%9C%AC%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%9C%A8%E7%BB%8F%E6%B5%8E%E4%B8%8E%E9%87%91%E8%9E%8D%E9%A2%86%E5%9F%9F%E7%9A%84%E5%BA%94%E7%94%A8/">「论文精读」文本大数据在经济与金融学中的应用</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/15/%E3%80%8C%E8%AE%BA%E6%96%87%E7%B2%BE%E8%AF%BB%E3%80%8D%E6%96%87%E6%9C%AC%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%9C%A8%E7%BB%8F%E6%B5%8E%E4%B8%8E%E9%87%91%E8%9E%8D%E9%A2%86%E5%9F%9F%E7%9A%84%E5%BA%94%E7%94%A8/" class="archive-article-date">
+  	<time datetime="2021-03-14T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- TOC -->
+
+<ul>
+<li><a href="#%E5%BC%95%E5%85%A5">引入</a></li>
+<li><a href="#%E6%96%87%E6%9C%AC%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9A%84%E6%8F%90%E5%8F%96%E6%96%B9%E6%B3%95">文本大数据的提取方法</a><ul>
+<li><a href="#1%E5%88%86%E8%AF%8D%E6%8A%80%E6%9C%AF">1.分词技术</a></li>
+<li><a href="#2-%E8%AF%8D%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%90%91%E9%87%8F%E7%9A%84%E6%8A%80%E6%9C%AF">2. 词转换为向量的技术</a></li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+
+<p>今天读的是一篇文献综述，目的是为了理清一下思路，因为最近一直在思考学习他人的方法是否能够运用在自己的研究课题上，苦于没有结果，所以只能在文献综述中找找灵感。还有一个很方便的点，文献综述帮我找了大多数有实际应用的文章，我也可以通过这个找到一些启发。论文很多，真的看不过来，只能奉行“拿来主义”了。</p>
+<h2 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h2><p>首先，文本大数据分析，其实也就是NLP领域的技术方法很多很多，应用与经济、金融、管理领域一定要思考一个问题：就是什么情况下适合运用文本大数据分析，引入新技术的同时，有没有破坏原有学科背景的研究范式。</p>
+<p>文本大数据的特点有：</p>
+<ul>
+<li>1.数据来源多：短文本（微博、微信、论坛、UCG……），长文本（公司年报、研究报告、政策文本…..）</li>
+<li>2.数据体量呈几何量级增加</li>
+<li>3.时频高，也就是数据产生的时间颗粒度很低，几乎随时都有新的数据来源</li>
+</ul>
+<h2 id="文本大数据的提取方法"><a href="#文本大数据的提取方法" class="headerlink" title="文本大数据的提取方法"></a>文本大数据的提取方法</h2><p><img src="/assets/img/%E6%96%87%E6%9C%AC%E4%BF%A1%E6%81%AF%E6%8F%90%E5%8F%96%E6%AD%A5%E9%AA%A4.png"></p>
+<p>对于应用来说，原始文本库如何转化成数据矩阵是更为偏向计算机领域的知识，我们会用就行，而第2步和第3步往往是研究的重点。</p>
+<p>我们的整体思路是有的，就是将<strong>非结构化文本</strong> 转化为<strong>矩阵形式</strong></p>
+<h3 id="1-分词技术"><a href="#1-分词技术" class="headerlink" title="1.分词技术"></a>1.分词技术</h3><p>中文和英文不同，英文自然就是每个词有空格，所以天然的形成了分词体系。中文由于是以句法为核心的语言体系，因此在分词技术上较为麻烦。</p>
+<p>中文分词有几种原理：</p>
+<ul>
+<li>基于字符串匹配： 利用前定的词典（语料库）进行词条匹配，其实就是查字典。缺点是忽略了歧义词。</li>
+<li>基于理解：在分词的同时进行句法、语义分析。</li>
+<li>基于统计：先用机器学习模型学习已经切分好的词语的规律。如最大概率分词法、最大熵分词法。</li>
+</ul>
+<p>下面几篇文章涵盖了上述3种分词方法：</p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://kns.cnki.net/kcms/detail/detail.aspx?dbcode=CJFD&dbname=CJFDLAST2015&filename=GLSJ201501013&v=iAqhAQL6GqoRV7jgR2ByTfl8Q4sedVx4i%25mmd2BiCA3lxlNZBEtxAeJPTEtKYENdm6SBe">汪昌云,武佳薇,孙艳梅,甘顺利.公司的媒体信息管理行为与IPO定价效率[J].管理世界,2015(01):118-128.</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://kns.cnki.net/kcms/detail/detail.aspx?dbcode=CJFD&dbname=CJFDLAST2018&filename=JJXU201804015&v=oAowUjD2%25mmd2BEbOrh8CZMZf9DgJBVyM5cGaBV82M9YBFXjIAYxRn1RydHwJu8RzFdHR">王靖一,黄益平.金融科技媒体情绪的刻画与对网贷市场的影响[J].经济学(季刊),2018,17(04):1623-1650.</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3377684">Measuring China’s Stock Market Sentiment,working paper，2019</a></p>
+</li>
+</ul>
+<h3 id="2-词转换为向量的技术"><a href="#2-词转换为向量的技术" class="headerlink" title="2. 词转换为向量的技术"></a>2. 词转换为向量的技术</h3><p>文本分词以后，还要进一步转化为数字化矩阵（计算机能够识别）</p>
+<p><strong>（1）独热表示法</strong><br>one-hot 表示方法所做出来的矩阵往往是一个高维稀疏矩阵。解决方法有两种：</p>
+<ul>
+<li>采取方式对多维矩阵进行降维<ul>
+<li><a target="_blank" rel="noopener" href="https://web.stanford.edu/~gentzkow/research/text-as-data.pdf">Text as data,Gentzkow et al ,2019</a> stanford教授的文章，我实在是看不懂。</li>
+<li>Word Embeding，直接在词语转换成数字化矩阵时就进行降维。</li>
+</ul>
+</li>
+</ul>
+<p><strong>（2）词嵌入技术</strong></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">论文</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/15/%E3%80%8C%E8%AE%BA%E6%96%87%E7%B2%BE%E8%AF%BB%E3%80%8D%E6%96%87%E6%9C%AC%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%9C%A8%E7%BB%8F%E6%B5%8E%E4%B8%8E%E9%87%91%E8%9E%8D%E9%A2%86%E5%9F%9F%E7%9A%84%E5%BA%94%E7%94%A8/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-ch02-Task01" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/15/ch02-Task01/">ch02-Task01 Fundamental Machine Learning</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/15/ch02-Task01/" class="archive-article-date">
   	<time datetime="2021-03-14T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-15</time>
 </a>
         
@@ -297,7 +799,7 @@
 <li>有监督学习：给定某些特征去估计因变量，即因变量存在的时候，我们称这个机器学习任务为有监督学习。如：我们使用房间面积，房屋所在地区，环境等级等因素去预测某个地区的房价。          </li>
 <li>无监督学习：给定某些特征但不给定因变量，建模的目的是学习数据本身的结构和关系。如：我们给定某电商用户的基本信息和消费记录，通过观察数据中的哪些类型的用户彼此间的行为和属性类似，形成一个客群。注意，我们本身并不知道哪个用户属于哪个客群，即没有给定因变量。      </li>
 </ul>
-<p><img src="../assets/img/input/1.1.png" alt="jupyter">        </p>
+<p><img src="/assets/img/input/1.1.png" alt="jupyter">        </p>
 <p>根据因变量的是否连续，有监督学习又分为<strong>回归</strong>和<strong>分类</strong>：</p>
 <ul>
 <li>回归：因变量是连续型变量，如：房价，体重等。</li>
@@ -329,7 +831,7 @@
 .dataframe thead th &#123;
     text-align: right;
 &#125;</code></pre>
-<p></style></p>
+<p></style><p></p>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -460,7 +962,7 @@
 .dataframe thead th &#123;
     text-align: right;
 &#125;</code></pre>
-<p></style></p>
+<p></style><p></p>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -628,15 +1130,15 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 看一下一氧化氮浓度(/千万分之一)与房价是否有相关性</span></span><br><span class="line">sns.scatterplot(boston_data[<span class="string">&#x27;NOX&#x27;</span>],boston_data[<span class="string">&#x27;Price&#x27;</span>],color=<span class="string">&quot;lightblue&quot;</span>,alpha=<span class="number">0.8</span>)</span><br><span class="line">plt.title(<span class="string">&quot;Price~NOX&quot;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 
 
-<p><img src="../assets/img/output/output_7_0.png" alt="png"></p>
+<p><img src="/assets/img/output/output_7_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sns.scatterplot(boston_data[<span class="string">&#x27;DIS&#x27;</span>],boston_data[<span class="string">&#x27;Price&#x27;</span>],color = <span class="string">&#x27;red&#x27;</span>,alpha=<span class="number">.6</span>)</span><br><span class="line">plt.title(<span class="string">&quot;Price-DIS&quot;</span>)</span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 怎么乍一眼看过去，距离越远，价格反而越贵呢？</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 
-<p><img src="../assets/img/output/output_8_0.png" alt="png"></p>
+<p><img src="/assets/img/output/output_8_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">plt.subplots(<span class="number">3</span>,<span class="number">1</span>,figsize=(<span class="number">15</span>,<span class="number">12</span>))</span><br><span class="line">sns.axes_style(<span class="string">&quot;darkgrid&quot;</span>)</span><br><span class="line">plt.subplot(<span class="number">221</span>)</span><br><span class="line">sns.scatterplot(boston_data[<span class="string">&#x27;RM&#x27;</span>],boston_data[<span class="string">&#x27;Price&#x27;</span>],color = <span class="string">&#x27;red&#x27;</span>,alpha=<span class="number">.6</span>)</span><br><span class="line">plt.title(<span class="string">&quot;Price-RM&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">sns.axes_style(<span class="string">&quot;dark&quot;</span>)</span><br><span class="line">plt.subplot(<span class="number">222</span>)</span><br><span class="line">sns.scatterplot(boston_data[<span class="string">&#x27;PTRATIO&#x27;</span>],boston_data[<span class="string">&#x27;Price&#x27;</span>],color = <span class="string">&#x27;red&#x27;</span>,alpha=<span class="number">.6</span>)</span><br><span class="line">plt.title(<span class="string">&quot;Price-PTRATIO&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">sns.axes_style(<span class="string">&quot;ticks&quot;</span>)</span><br><span class="line">plt.subplot(<span class="number">223</span>)</span><br><span class="line">sns.scatterplot(boston_data[<span class="string">&#x27;RAD&#x27;</span>],boston_data[<span class="string">&#x27;Price&#x27;</span>],color = <span class="string">&#x27;red&#x27;</span>,alpha=<span class="number">.6</span>)</span><br><span class="line">plt.title(<span class="string">&quot;Price-RAD&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">plt.subplot(<span class="number">224</span>)</span><br><span class="line">sns.scatterplot(boston_data[<span class="string">&#x27;LSTAT&#x27;</span>],boston_data[<span class="string">&#x27;Price&#x27;</span>],color = <span class="string">&#x27;red&#x27;</span>,alpha=<span class="number">.6</span>)</span><br><span class="line">plt.title(<span class="string">&quot;Price-LSTAT&quot;</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 可见第一张图和第四张图还是很能说明问题的</span></span><br></pre></td></tr></table></figure>
 
 
-<p><img src="../assets/img/output/output_9_0.png" alt="png"></p>
+<p><img src="/assets/img/output/output_9_0.png" alt="png"></p>
 <p>我们可以看到，数据给定任务所需要的因变量，因变量为波士顿房价Price是一个连续型变量，所以这是一个回归的例子。</p>
 <p>各个特征的相关解释：</p>
 <ul>
@@ -673,7 +1175,7 @@
 .dataframe thead th &#123;
     text-align: right;
 &#125;</code></pre>
-<p></style></p>
+<p></style><p></p>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -736,7 +1238,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 可视化特征</span></span><br><span class="line">marker = [<span class="string">&#x27;s&#x27;</span>,<span class="string">&#x27;x&#x27;</span>,<span class="string">&#x27;o&#x27;</span>]</span><br><span class="line"><span class="keyword">for</span> index,c <span class="keyword">in</span> <span class="built_in">enumerate</span>(np.unique(y)):</span><br><span class="line">    plt.scatter(x=iris_data.loc[y==c,<span class="string">&quot;sepal length (cm)&quot;</span>],y=iris_data.loc[y==c,<span class="string">&quot;sepal width (cm)&quot;</span>],alpha=<span class="number">0.8</span>,label=c,marker=marker[c])</span><br><span class="line">plt.xlabel(<span class="string">&quot;sepal length (cm)&quot;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&quot;sepal width (cm)&quot;</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 
 
-<p><img src="../assets/img/output/output_15_0.png" alt="png"></p>
+<p><img src="/assets/img/output/output_15_0.png" alt="png"></p>
 <p>我们可以看到：每种不同的颜色和点的样式为一种类型的鸢尾花，数据集有三种不同类型的鸢尾花。因此因变量是一个类别变量，因此通过特征预测鸢尾花类别的问题是一个分类问题。</p>
 <p>各个特征的相关解释：</p>
 <ul>
@@ -746,16 +1248,16 @@
 <li>petal width (cm)：花瓣宽度(厘米)</li>
 </ul>
 <h2 id="1-3-无监督学习"><a href="#1-3-无监督学习" class="headerlink" title="1.3 无监督学习"></a>1.3 无监督学习</h2><p>我们可以使用sklearn生成符合自身需求的数据集，下面我们用其中几个函数例子来生成无因变量的数据集：<br><a target="_blank" rel="noopener" href="https://scikit-learn.org/stable/modules/classes.html?highlight=datasets#module-sklearn.datasets">https://scikit-learn.org/stable/modules/classes.html?highlight=datasets#module-sklearn.datasets</a>  </p>
-<p><img src="../assets/img/input/1.2.png" alt="jupyter"></p>
+<p><img src="/assets/img/input/1.2.png" alt="jupyter"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 生成月牙型非凸集</span></span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> datasets</span><br><span class="line">x, y = datasets.make_moons(n_samples=<span class="number">2000</span>, shuffle=<span class="literal">True</span>,</span><br><span class="line">                  noise=<span class="number">0.05</span>, random_state=<span class="literal">None</span>)</span><br><span class="line"><span class="keyword">for</span> index,c <span class="keyword">in</span> <span class="built_in">enumerate</span>(np.unique(y)):</span><br><span class="line">    plt.scatter(x[y==c,<span class="number">0</span>],x[y==c,<span class="number">1</span>],s=<span class="number">7</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>我曾经在本科毕设期间做过这种非凸、非线性的分类问题，一般的分类器往往不具备分类能力。一般有两种思路：(1)将数据进行转化，到高维空间，变成线性可分，继续用线性分类器。（2）直接使用非线性分类器 </p>
 </blockquote>
-<p><img src="../assets/img/output/output_20_0.png" alt="png"></p>
+<p><img src="/assets/img/output/output_20_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 生成符合正态分布的聚类数据</span></span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> datasets</span><br><span class="line">x, y = datasets.make_blobs(n_samples=<span class="number">5000</span>, n_features=<span class="number">2</span>, centers=<span class="number">3</span>)</span><br><span class="line"><span class="keyword">for</span> index,c <span class="keyword">in</span> <span class="built_in">enumerate</span>(np.unique(y)):</span><br><span class="line">    plt.scatter(x[y==c, <span class="number">0</span>], x[y==c, <span class="number">1</span>],s=<span class="number">7</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 
 
-<p><img src="../assets/img/output/output_21_0.png" alt="png"></p>
+<p><img src="/assets/img/output/output_21_0.png" alt="png"></p>
 <h1 id="2-使用sklearn构建完整的机器学习项目流程"><a href="#2-使用sklearn构建完整的机器学习项目流程" class="headerlink" title="2. 使用sklearn构建完整的机器学习项目流程"></a>2. 使用sklearn构建完整的机器学习项目流程</h1><p>一般来说，一个完整的机器学习项目分为以下步骤：</p>
 <ul>
 <li>明确项目任务：回归/分类</li>
@@ -787,7 +1289,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/03/15/%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/03/15/ch02-Task01/">展开全文 >></a>
         </p>
       
 
@@ -1015,8 +1517,8 @@ finish search, find 2 scheme</code></pre>
 </ul>
 <p>$\lambda ≤ \mu$ $\implies$ $A_\lambda \supset A_\mu$</p>
 <ul>
-<li>性质3：<br><img src="../assets/img/%E6%88%AA%E9%9B%86%E6%80%A7%E8%B4%A81.jpeg" alt="\lambda截集性质3"></li>
-<li>性质4：<br><img src="../assets/img/%E6%80%A7%E8%B4%A84.jpeg"></li>
+<li>性质3：<br><img src="/2021/03/09/%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6%E7%AC%94%E8%AE%B002/assets/img/%E6%88%AA%E9%9B%86%E6%80%A7%E8%B4%A81.jpeg" alt="\lambda截集性质3"></li>
+<li>性质4：<br><img src="/2021/03/09/%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6%E7%AC%94%E8%AE%B002/assets/img/%E6%80%A7%E8%B4%A84.jpeg"></li>
 </ul>
 <p>上述式子表明：</p>
 <blockquote>
@@ -1038,7 +1540,7 @@ finish search, find 2 scheme</code></pre>
 <p>$$<br>A(x)=\bigvee_{\lambda \in[0,1]}\left[\lambda \wedge \chi_{A_{\lambda}}(x)\right]<br>$$</p>
 <p>或者<br>$$<br>A(x)=\bigvee\left{\lambda \in[0,1] ; x \in A_{\lambda}\right}<br>$$</p>
 <p>分解定理与普通集合的转化关系图可以这样表示：</p>
-<p><img src="../assets/img/%E6%A8%A1%E7%B3%8A%E9%9B%86%E5%92%8C%E7%BB%8F%E5%85%B8%E9%9B%86%E7%9A%84%E8%BD%AC%E5%8C%96.jpeg">​    </p>
+<p><img src="/2021/03/09/%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6%E7%AC%94%E8%AE%B002/assets/img/%E6%A8%A1%E7%B3%8A%E9%9B%86%E5%92%8C%E7%BB%8F%E5%85%B8%E9%9B%86%E7%9A%84%E8%BD%AC%E5%8C%96.jpeg">​    </p>
 <ul>
 <li><p>分解定理2：<br>实际上，就是在分解定理1的基础上，推广到了强截集<br>$$<br>A=\bigcup_{\lambda \in[0,1]} \lambda A_{\underset{.}{\lambda}}<br>$$</p>
 </li>
@@ -1639,12 +2141,12 @@ finish search, find 2 scheme</code></pre>
 <h4 id="1-2-4-前后节点"><a href="#1-2-4-前后节点" class="headerlink" title="1.2.4  前后节点"></a>1.2.4  前后节点</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(soup.p.next_element)</span><br><span class="line">print(soup.p.precious_element)</span><br></pre></td></tr></table></figure>
 <h3 id="1-3-搜索文档树"><a href="#1-3-搜索文档树" class="headerlink" title="1.3 搜索文档树"></a>1.3 搜索文档树</h3><p>对于搜索文档树，最常用的方法是 find_all() 方法。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">print(soup.find_all(<span class="string">&#x27;a&#x27;</span>,class_= <span class="string">&#x27;poet&#x27;</span>)) <span class="comment"># 接受多个参数</span></span><br><span class="line">print(soup.find_all(<span class="built_in">id</span> = <span class="string">&#x27;link1&#x27;</span>))  <span class="comment"># 指定节点搜索</span></span><br><span class="line">print(soup.find_all(<span class="string">&#x27;a&#x27;</span>))</span><br><span class="line">print(soup.find_all([<span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>])) <span class="comment"># 匹配正则表达式</span></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line">print(soup.find_all(re.<span class="built_in">compile</span>(<span class="string">&#x27;^b&#x27;</span>)))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="2-利用BeautifulSoup爬取豆瓣Top250影片信息"><a href="#2-利用BeautifulSoup爬取豆瓣Top250影片信息" class="headerlink" title="2. 利用BeautifulSoup爬取豆瓣Top250影片信息"></a>2. 利用BeautifulSoup爬取豆瓣Top250影片信息</h2><h3 id="2-1-爬取豆瓣电影排名信息"><a href="#2-1-爬取豆瓣电影排名信息" class="headerlink" title="2.1 爬取豆瓣电影排名信息"></a>2.1 爬取豆瓣电影排名信息</h3><h4 id="2-1-1-分析网页结构"><a href="#2-1-1-分析网页结构" class="headerlink" title="2.1.1 分析网页结构"></a>2.1.1 分析网页结构</h4><p>豆瓣Top250的页面结构如下：<br><img src="../assets/img/douban_1.png" alt="首页页面结构"><br>会发现所有信息都存放在  &lt; li&gt;  &lt; /li&gt; 标签对中，包括电影的标题、排名、评分和评价人数。</p>
+<h2 id="2-利用BeautifulSoup爬取豆瓣Top250影片信息"><a href="#2-利用BeautifulSoup爬取豆瓣Top250影片信息" class="headerlink" title="2. 利用BeautifulSoup爬取豆瓣Top250影片信息"></a>2. 利用BeautifulSoup爬取豆瓣Top250影片信息</h2><h3 id="2-1-爬取豆瓣电影排名信息"><a href="#2-1-爬取豆瓣电影排名信息" class="headerlink" title="2.1 爬取豆瓣电影排名信息"></a>2.1 爬取豆瓣电影排名信息</h3><h4 id="2-1-1-分析网页结构"><a href="#2-1-1-分析网页结构" class="headerlink" title="2.1.1 分析网页结构"></a>2.1.1 分析网页结构</h4><p>豆瓣Top250的页面结构如下：<br><img src="/assets/img/douban_1.png" alt="首页页面结构"><br>会发现所有信息都存放在  &lt; li&gt;  &lt; /li&gt; 标签对中，包括电影的标题、排名、评分和评价人数。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">crawler</span>(<span class="params">url</span>):</span></span><br><span class="line">    <span class="comment"># 伪装请求头</span></span><br><span class="line">    headers = &#123;<span class="string">&#x27;User-Agent&#x27;</span>: <span class="string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36&#x27;</span>&#125;</span><br><span class="line">    html = requests.get(url,headers=headers).text</span><br><span class="line">    <span class="comment"># lxml：html解析库（把HTML代码转化成Python对象）</span></span><br><span class="line">    soup = BeautifulSoup(html,<span class="string">&#x27;lxml&#x27;</span>)</span><br><span class="line">    print(<span class="string">&quot;豆瓣电影250：序号 \t 影片名 \t 评分 \t 评价人数&quot;</span>)</span><br><span class="line">    <span class="keyword">for</span> tag <span class="keyword">in</span> soup.find_all(attrs=&#123;<span class="string">&quot;class&quot;</span>:<span class="string">&quot;item&quot;</span>&#125;):</span><br><span class="line">        content = tag.get_text()</span><br><span class="line">        content = content.replace(<span class="string">&#x27;\n&#x27;</span>, <span class="string">&#x27;&#x27;</span>)   <span class="comment"># 删除多余换行</span></span><br><span class="line">        print(content, <span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">url = <span class="string">&#x27;https://movie.douban.com/top250?format=text&#x27;</span></span><br><span class="line">crawler(url)</span><br></pre></td></tr></table></figure>
-<p>初步爬取结果如下所示：<br><img src="../assets/img/douban_3.png" alt="初步爬取结果"><br>可以看到爬取信息比较凌乱，而且没有定位到我们想要的信息，因为大多数情况下进行文本分析都需要特定的信息内容。下面我们将聚焦一些我们需要的内容。</p>
+<p>初步爬取结果如下所示：<br><img src="/assets/img/douban_3.png" alt="初步爬取结果"><br>可以看到爬取信息比较凌乱，而且没有定位到我们想要的信息，因为大多数情况下进行文本分析都需要特定的信息内容。下面我们将聚焦一些我们需要的内容。</p>
 <h4 id="2-1-2-定位信息所在标签"><a href="#2-1-2-定位信息所在标签" class="headerlink" title="2.1.2 定位信息所在标签"></a>2.1.2 定位信息所在标签</h4><p>比方说，我们要爬取电影信息的标题、排名、评价人数等信息。<br>可以通过以下方法完成：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">crawler2</span>(<span class="params">url</span>):</span></span><br><span class="line">    headers = &#123;<span class="string">&#x27;User-Agent&#x27;</span>: <span class="string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36&#x27;</span>&#125;</span><br><span class="line">    html = requests.get(url,headers=headers).text</span><br><span class="line">    <span class="comment"># lxml：html解析库（把HTML代码转化成Python对象）</span></span><br><span class="line">    soup = BeautifulSoup(html,<span class="string">&#x27;lxml&#x27;</span>)</span><br><span class="line">    <span class="keyword">for</span> tag <span class="keyword">in</span> soup.find_all(attrs=&#123;<span class="string">&#x27;class&#x27;</span>:<span class="string">&#x27;item&#x27;</span>&#125;):</span><br><span class="line">        rank = tag.find(<span class="string">&#x27;em&#x27;</span>).get_text()</span><br><span class="line">        title = tag.find(attrs = &#123;<span class="string">&#x27;class&#x27;</span>:<span class="string">&#x27;title&#x27;</span>&#125;).get_text()</span><br><span class="line">        href = tag.find(<span class="string">&#x27;a&#x27;</span>).get(<span class="string">&#x27;href&#x27;</span>)</span><br><span class="line">        <span class="comment">#rating_num = tag.find(attrs = &#123;&#x27;class&#x27;:&#x27;rating_num&#x27;&#125;).get_text() # 分数</span></span><br><span class="line">        info = tag.find(attrs = &#123;<span class="string">&#x27;class&#x27;</span>:<span class="string">&#x27;star&#x27;</span>&#125;).get_text() <span class="comment"># 评价人数</span></span><br><span class="line">        info = info.replace(<span class="string">&#x27;\n&#x27;</span>,<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">        info = info.lstrip()</span><br><span class="line">        mode = re.<span class="built_in">compile</span>(<span class="string">r&#x27;\d+\.?\d*&#x27;</span>)  <span class="comment"># 正则表达式获取数字</span></span><br><span class="line">        info_li = <span class="built_in">list</span>(mode.findall(info))</span><br><span class="line">        star = info_li[<span class="number">0</span>]</span><br><span class="line">        comment = info_li[<span class="number">1</span>]</span><br><span class="line">        print(<span class="string">&#x27;No&#x27;</span>,rank)</span><br><span class="line">        print(<span class="string">&#x27;[电影名称]&#x27;</span>,title)</span><br><span class="line">        print(<span class="string">&#x27;[网页链接]&#x27;</span>,href)</span><br><span class="line">        print(<span class="string">&#x27;[分数]&#x27;</span>,star)</span><br><span class="line">        print(<span class="string">&#x27;[评论数]&#x27;</span>,comment)</span><br><span class="line">url = <span class="string">r&#x27;https://movie.douban.com/top250?format=text&#x27;</span></span><br><span class="line">crawler2(url) </span><br></pre></td></tr></table></figure>
-<p>爬取的结果如下图所示：<br><img src="../assets/img/douban_2.png" alt="爬取首页Top250页面信息"></p>
+<p>爬取的结果如下图所示：<br><img src="/assets/img/douban_2.png" alt="爬取首页Top250页面信息"></p>
 <h4 id="2-1-3-完成网页翻页"><a href="#2-1-3-完成网页翻页" class="headerlink" title="2.1.3 完成网页翻页"></a>2.1.3 完成网页翻页</h4><p>进行网页翻页的方法主要有一下三种：</p>
 <ul>
 <li>1.单击“后页”按钮分析 URL 网址，然后分析他们之间的规律。利用这种方法的网站通常采用 GET 方法进行传值，而有些网站采用局部刷新技术，翻页后的 URL 仍然不变。</li>
@@ -1661,7 +2163,7 @@ finish search, find 2 scheme</code></pre>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">url_movie = tag.find(attrs=&#123;<span class="string">&quot;class&quot;</span>: <span class="string">&quot;hd&quot;</span>&#125;).a</span><br><span class="line">urls = url_movie.attrs[<span class="string">&#x27;href&#x27;</span>]</span><br></pre></td></tr></table></figure>
 <p>随即便可以利用上述代码进行详细页面的信息爬取，具体代码可以自行修改，读取相应标签内的文本内容：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getInfo</span>(<span class="params">url</span>):</span></span><br><span class="line">    headers = &#123;<span class="string">&#x27;User-Agent&#x27;</span>: <span class="string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36&#x27;</span>&#125;</span><br><span class="line">    html = requests.get(url,headers=headers).text</span><br><span class="line">    soup = BeautifulSoup(html,<span class="string">&#x27;lxml&#x27;</span>)</span><br><span class="line">    <span class="comment">#rank = soup.find(attrs = &#123;&#x27;class&#x27;:&#x27;top250-no&#x27;&#125;)</span></span><br><span class="line">    <span class="comment">#print(rank.get_text())</span></span><br><span class="line">    <span class="comment">#print(title.get_text())</span></span><br><span class="line">    info = soup.find(attrs = &#123;<span class="string">&#x27;id&#x27;</span>:<span class="string">&#x27;info&#x27;</span>&#125;)</span><br><span class="line">    print(info.get_text())</span><br><span class="line">    summary = soup.find(attrs = &#123;<span class="string">&#x27;property&#x27;</span>:<span class="string">&#x27;v:summary&#x27;</span>&#125;)</span><br><span class="line">    <span class="comment">#summary = summary.get_text()</span></span><br><span class="line">    <span class="comment">#summary.replace(&#x27;\n&#x27;, &#x27;&#x27;).replace(&#x27;\t&#x27;, &#x27;&#x27;)</span></span><br><span class="line">    print(<span class="string">&quot;剧情介绍:&quot;</span>,summary.get_text())</span><br><span class="line">    infofile = codecs.<span class="built_in">open</span>(<span class="string">&quot;Result_Douban_content.txt&quot;</span>, <span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;utf-8&#x27;</span>)  <span class="comment"># 打开文件</span></span><br><span class="line">    infofile.write(info.get_text()+<span class="string">&quot;\n&quot;</span>)</span><br><span class="line">    infofile.write(<span class="string">&quot;剧情介绍:&quot;</span>+summary.get_text()+ <span class="string">&#x27;\r\n&#x27;</span>+<span class="string">&#x27;\r\n&#x27;</span>)</span><br><span class="line">    infofile.close()</span><br></pre></td></tr></table></figure>
-<p>最终爬取结果如下：<a href="../assets/img/Result_Douban_content.txt">豆瓣Top250具体信息</a></p>
+<p>最终爬取结果如下：<a href="/assets/img/Result_Douban_content.txt">豆瓣Top250具体信息</a></p>
 <h2 id="End"><a href="#End" class="headerlink" title="End"></a>End</h2><p>我在爬取页面详细信息的时候，发现老是会爬取到None内容，一方面可以考虑是否登录了豆瓣账号，另一方面也是豆瓣网站将ip地址识别成了危险ip，所以将无法继续爬取，换一个ip就行了。</p>
 
       
@@ -1777,13 +2279,13 @@ finish search, find 2 scheme</code></pre>
 <p>式子中的两个概率，就用循环嵌套就可以解决。<br>（数据一旦很大，循环就真的很慢，有时候一套下来要20分钟…..无语��）</p>
 <h3 id="1-1-计算香农熵中的概率："><a href="#1-1-计算香农熵中的概率：" class="headerlink" title="1.1 计算香农熵中的概率："></a>1.1 计算香农熵中的概率：</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 我的专利数据结构是这样的：</span></span><br><span class="line"><span class="comment"># 利用Excel自带的分列功能，将所有的IPC号单独分出来</span></span><br><span class="line">raw_data = pd.read_excel(<span class="string">r&quot;/Users/yourname/Documents/CaculateEntropy.xlsx&quot;</span>,header=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 首先建立一个IPC列表，记录的是这个数据集中所有的IPC号，然后进行去重处理</span></span><br><span class="line"><span class="keyword">del</span> (raw_data[<span class="string">&#x27;PN&#x27;</span>])   <span class="comment"># 先删掉无用的PN号这一列</span></span><br><span class="line"><span class="keyword">del</span>(raw_data[<span class="string">&#x27;IP&#x27;</span>])</span><br><span class="line">print(raw_data.head())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 遍历df中的每一个元素，然后读取成一列</span></span><br><span class="line">IPC = []</span><br><span class="line"><span class="keyword">for</span> index, row <span class="keyword">in</span> raw_data.iteritems():</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(row)):</span><br><span class="line">        IPC.append(row[i])</span><br><span class="line">        </span><br><span class="line">IPC = pd.DataFrame(IPC)</span><br><span class="line">IPC.columns = [<span class="string">&#x27;IPC&#x27;</span>]</span><br><span class="line">print(IPC.head(<span class="number">15</span>))</span><br><span class="line"><span class="comment"># 下面开始去重</span></span><br><span class="line">IPC.drop_duplicates(subset=<span class="string">&#x27;IPC&#x27;</span>,keep=<span class="string">&#x27;first&#x27;</span>,inplace=<span class="literal">True</span>)</span><br><span class="line"><span class="built_in">len</span>(IPC)   <span class="comment"># 去重后只剩下2525，也就是说</span></span><br><span class="line"><span class="comment"># 注意，这里有一个坑，去重之后直接替换的数据，这里的dataframe的index不再连续！！！记得修改成连续的数值，否则循环将报错。</span></span><br><span class="line">IPC = IPC.reset_index(drop=<span class="literal">True</span>)<span class="comment">#重设索引</span></span><br><span class="line">IPC[<span class="string">&quot;count_i&quot;</span>] = <span class="number">0</span></span><br><span class="line"><span class="comment"># 计算count_i: </span></span><br><span class="line">dat = pd.read_excel(<span class="string">r&#x27;/Users/CaculateEntropy.xlsx&#x27;</span>,header = <span class="number">0</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(IPC)):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(dat)):</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">str</span>(IPC[<span class="string">&#x27;IPC&#x27;</span>][i]) <span class="keyword">in</span> <span class="built_in">str</span>(dat[<span class="string">&#x27;IP&#x27;</span>][j]):</span><br><span class="line">            IPC[<span class="string">&#x27;count_i&#x27;</span>][i]  = IPC[<span class="string">&#x27;count_i&#x27;</span>][i] + <span class="number">1</span></span><br><span class="line">    print(<span class="built_in">str</span>(IPC[<span class="string">&#x27;IPC&#x27;</span>][i]) + <span class="string">&quot;已经计算好了&quot;</span> + <span class="built_in">str</span>(i))</span><br></pre></td></tr></table></figure>
 <p>那么每一个IPC code都会有一个 count_i，结果我就直接放截图了：</p>
-<p><img src="../assets/img/count_i.png" alt="count_i"> </p>
+<p><img src="/assets/img/count_i.png" alt="count_i"> </p>
 <p>当然真实数据集远远不止这些……此时真的希望我的电脑能扛住，因为后面还有更多…..</p>
 <h3 id="1-2-计算每一个IPC-code的香农熵"><a href="#1-2-计算每一个IPC-code的香农熵" class="headerlink" title="1.2 计算每一个IPC code的香农熵"></a>1.2 计算每一个IPC code的香农熵</h3><p>我写到这里的时候突然脑子不好用了，想了半天应该怎么写好，只能先用两层循环试试，结果发现问题不小，两层循环都跑了我20多分钟。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 我用简单的双层循环来搞清楚逻辑</span></span><br><span class="line">Entropy_j_0 = <span class="number">0</span> </span><br><span class="line"><span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="built_in">len</span>(IPC)):</span><br><span class="line">    count_j_0 = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> m <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(dat)):</span><br><span class="line">        keywords =(<span class="built_in">str</span>(IPC[<span class="string">&#x27;IPC&#x27;</span>][<span class="number">0</span>])+<span class="string">&#x27;;&#x27;</span>+<span class="built_in">str</span>(IPC[<span class="string">&#x27;IPC&#x27;</span>][j]))</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">all</span>([w <span class="keyword">in</span> dat[<span class="string">&#x27;IP&#x27;</span>][m] <span class="keyword">and</span> w <span class="keyword">for</span> w <span class="keyword">in</span> keywords.split(<span class="string">&#x27;;&#x27;</span>)]):</span><br><span class="line">            count_j_0 += <span class="number">1</span></span><br><span class="line">    print(<span class="string">&quot;count_&#123;0&#125;_0 已经计算好了  &quot;</span>.<span class="built_in">format</span>(j) + <span class="built_in">str</span>(count_j_0) )</span><br><span class="line">    Entropy_j_0 += -((count_j_0 / IPC[<span class="string">&#x27;count_i&#x27;</span>][<span class="number">0</span>]) * log(count_j_0 / IPC[<span class="string">&#x27;count_i&#x27;</span>][<span class="number">0</span>]+<span class="number">0.0001</span>,<span class="number">2</span>)) <span class="comment"># log函数中加上0.0001是因为避免math.log（0，2）出现负无穷的bug</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>检查完成后发现，emmmm，基本上逻辑没啥问题，就是慢了点，能出结果最好。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下面是正式的三层循环</span></span><br><span class="line">IPC[<span class="string">&#x27;Entropy_i&#x27;</span>]  = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(IPC)):</span><br><span class="line">    Entropy_j_i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i+<span class="number">1</span>,<span class="built_in">len</span>(IPC)):</span><br><span class="line">        count_j_i = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> m <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(dat)):</span><br><span class="line">            keywords =(<span class="built_in">str</span>(IPC[<span class="string">&#x27;IPC&#x27;</span>][i])+<span class="string">&#x27;;&#x27;</span>+<span class="built_in">str</span>(IPC[<span class="string">&#x27;IPC&#x27;</span>][j]))</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">all</span>([w <span class="keyword">in</span> dat[<span class="string">&#x27;IP&#x27;</span>][m] <span class="keyword">and</span> w <span class="keyword">for</span> w <span class="keyword">in</span> keywords.split(<span class="string">&#x27;;&#x27;</span>) ]):</span><br><span class="line">                count_j_i += <span class="number">1</span></span><br><span class="line">        <span class="comment">#print(&quot;count_&#123;0&#125;_0 已经计算好了  &quot;.format(j) + str(count_j_0) )</span></span><br><span class="line">        Entropy_j_i += -((count_j_i / IPC[<span class="string">&#x27;count_i&#x27;</span>][i])*log(count_j_i/IPC[<span class="string">&#x27;count_i&#x27;</span>][i]+ <span class="number">0.0001</span>,<span class="number">2</span>))</span><br><span class="line">    print(<span class="string">&quot;Entropy_&#123;0&#125; 已经计算好了  &quot;</span>.<span class="built_in">format</span>(i) + <span class="built_in">str</span>(Entropy_j_i))</span><br><span class="line">    IPC[<span class="string">&#x27;Entropy_i&#x27;</span>] = Entropy_j_i</span><br><span class="line"></span><br><span class="line">IPC.to_excel(<span class="string">&quot;122.xlsx&quot;</span>)</span><br></pre></td></tr></table></figure>
-<p>其实，写到这一步，已经半夜12点了，我就把电脑扔一边，睡觉去了。<br><img src="../assets/img/Entropy_i.png" alt="Entropy_i"></p>
+<p>其实，写到这一步，已经半夜12点了，我就把电脑扔一边，睡觉去了。<br><img src="/assets/img/Entropy_i.png" alt="Entropy_i"></p>
 <h2 id="2-How-to-Calculate-Binding-force"><a href="#2-How-to-Calculate-Binding-force" class="headerlink" title="2.How to Calculate Binding-force?"></a>2.How to Calculate Binding-force?</h2><p>要计算Binding-force，需要引入Social Network Analysis 的方法，计算网络节点的中心度（这里用到的是紧密性中心度，cloesness centrality）</p>
 <h3 id="2-1-构建专利数据中IPC的共现矩阵"><a href="#2-1-构建专利数据中IPC的共现矩阵" class="headerlink" title="2.1 构建专利数据中IPC的共现矩阵"></a>2.1 构建专利数据中IPC的共现矩阵</h3><p>构建共现矩阵的方法有很多，有基于文献关键词的、有基于文献作者合作的、还有基于文章共被引和共引的。这里我就依葫芦画瓢，改成专利的IPC号共现矩阵，也就是要找出，互相两个IPC号同时出现在多少个专利中。</p>
 <p>思路是这样的：</p>
@@ -1795,15 +2297,15 @@ finish search, find 2 scheme</code></pre>
 - 遍历formated_data，让取出的行关键词和取出的列关键词进行组合，共现则+1。</code></pre>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">ipc = pd.read_excel(<span class="string">&quot;111.xlsx&quot;</span>,header=<span class="number">0</span>)</span><br><span class="line">ipc_word = <span class="built_in">list</span>(<span class="built_in">set</span>(ipc[<span class="string">&#x27;IPC&#x27;</span>]))  </span><br><span class="line"></span><br><span class="line">raw_data = pd.read_excel(<span class="string">r&quot;/Users/laihuapeng/Documents/Papers/smart city data/CaculateEntropy.xlsx&quot;</span>,header=<span class="number">0</span>)</span><br><span class="line">print(raw_data.head())</span><br><span class="line">dat = pd.DataFrame(raw_data[<span class="string">&#x27;IP&#x27;</span>])</span><br><span class="line">print(dat.head())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 遍历df中的每一个元素，然后读取成一列</span></span><br><span class="line">formated_data = []</span><br><span class="line"><span class="keyword">for</span> index, row <span class="keyword">in</span> dat.iteritems():</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(row)):</span><br><span class="line">        row[i] = row[i].split(<span class="string">&#x27;;&#x27;</span>)</span><br><span class="line">        formated_data.append(row[i])</span><br><span class="line"><span class="comment"># 初始化矩阵</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">build_matirx</span>(<span class="params">ipc_word</span>):</span></span><br><span class="line">    edge = <span class="built_in">len</span>(ipc_word) + <span class="number">1</span>  <span class="comment"># 建立矩阵，矩阵的高度和宽度为关键词集合的长度+1</span></span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;matrix = np.zeros((edge, edge), dtype=str)&#x27;&#x27;&#x27;</span>  <span class="comment"># 另一种初始化方法</span></span><br><span class="line">    matrix = [[<span class="string">&#x27;&#x27;</span> <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(edge)] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(edge)]  <span class="comment"># 初始化矩阵</span></span><br><span class="line">    matrix[<span class="number">0</span>][<span class="number">1</span>:] = np.array(ipc_word)</span><br><span class="line">    matrix = <span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">list</span>, <span class="built_in">zip</span>(*matrix)))</span><br><span class="line">    matrix[<span class="number">0</span>][<span class="number">1</span>:] = np.array(ipc_word)  <span class="comment"># 赋值矩阵的第一行与第一列</span></span><br><span class="line">    <span class="keyword">return</span> matrix</span><br><span class="line"><span class="comment"># 计算各个关键词的共现次数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">count_matrix</span>(<span class="params">matrix, formated_data</span>):</span></span><br><span class="line">    <span class="keyword">for</span> row <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(matrix)):</span><br><span class="line">        <span class="comment"># 遍历矩阵第一行，跳过下标为0的元素</span></span><br><span class="line">        <span class="keyword">for</span> col <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(matrix)):</span><br><span class="line">            <span class="comment"># 遍历矩阵第一列，跳过下标为0的元素</span></span><br><span class="line">            <span class="comment"># 实际上就是为了跳过matrix中下标为[0][0]的元素，因为[0][0]为空，不为关键词</span></span><br><span class="line">            <span class="keyword">if</span> matrix[<span class="number">0</span>][row] == matrix[col][<span class="number">0</span>]:</span><br><span class="line">                <span class="comment"># 如果取出的行关键词和取出的列关键词相同，则其对应的共现次数为0，即矩阵对角线为0</span></span><br><span class="line">                matrix[col][row] = <span class="built_in">str</span>(<span class="number">0</span>)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                counter = <span class="number">0</span>  <span class="comment"># 初始化计数器</span></span><br><span class="line">                <span class="keyword">for</span> ech <span class="keyword">in</span> formated_data:</span><br><span class="line">                    <span class="comment"># 遍历格式化后的原始数据，让取出的行关键词和取出的列关键词进行组合，</span></span><br><span class="line">                    <span class="comment"># 再放到每条原始数据中查询</span></span><br><span class="line">                    <span class="keyword">if</span> matrix[<span class="number">0</span>][row] <span class="keyword">in</span> ech <span class="keyword">and</span> matrix[col][<span class="number">0</span>] <span class="keyword">in</span> ech:</span><br><span class="line">                        counter += <span class="number">1</span></span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                        <span class="keyword">continue</span></span><br><span class="line">                matrix[col][row] = <span class="built_in">str</span>(counter)</span><br><span class="line">    <span class="keyword">return</span> matrix</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line">    <span class="comment">#formated_data, set_word = Get_file_keywords(&#x27;D:\\untitled\\test&#x27;)</span></span><br><span class="line">    print(ipc_word)</span><br><span class="line">    print(formated_data)</span><br><span class="line">    matrix = build_matirx(ipc_word)</span><br><span class="line">    matrix = count_matrix(matrix, formated_data)</span><br><span class="line">    data1 = pd.DataFrame(matrix)</span><br><span class="line">    data1.to_csv(<span class="string">&#x27;data.csv&#x27;</span>, index=<span class="number">0</span>, columns=<span class="literal">None</span>, encoding=<span class="string">&#x27;utf_8_sig&#x27;</span>)</span><br><span class="line">main()</span><br></pre></td></tr></table></figure>
 <h3 id="2-2根据共现矩阵进行关系图的绘制"><a href="#2-2根据共现矩阵进行关系图的绘制" class="headerlink" title="2.2根据共现矩阵进行关系图的绘制"></a>2.2根据共现矩阵进行关系图的绘制</h3><p>python也可以做网络关系图，但是出于美观考虑，采用gephi专业的作图软件做可能会更好一点，但是我实在没搞懂这个软件的逻辑，做出来的图真的太丑了。</p>
-<p><img src="../assets/img//IPC%E5%85%B1%E7%8E%B0%E5%9B%BE.png" alt="IPC网络图"></p>
+<p><img src="/assets/img//IPC%E5%85%B1%E7%8E%B0%E5%9B%BE.png" alt="IPC网络图"></p>
 <p>那么，也许有人会问，有了网络图之后，可以干什么？其实就是通过网络图来求得Binding-force中非常重要的一个参数，紧密中心度（Closeness Centrality），下面给出Binding-force正式的定义：<br>$$<br>F_i=\sum_{j=1}^n \frac{M_j  M_i  C_i^2}{n}<br>$$<br>是不是感觉似曾相识，其实它是引用了高中物理万有引力公式的性质，万有引力公式揭示了一个天体对另一个天体对吸引力。<br>$$<br>F = G \frac{Mm}{r^2}<br>$$<br>而Binding-force（我翻译为结合力）也是揭示了一个IPC code对另一个IPC code的结合力，在同一个数据集中，结合力越强，意味着此IPC code的对其他IPC code的吸引作用越强。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">data = pd.read_csv(<span class="string">&#x27;/Users/laihuapeng/data的副本.csv&#x27;</span>)</span><br><span class="line">data = np.array(data)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 求解紧密中心性</span></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> networkx <span class="keyword">as</span> nx</span><br><span class="line"><span class="keyword">import</span> operator</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_closeness_centrality</span>():</span></span><br><span class="line">    G = nx.Graph()</span><br><span class="line">    filestr = <span class="string">&quot;&quot;</span>  </span><br><span class="line">  <span class="comment">#需要读入的共现矩阵</span></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span> (<span class="string">&quot;data的副本.csv&quot;</span>)  <span class="keyword">as</span> files:</span><br><span class="line">        <span class="keyword">for</span> line <span class="keyword">in</span> files:</span><br><span class="line">            filestr += line.strip()</span><br><span class="line"></span><br><span class="line">  <span class="comment">#将字符串转换成列表</span></span><br><span class="line">    matrix = data</span><br><span class="line">    <span class="comment">#matrix = eval(filestr)</span></span><br><span class="line"></span><br><span class="line">    nodes = <span class="built_in">range</span>(<span class="built_in">len</span>(matrix))</span><br><span class="line">    </span><br><span class="line">    G.add_nodes_from(nodes)</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(matrix)):</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(matrix)):</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span>(matrix[i][j] == <span class="number">1</span>):</span><br><span class="line">                </span><br><span class="line">                G.add_edge(i, j)</span><br><span class="line">    </span><br><span class="line">    cc = nx.algorithms.bipartite.centrality.closeness_centrality(G,G.nodes())</span><br><span class="line">  </span><br><span class="line">    print(<span class="string">&quot;节点编号及其接近中心性最大值为：&quot;</span>)</span><br><span class="line">    cc_list = <span class="built_in">sorted</span>(cc.items(), key=operator.itemgetter(<span class="number">1</span>))</span><br><span class="line">    print(cc_list) </span><br><span class="line">get_closeness_centrality()</span><br></pre></td></tr></table></figure>
 <p>有了紧密中心度，自然就可以求Binding-force了</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="comment">## Binding force:</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(ipc)):</span><br><span class="line">    Force_i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(ipc)):</span><br><span class="line">        <span class="keyword">if</span> i != j :</span><br><span class="line">            Force_i += ipc[<span class="string">&#x27;count_i&#x27;</span>][i] * ipc[<span class="string">&#x27;count_i&#x27;</span>][j]* math.<span class="built_in">pow</span>(ipc[<span class="string">&#x27;Closeness Centrality&#x27;</span>][i],<span class="number">2</span>) / <span class="built_in">len</span>(ipc)</span><br><span class="line">        <span class="keyword">else</span> :</span><br><span class="line">            Force_i += <span class="number">0</span> </span><br><span class="line">    ipc.loc[i,<span class="string">&#x27;Binding force&#x27;</span>] = Force_i</span><br><span class="line">    print(<span class="string">&#x27;Binding-force-&#123;0&#125; 已经计算好了：&#x27;</span>.<span class="built_in">format</span>(i),Force_i)</span><br><span class="line">ipc.to_excel(<span class="string">&#x27;333.xlsx&#x27;</span>,encoding = <span class="string">&quot;UTF-8-sig&quot;</span>)</span><br></pre></td></tr></table></figure>
-<p>计算结果如下图所示：<br><img src="../assets/img//Binding_force.png" alt="Binding-force"></p>
+<p>计算结果如下图所示：<br><img src="/assets/img//Binding_force.png" alt="Binding-force"></p>
 <h2 id="3-Entropy-Binding-force-Visualization"><a href="#3-Entropy-Binding-force-Visualization" class="headerlink" title="3. Entropy-Binding_force Visualization"></a>3. Entropy-Binding_force Visualization</h2><p>我也像论文中一样，使用一个二维图来展示，IPC code在这两个变量下的图形吧：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">ipc = pd.read_excel(<span class="string">&#x27;333.xlsx&#x27;</span>,encoding=<span class="string">&quot;UTF-8-sig&quot;</span>)</span><br><span class="line">x = np.array(ipc[<span class="string">&#x27;Binding force&#x27;</span>].values)</span><br><span class="line">y = np.array((ipc[<span class="string">&#x27;Entropy_i&#x27;</span>].values))</span><br><span class="line">txt = <span class="built_in">list</span>(ipc[<span class="string">&#x27;IPC&#x27;</span>].values)</span><br><span class="line">plt.figure(figsize=(<span class="number">10</span>,<span class="number">8</span>))</span><br><span class="line">plt.scatter(x,y,color=<span class="string">&#x27;black&#x27;</span>,alpha=<span class="number">0.7</span>,marker= <span class="string">&#x27;*&#x27;</span>)</span><br><span class="line">plt.xlabel(<span class="string">&#x27;Binding-force&#x27;</span>,fontsize = <span class="number">15</span>,color = <span class="string">&#x27;black&#x27;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&#x27;Entropy&#x27;</span>,fontsize = <span class="number">15</span>,color = <span class="string">&#x27;black&#x27;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<p><img src="../assets/img//Entro-Binding.png" alt="Visualization"></p>
+<p><img src="/assets/img//Entro-Binding.png" alt="Visualization"></p>
 <h2 id="4-Linear-Regression"><a href="#4-Linear-Regression" class="headerlink" title="4.Linear Regression"></a>4.Linear Regression</h2><p>其实作者就是想看看怎么样预测将来的IPC code，于是用了下面的线性回归：</p>
 <p>$$<br>    Y  = \gamma log_2 x +C<br>$$<br>其中，$ \gamma $ 作者定义为<em>domination power</em>,<br>$$ x = \frac{1}{the\ number\ of\ patents\ of\ each\ IPC\ code\ i } $$ </p>
 <p>$$<br>Y = \frac{Entropy_i / Entropy_{max} + Binding\ force_i / Binding\ force_{max}}{2}<br>$$</p>
@@ -1837,228 +2339,6 @@ finish search, find 2 scheme</code></pre>
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/02/04/%E3%80%8C%E8%AE%BA%E6%96%87%E5%A4%8D%E7%8E%B0%E3%80%8DEntropy%20and%20Gravity/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-正则表达式爬取B站弹幕并制作词云图" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/02/03/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%88%AC%E5%8F%96B%E7%AB%99%E5%BC%B9%E5%B9%95%E5%B9%B6%E5%88%B6%E4%BD%9C%E8%AF%8D%E4%BA%91%E5%9B%BE/">正则表达式爬取B站弹幕并制作词云图</a>
-    </h1>
-  
-
-        
-        <a href="/2021/02/03/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%88%AC%E5%8F%96B%E7%AB%99%E5%BC%B9%E5%B9%95%E5%B9%B6%E5%88%B6%E4%BD%9C%E8%AF%8D%E4%BA%91%E5%9B%BE/" class="archive-article-date">
-  	<time datetime="2021-02-03T08:33:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- TOC -->
-
-<ul>
-<li><a href="#1%E5%87%86%E5%A4%87%E7%9F%A5%E8%AF%86">1.准备知识</a><ul>
-<li><a href="#11-%E5%BC%95%E5%85%A5%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F">1.1 引入正则表达式</a><ul>
-<li><a href="#findall-%E6%96%B9%E6%B3%95"><strong>findall()</strong> 方法</a></li>
-<li><a href="#complie-%E6%96%B9%E6%B3%95"><strong>complie()</strong> 方法</a></li>
-<li><a href="#search-%E6%96%B9%E6%B3%95"><strong>search()</strong> 方法</a></li>
-</ul>
-</li>
-<li><a href="#12-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AE%9E%E4%BE%8B">1.2 正则表达式实例</a></li>
-</ul>
-</li>
-<li><a href="#2-%E7%88%AC%E5%8F%96b%E7%AB%99%E7%8E%8B%E5%86%B0%E5%86%B0%E8%A7%86%E9%A2%91%E7%9A%84%E5%BC%B9%E5%B9%95%E5%B9%B6%E5%88%B6%E4%BD%9C%E8%AF%8D%E4%BA%91%E5%9B%BE">2. 爬取B站王冰冰视频的弹幕并制作词云图</a><ul>
-<li><a href="#21-%E5%BC%B9%E5%B9%95%E6%95%B0%E6%8D%AE%E7%88%AC%E5%8F%96">2.1 弹幕数据爬取</a></li>
-<li><a href="#22-%E5%88%B6%E4%BD%9C%E8%AF%8D%E4%BA%91%E5%9B%BE">2.2 制作词云图</a></li>
-</ul>
-</li>
-</ul>
-<!-- /TOC -->
-<h2 id="1-准备知识"><a href="#1-准备知识" class="headerlink" title="1.准备知识"></a>1.准备知识</h2><p><strong><em>正则表达式</em></strong>  是这篇爬虫实例的最重要的知识准备，但是Python的正则表达式学起来容易，忘起来也容易.我已经不祈求自己能牢牢记住多少了，只希望自己在想要用到的时候能够迅速找到，并且解决问题。主要学习内容就是Python的re模块。Python中有一个新的正则表达式的包regex，将最终替代re模块，具体特性可以另外了解。</p>
-<h3 id="1-1-引入正则表达式"><a href="#1-1-引入正则表达式" class="headerlink" title="1.1 引入正则表达式"></a>1.1 引入正则表达式</h3><p>在Python使用re模块进行正则模式的匹配：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re </span><br></pre></td></tr></table></figure>
-<p>其基本步骤是：</p>
-<ul>
-<li>1、将正则表达式的字符串形式编译为pattern实例(pattern实例就是一个编译好的正则表达式，通过它提供的方法可以进行文本的匹配查找)</li>
-<li>2、使用pattern实例处理文本并获得一个匹配实例</li>
-<li>3、使用match实例获得所需信息</li>
-</ul>
-<p>常用函数有 <strong>findall()</strong> 、<strong>complie()</strong> 、 <strong>search()、</strong> 、<strong>group()**、</strong>groups()**</p>
-<h4 id="findall-方法"><a href="#findall-方法" class="headerlink" title="findall() 方法"></a><strong>findall()</strong> 方法</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">findall(String[, pos[, endpos]])</span><br><span class="line">或者</span><br><span class="line">re.findall(pattern, string[, flags])</span><br></pre></td></tr></table></figure>
-<p>其中，re中有三个常见的参数：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">re.I(re.IGNORECASE)  <span class="comment"># 使匹配忽略大小写</span></span><br><span class="line">re.M(re.MULTILINE)   <span class="comment"># 允许多行匹配</span></span><br><span class="line">re.S(re.DOTALL)      <span class="comment"># 匹配包括换行在内的所有字符</span></span><br></pre></td></tr></table></figure>
-<h4 id="complie-方法"><a href="#complie-方法" class="headerlink" title="complie() 方法"></a><strong>complie()</strong> 方法</h4><p>创建模式对象，用来编译正则表达式（如果要重复某个正则表达式，先编译它，然后直接调过来使用）</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">compile</span>(pattern[, flags])</span><br></pre></td></tr></table></figure>
-<p>下面是一个例子：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 举例说明如何使用正则表达式来获取字符串中的数字内容</span></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line">string = <span class="string">&#x27;A1.45, b5, 6.45, 8.82&#x27;</span></span><br><span class="line">regex = re.<span class="built_in">compile</span>(<span class="string">r&quot;\d+\.?\d*&quot;</span>)</span><br><span class="line">print(regex.findall(string))</span><br></pre></td></tr></table></figure>
-<p><img src="../assets/img/1.png" alt="complie"></p>
-<h4 id="search-方法"><a href="#search-方法" class="headerlink" title="search() 方法"></a><strong>search()</strong> 方法</h4><p>顾名思义，用于查找字符串可以匹配成功的子字符串（第一次出现的位置）pos———endpos，返回match对象或None</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"> </span><br><span class="line">string = <span class="string">&#x27;llabcdabcs&#x27;</span></span><br><span class="line">res = re.search(<span class="string">&#x27;abc&#x27;</span>,string)</span><br><span class="line">print(res)</span><br></pre></td></tr></table></figure>
-<h3 id="1-2-正则表达式实例"><a href="#1-2-正则表达式实例" class="headerlink" title="1.2 正则表达式实例"></a>1.2 正则表达式实例</h3><p>下面用一个小例子来说明正则表达式在网络爬取中的应用，<br>利用 正则表达式 来获取小说《三体》的文本内容。</p>
-<p>网站地址是：<a target="_blank" rel="noopener" href="http://www.quanshuwang.com/">http://www.quanshuwang.com/</a></p>
-<p>PS：这个网站在某些时候可能访问不了，需要fanqiang</p>
-<p>首先获取小说的书名或作者：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">from</span> urllib <span class="keyword">import</span> request <span class="comment"># 导入url处理模块urllib包</span></span><br><span class="line"><span class="comment"># 获取目标页面 url ，并存入first_url中</span></span><br><span class="line">first_url = <span class="string">&quot;http://www.quanshuwang.com/book/69/69968&quot;</span></span><br><span class="line"><span class="comment">#访问小说首页面，打印输出相应的HTML文件  </span></span><br><span class="line">html = request.urlopen(first_url).read().decode(<span class="string">&#x27;gbk&#x27;</span>)</span><br><span class="line"><span class="comment"># html = 对象.函数（参数）.调用对象返回的方法()</span></span><br><span class="line">print(html)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 小说的信息</span></span><br><span class="line">novel_info = &#123;&#125;</span><br><span class="line"><span class="comment"># 小说的名字</span></span><br><span class="line">novel_info[<span class="string">&#x27;title&#x27;</span>] = re.findall(<span class="string">r&#x27;&lt;div class=&quot;chapName&quot;&gt;.*?&lt;strong&gt;(.*?)&lt;/strong&gt;&#x27;</span>,html)[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">novel_info[<span class="string">&#x27;author&#x27;</span>] = re.findall(<span class="string">r&#x27;&lt;div class=&quot;chapName&quot;&gt;&lt;span class=&quot;r&quot;&gt;(.*?)&lt;/span&gt;&#x27;</span>,html)[<span class="number">0</span>]</span><br><span class="line">print(novel_info[<span class="string">&#x27;title&#x27;</span>])</span><br><span class="line">print(novel_info[<span class="string">&#x27;author&#x27;</span>])</span><br><span class="line">````</span><br><span class="line">![](../assets/img/<span class="number">2.</span>png)</span><br><span class="line"></span><br><span class="line">下面获取章节信息：</span><br><span class="line">```python</span><br><span class="line">div_info = re.findall(<span class="string">r&#x27;&lt;div class=&quot;clearfix dirconone&quot;&gt;(.*?)&lt;/div&gt;&#x27;</span>,html,re.S|re.I)[<span class="number">0</span>]</span><br><span class="line">print(div_info)</span><br><span class="line"></span><br><span class="line">tag_a = re.findall(<span class="string">r&#x27;&lt;a.*?&lt;/a&gt;&#x27;</span>,div_info)</span><br><span class="line">print(tag_a)</span><br><span class="line">chapter_url = re.findall(<span class="string">r&#x27;href=&quot;(.*?)&quot;&#x27;</span>,tag_a[<span class="number">0</span>])[<span class="number">0</span>]</span><br><span class="line">print(chapter_url)</span><br><span class="line">chapter_title = re.findall(<span class="string">r&#x27;title=&quot;(.*?)&quot;&#x27;</span>,tag_a[<span class="number">0</span>])[<span class="number">0</span>]</span><br><span class="line">print(chapter_title)</span><br></pre></td></tr></table></figure>
-<p>可以发现结果包含一些不需要的信息,同样也是通过正则表达式来处理</p>
-<p><img src="../assets/img/3.png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下面开始遍历</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">35</span>):</span><br><span class="line">    div_info = re.findall(<span class="string">r&#x27;&lt;div class=&quot;clearfix dirconone&quot;&gt;(.*?)&lt;/div&gt;&#x27;</span>,html,re.S|re.I)[<span class="number">0</span>]</span><br><span class="line">    tag_a = re.findall(<span class="string">r&#x27;&lt;a.*?&lt;/a&gt;&#x27;</span>,div_info)</span><br><span class="line">    chapter_url = re.findall(<span class="string">r&#x27;href=&quot;(.*?)&quot;&#x27;</span>,tag_a[i])[<span class="number">0</span>]</span><br><span class="line">    chapter_title = re.findall(<span class="string">r&#x27;title=&quot;(.*?)&quot;&#x27;</span>,tag_a[i])[<span class="number">0</span>]</span><br><span class="line">    print(chapter_title)</span><br><span class="line">    print(chapter_url)</span><br></pre></td></tr></table></figure>
-<p>结果输出如下：<br><img src="../assets/img/4.png"></p>
-<p>同样的道理，再进一步，去到每一页的内容中，下载每章节的信息。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 再进一步，进入到每篇文章内部，同样分析网址，可以得到该章节内所有文字</span></span><br><span class="line">second_url = <span class="string">&quot;http://www.quanshuwang.com/book/69/69968/20987133.html&quot;</span></span><br><span class="line">html2 = request.urlopen(second_url).read().decode(<span class="string">&#x27;gbk&#x27;</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">68</span>):</span><br><span class="line">    div_info = re.findall(<span class="string">r&#x27;&lt;div class=&quot;mainContenr&quot;   id=&quot;content&quot;&gt;(.*?) &lt;div style=&quot;margin:6px 1px 6px 1px;text-align:center;&quot;&gt;&#x27;</span>, html2, re.S|re.I)[<span class="number">0</span>]</span><br><span class="line">    tag_a = re.findall(<span class="string">r&#x27;&lt;/script&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;(.*?)&lt;script type=&quot;text/javascript&quot;&gt;&#x27;</span>, div_info,re.S)</span><br><span class="line">    chapter_content = re.findall(<span class="string">r&#x27;\r\n&lt;br /&gt;\r\n&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp(.*?)&lt;br /&gt;\r\n&lt;br /&gt;&#x27;</span>,tag_a[<span class="number">0</span>],re.S)[i]</span><br><span class="line">    print(chapter_content)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">div_info = re.findall(<span class="string">r&#x27;&lt;div class=&quot;mainContenr&quot;   id=&quot;content&quot;&gt;(.*?) &lt;div style=&quot;margin:6px 1px 6px 1px;text-align:center;&quot;&gt;&#x27;</span>, html2, re.S|re.I)[<span class="number">0</span>]</span><br><span class="line">nbsp = re.findall(<span class="string">r&#x27;&amp;nbsp&#x27;</span>,div_info,re.S|re.I)</span><br></pre></td></tr></table></figure>
-<h2 id="2-爬取B站王冰冰视频的弹幕并制作词云图"><a href="#2-爬取B站王冰冰视频的弹幕并制作词云图" class="headerlink" title="2. 爬取B站王冰冰视频的弹幕并制作词云图"></a>2. 爬取B站王冰冰视频的弹幕并制作词云图</h2><h3 id="2-1-弹幕数据爬取"><a href="#2-1-弹幕数据爬取" class="headerlink" title="2.1 弹幕数据爬取"></a>2.1 弹幕数据爬取</h3><p>选取的B站视频是王冰冰的第一个vlog：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1vy4y1i7bS">https://www.bilibili.com/video/BV1vy4y1i7bS</a></p>
-<p>这里需要注意的是，b站隐藏的有点深，它把弹幕的api隐藏了，而且据我观察应该还定期修改。爬取的时候找找网上的建议很重要。我的经验是：找到 list.so?oid=283851334 后面这一串数字，然后把这串数字带入到url语句中，一般来说问题就OK了。</p>
-<p>核心代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests             <span class="comment">#发出请求</span></span><br><span class="line"><span class="keyword">import</span> re                   <span class="comment">#内置库 用于匹配正则表达式</span></span><br><span class="line"><span class="keyword">import</span> csv                  <span class="comment">#文件格式</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获得弹幕的url</span></span><br><span class="line">url = <span class="string">r&#x27;https://api.bilibili.com/x/v1/dm/list.so?oid=283851334&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 定制请求头，伪装浏览器</span></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">&quot;User-Agent&quot;</span>: <span class="string">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># 发起请求 获得响应</span></span><br><span class="line">response = requests.get(url,headers=headers)</span><br><span class="line">html_doc = response.content.decode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 正则表达式的匹配模式</span></span><br><span class="line">res = re.<span class="built_in">compile</span>(<span class="string">&#x27;&lt;d.*?&gt;(.*?)&lt;/d&gt;&#x27;</span>)</span><br><span class="line"><span class="comment"># 根据匹配模式获得网页数据</span></span><br><span class="line">danmu = re.findall(res,html_doc)</span><br><span class="line">print(danmu)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">txt_save</span>(<span class="params">filename,data</span>):</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> data:</span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(filename,<span class="string">&#x27;a&#x27;</span>,newline=<span class="string">&#x27;&#x27;</span>,encoding=<span class="string">&#x27;utf-8-sig&#x27;</span>) <span class="keyword">as</span> file:</span><br><span class="line">            writer = csv.writer(file)</span><br><span class="line">            danmu = []</span><br><span class="line">            danmu.append(i)</span><br><span class="line">            writer.writerow(danmu)</span><br><span class="line">    print(<span class="string">&#x27;保存文件成功！&#x27;</span>)</span><br><span class="line">txt_save(<span class="string">&#x27;/Users/yourname/b站王冰冰弹幕.txt&#x27;</span>,danmu)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>保存下来之后就变成了这样：<br><img src="../assets/img/5.png" alt="danmu.txt"></p>
-<h3 id="2-2-制作词云图"><a href="#2-2-制作词云图" class="headerlink" title="2.2 制作词云图"></a>2.2 制作词云图</h3><p>制作词云图到基本步骤其实很简单：</p>
-<ul>
-<li>1、先将文本或者语句分词，我这里直接用到jieba分词</li>
-<li>2、然后利用wordcloud的库生成词云（后续设置背景和颜色的功能有时间在琢磨）</li>
-<li>3、保存图片到本地</li>
-</ul>
-<p>核心代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> jieba         <span class="comment">#中文分词</span></span><br><span class="line"><span class="keyword">import</span> wordcloud     <span class="comment">#绘制词云</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> os <span class="keyword">import</span> path</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">f = <span class="built_in">open</span>(<span class="string">&#x27;/Users/yourname/b站王冰冰弹幕.txt&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>)  <span class="comment"># 打开刚刚获取到的所有弹幕包含在的txt文件</span></span><br><span class="line"> </span><br><span class="line">txt = f.read()</span><br><span class="line"></span><br><span class="line">txt_list =jieba.cut(txt)</span><br><span class="line">text = <span class="string">&quot; &quot;</span>.join(txt_list)</span><br><span class="line"><span class="comment">#BingText = np.array(Image.open( &quot;/Users/laihuapeng/bingbing.png&quot;))</span></span><br><span class="line"><span class="comment">#backgroud_Image = plt.imread(&#x27;/Users/laihuapeng/bingbing.png&#x27;)</span></span><br><span class="line">print(text)</span><br><span class="line"><span class="comment">#stopwords = set(STOPWORDS) 用中文的停用词会好一些</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">stopwordslist</span>(<span class="params">filepath</span>):</span></span><br><span class="line">    stopwords = [line.strip() <span class="keyword">for</span> line <span class="keyword">in</span> <span class="built_in">open</span>(filepath, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;gbk&#x27;</span>).readlines()]</span><br><span class="line">    <span class="keyword">return</span> stopwords</span><br><span class="line"></span><br><span class="line"><span class="comment"># 加载停用词</span></span><br><span class="line">stopwords = stopwordslist(<span class="string">&quot;/Users/yourname/stopwords.txt&quot;</span>)</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">w = wordcloud.WordCloud(width=<span class="number">1000</span>,</span><br><span class="line">                        height=<span class="number">700</span>,</span><br><span class="line">                        background_color=<span class="string">&#x27;white&#x27;</span>,</span><br><span class="line">                        font_path=<span class="string">&#x27;/Users/laihuapeng/Documents/Applied_text_mining_in_Python/NotoSansCJKsc-hinted/NotoSansMonoCJKsc-Regular.otf&#x27;</span>,</span><br><span class="line">                        scale=<span class="number">15</span>,</span><br><span class="line">                        stopwords=stopwords,</span><br><span class="line">                        contour_width=<span class="number">5</span>,</span><br><span class="line">                        contour_color=<span class="string">&#x27;red&#x27;</span></span><br><span class="line">                        )</span><br><span class="line"> </span><br><span class="line">w.generate(text)</span><br><span class="line">w.to_file(<span class="string">&#x27;bingcloud.png&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<p>最终输出结果如下：</p>
-<p><img src="../assets/img/bingcloud.png"></p>
-<p>全篇完结，谢谢观看！</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Python爬虫</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/02/03/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%88%AC%E5%8F%96B%E7%AB%99%E5%BC%B9%E5%B9%95%E5%B9%B6%E5%88%B6%E4%BD%9C%E8%AF%8D%E4%BA%91%E5%9B%BE/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-My-First-Blog-in-Hexo" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/01/04/My-First-Blog-in-Hexo/">My First Blog in Hexo</a>
-    </h1>
-  
-
-        
-        <a href="/2021/01/04/My-First-Blog-in-Hexo/" class="archive-article-date">
-  	<time datetime="2021-01-04T12:55:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Chapter-01"><a href="#Chapter-01" class="headerlink" title="Chapter 01"></a>Chapter 01</h2><ul>
-<li>learn how to build a blog in hexo</li>
-</ul>
-<h2 id="Chapter-02"><a href="#Chapter-02" class="headerlink" title="Chapter 02"></a>Chapter 02</h2><ul>
-<li>learn how to write markdown file</li>
-</ul>
-<h2 id="Chapter-03"><a href="#Chapter-03" class="headerlink" title="Chapter 03"></a>Chapter 03</h2><ul>
-<li>learn how to implement photo</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/01/04/My-First-Blog-in-Hexo/">展开全文 >></a>
         </p>
       
 
@@ -2206,15 +2486,7 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Python爬虫</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2222,7 +2494,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Python爬虫</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">论文</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2230,7 +2510,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
             
             <div class="clearfix"></div>
