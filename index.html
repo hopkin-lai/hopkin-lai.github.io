@@ -198,10 +198,11 @@
 <p>$$<br>\bar{u}<em>1 = argmax</em>{u_1};;\frac{1}{N}\sum\limits_{i=1}^{N}[(x_i-\bar{x})^T\vec{u}_1]^2<br>$$</p>
 <p>$$<br>s.t. \vec{u}_1^T\vec{u}_1 = 1 (\vec{u}_1往后不带向量符号)<br>$$                         </p>
 <p>得到： </p>
-<p>$$<br>   J = \frac{1}{N}\sum\limits_{i=1}^{N}[(x_i-\bar{x})^T\vec{u}<em>1]^2  = \frac{1}{N}\sum\limits</em>{i=1}^{N}[u_1^T(x_i-\bar{x})(x_i-\bar{x})^Tu_1] = u_1^T[\frac{1}{N}\sum\limits_{i=1}^{N}(x_i-\bar{x})(x_i - \bar{x})^T]u_1 = u_1^TS^2u_1<br>$$  </p>
-<p>   即：    </p>
-<p>$$<br>\hat{u}<em>1 = argmax</em>{u_1}u_1^TS^2u_1,;;;s.t.u_1^Tu_1 = 1\<br>L(u_1,\lambda) = u_1^TS^2u_1 + \lambda (1-u_1^Tu_1)\frac{\partial L}{\partial u_1} = 2S^2u_1-2\lambda u_1 = 0</p>
-<p>$$ </p>
+<p>$$<br>J = \frac{1}{N}\sum\limits_{i=1}^{N}[(x_i-\bar{x})^T\vec{u}<em>1]^2  = \frac{1}{N}\sum\limits</em>{i=1}^{N}[u_1^T(x_i-\bar{x})(x_i-\bar{x})^Tu_1] = u_1^T[\frac{1}{N}\sum\limits_{i=1}^{N}(x_i-\bar{x})(x_i - \bar{x})^T]u_1 = u_1^TS^2u_1<br>$$  </p>
+<p>即：    </p>
+<p>$\hat{u}<em>1 = argmax</em>{u_1}u_1^TS^2u_1,$</p>
+<p>$s.t.u_1^Tu_1 = 1$<br>然后</p>
+<p>$$<br>L(u_1,\lambda) = u_1^TS^2u_1 + \lambda (1-u_1^Tu_1)\frac{\partial L}{\partial u_1} = 2S^2u_1-2\lambda u_1 = 0<br>$$ </p>
 <p>即：$S^2u_1 = \lambda u_1$</p>
 <p>可以看到：$\lambda$ 为 $S^2$ 的特征值， $u_1$ 为 $S^2$的特征向量。因此我们只需要对中心化后的协方差矩阵进行特征值分解，得到的特征向量即为投影方向。如果需要进行降维，那么只需要取p的前M个特征向量即可。</p>
 <p>特征提取的实例：向前逐步回归<br>案例来源：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44835596/article/details/89763300">https://blog.csdn.net/weixin_44835596/article/details/89763300</a><br>根据AIC准则定义向前逐步回归进行变量筛选</p>
@@ -2689,6 +2690,10 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
@@ -2698,10 +2703,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
