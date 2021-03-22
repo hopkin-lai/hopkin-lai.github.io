@@ -195,9 +195,10 @@
 <p>(ii) 计算每个点$x_1,…,x_N$至$\vec{u}_1$方向上的投影：$(x_i-\bar{x})\vec{u}_1,;;;||\vec{u}_1|| = 1$                             </p>
 <p>(iii) 计算投影方差：$J = \frac{1}{N}\sum\limits_{i=1}^{N}[(x_i-\bar{x})^T\vec{u}_1]^2,;;;||\vec{u}_1|| = 1$                           </p>
 <p>(iv) 最大化投影方差求$\vec{u}_1$：                       </p>
-<p>$$<br>\bar{u}<em>1 = argmax</em>{u_1};;\frac{1}{N}\sum\limits_{i=1}^{N}[(x_i-\bar{x})^T\vec{u}_1]^2 \<br>   ;;;s.t. \vec{u}_1^T\vec{u}_1 = 1 (\vec{u}_1往后不带向量符号)<br>$$                         </p>
+<p>$$<br>\bar{u}<em>1 = argmax</em>{u_1};;\frac{1}{N}\sum\limits_{i=1}^{N}[(x_i-\bar{x})^T\vec{u}_1]^2<br>$$</p>
+<p>$$<br>s.t. \vec{u}_1^T\vec{u}_1 = 1 (\vec{u}_1往后不带向量符号)<br>$$                         </p>
 <p>得到： </p>
-<p>$$<br>   J = \frac{1}{N}\sum\limits_{i=1}^{N}[(x_i-\bar{x})^T\vec{u}<em>1]^2  = \frac{1}{N}\sum\limits</em>{i=1}^{N}[u_1^T(x_i-\bar{x})(x_i-\bar{x})^Tu_1]\<br>   ; = u_1^T[\frac{1}{N}\sum\limits_{i=1}^{N}(x_i-\bar{x})(x_i - \bar{x})^T]u_1 = u_1^TS^2u_1<br>$$  </p>
+<p>$$<br>   J = \frac{1}{N}\sum\limits_{i=1}^{N}[(x_i-\bar{x})^T\vec{u}<em>1]^2  = \frac{1}{N}\sum\limits</em>{i=1}^{N}[u_1^T(x_i-\bar{x})(x_i-\bar{x})^Tu_1] = u_1^T[\frac{1}{N}\sum\limits_{i=1}^{N}(x_i-\bar{x})(x_i - \bar{x})^T]u_1 = u_1^TS^2u_1<br>$$  </p>
 <p>   即：    </p>
 <p>$$<br>\hat{u}<em>1 = argmax</em>{u_1}u_1^TS^2u_1,;;;s.t.u_1^Tu_1 = 1\<br>L(u_1,\lambda) = u_1^TS^2u_1 + \lambda (1-u_1^Tu_1)\frac{\partial L}{\partial u_1} = 2S^2u_1-2\lambda u_1 = 0</p>
 <p>$$ </p>
