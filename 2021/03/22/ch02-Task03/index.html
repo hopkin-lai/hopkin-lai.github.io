@@ -24,7 +24,7 @@
 <meta property="og:image" content="http://example.com/assets/img/input/1.19.png">
 <meta property="og:image" content="http://example.com/assets/img/input/1.20.png">
 <meta property="article:published_time" content="2021-03-21T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-03-22T15:17:45.420Z">
+<meta property="article:modified_time" content="2021-03-22T15:23:55.376Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Machine Learning">
 <meta name="twitter:card" content="summary">
@@ -207,8 +207,9 @@
 <p>(ii) 计算每个点$x_1,…,x_N$至$\vec{u}_1$方向上的投影：$(x_i-\bar{x})\vec{u}_1,;;;||\vec{u}_1|| = 1$                             </p>
 <p>(iii) 计算投影方差：$J = \frac{1}{N}\sum\limits_{i=1}^{N}[(x_i-\bar{x})^T\vec{u}_1]^2,;;;||\vec{u}_1|| = 1$                           </p>
 <p>(iv) 最大化投影方差求$\vec{u}_1$：                       </p>
-<p>$$<br>\bar{u}<em>1 = argmax</em>{u_1}\frac{1}{N}\sum\limits_{i=1}^{N}[(x_i-\bar{x})^T\vec{u}_1]^2<br>$$</p>
-<p>$$<br>s.t. \vec{u}_1^T\vec{u}_1 = 1 (\vec{u}_1往后不带向量符号)<br>$$                         </p>
+<p>$\bar{u}_1$</p>
+<p>$$<br>= argmax_{u_1}\frac{1}{N}\sum\limits_{i=1}^{N}[(x_i-\bar{x})^T\vec{u}_1]^2<br>$$</p>
+<p>$$<br>s.t. \vec{u}_1^T\vec{u}_1<br>= 1 (\vec{u}_1往后不带向量符号)<br>$$                         </p>
 <p>得到： </p>
 <p>$$<br>J = \frac{1}{N}\sum\limits_{i=1}^{N}[(x_i-\bar{x})^T\vec{u}_1]^2<br>$$</p>
 <p>$$<br>= \frac{1}{N}\sum\limits_{i=1}^{N}[u_1^T(x_i-\bar{x})(x_i-\bar{x})^Tu_1]<br>$$</p>
@@ -468,6 +469,15 @@ final formula is Price~LSTAT+RM+PTRATIO+DIS+NOX+CHAS+B+ZN+CRIM+RAD+TAX
 
   
 <nav id="article-nav">
+  
+    <a href="/2021/03/23/%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6%E7%AC%94%E8%AE%B004/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          模糊数学笔记04
+        
+      </div>
+    </a>
   
   
     <a href="/2021/03/16/%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6%E7%AC%94%E8%AE%B003/" id="article-nav-older" class="article-nav-link-wrap">

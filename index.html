@@ -158,6 +158,265 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-模糊数学笔记05" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/30/%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6%E7%AC%94%E8%AE%B005/">模糊数学笔记05</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/30/%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6%E7%AC%94%E8%AE%B005/" class="archive-article-date">
+  	<time datetime="2021-03-29T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-遗传算法-（Genetic-Algorithm）"><a href="#1-遗传算法-（Genetic-Algorithm）" class="headerlink" title="1.遗传算法 （Genetic Algorithm）"></a>1.遗传算法 （Genetic Algorithm）</h3><p>首先大致了解一下遗传算法的定义和应用。</p>
+<p>遗传算法属于“随机搜索算法”，也是群体决策的一种经典算法。其他常见的群智能算法有：免疫算法、蚁群算法、蜂群算法。</p>
+<p>之所以叫他们群体智能，是因为他们与传统的优化算法不同的是：他们的初始可行解不再是单一的解，而是在很多个解中利用方法寻找更优的解。</p>
+<p>核心思想就是：<strong>物竞天择，适者生存</strong></p>
+<p>四大优点：</p>
+<ul>
+<li>良好的并行性，可以多个解同时进行寻优</li>
+<li>强大的通用性，只需要利用目标的取值信息</li>
+<li>全局优化+鲁棒性强</li>
+<li>高操作性</li>
+</ul>
+<p>两个缺点：</p>
+<ul>
+<li>未成熟收敛，没有找到最优解就停止了，无法找到比父代更优的子代</li>
+<li>收敛速度慢</li>
+</ul>
+<p>应用：</p>
+<ul>
+<li>函数优化</li>
+<li>组合优化</li>
+<li>生产调度</li>
+<li>自动控制</li>
+<li>机器人智能控制</li>
+</ul>
+<p>遗传算法的具体实现过程如下：</p>
+<p><img src="/assets/img/GA.png" alt="Genetic Algorithm"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">模糊数学</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/30/%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6%E7%AC%94%E8%AE%B005/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-模糊数学笔记04" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/23/%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6%E7%AC%94%E8%AE%B004/">模糊数学笔记04</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/23/%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6%E7%AC%94%E8%AE%B004/" class="archive-article-date">
+  	<time datetime="2021-03-22T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- TOC -->
+
+<ul>
+<li><a href="#1%E4%BA%8C%E7%9B%B8f%E7%BB%9F%E8%AE%A1">1.二相F统计</a></li>
+<li><a href="#2%E4%B8%89%E7%9B%B8f%E7%BB%9F%E8%AE%A1">2.三相F统计</a></li>
+<li><a href="#3%E4%BA%8C%E5%85%83%E5%AF%B9%E6%AF%94%E6%8E%92%E5%BA%8F%E6%B3%95">3.二元对比排序法</a><ul>
+<li><a href="#31-%E7%9B%B8%E5%AF%B9%E6%AF%94%E8%BE%83%E6%B3%95">3.1 相对比较法</a></li>
+<li><a href="#32-%E6%8B%A9%E4%BC%98%E6%AF%94%E8%BE%83%E6%B3%95">3.2 择优比较法</a></li>
+<li><a href="#33-%E5%AF%B9%E6%AF%94%E5%B9%B3%E5%9D%87%E6%B3%95">3.3 对比平均法</a></li>
+</ul>
+</li>
+<li><a href="#5f%E5%88%86%E5%B8%83%E6%B3%95">5.F分布法</a></li>
+<li><a href="#6%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%96%B9%E6%B3%95">6.人工神经网络方法</a></li>
+</ul>
+<!-- /TOC -->
+
+<p>这一章继续学习确定隶属函数的方法。从F统计法开始一直到神经网络，用这些方法来确定适合于实际问题的隶属函数。</p>
+<h3 id="1-二相F统计"><a href="#1-二相F统计" class="headerlink" title="1.二相F统计"></a>1.二相F统计</h3><p>书中P42的例1很好的说明了问题，它指的是我们利用试验统计的思想，在大量试验次数n的条件下，获得的A在某条件下的概率。</p>
+<p>那么，随着试验次数n的增大，隶属频率也会趋于一个稳定值，这个值叫做$u_0对A的隶属度$</p>
+<p>$$<br>A 发生的概率 = \frac{w \in A 的次数}{n}<br>$$</p>
+<p>$$<br>u_0 对A的隶属频率 = \frac{u_0 \in A_* 的次数}{n}<br>$$</p>
+<p>也就是说，二相F统计相当于是在U中找了两个相反的模糊概念在论域U中进行“竞选”的统计。所以，二相F统计得到的隶属函数，具有性质：</p>
+<p>$\forall u \in U,A(u) + A^c(u) = 1$ </p>
+<p>上述定理还可以推及至多相F统计。</p>
+<h3 id="2-三相F统计"><a href="#2-三相F统计" class="headerlink" title="2.三相F统计"></a>2.三相F统计</h3><p>又叫三分法，该方法采用随机区间的思想来处理模糊性的试验。</p>
+<p>$$<br>A_1(x) = P(x ≤ \xi) = \intop_{x}^{∞} P_{\xi}(x)dx<br>$$</p>
+<p>$$<br>A_2(x) = P(\eta ≤ x) = \intop_{-∞}^{x} P_{\eta}(x)<br>$$</p>
+<p>$$<br>A_3(x) = 1 - A_1(x) - A_2(x)<br>$$<br>按概率计算方法得：<br>$$<br>A_1(x) = 1-\varPhi(\frac{x-a_1}{\sigma_1}),\</p>
+<p>A_3(x) = \varPhi(\frac{x-a_2}{\sigma_2}), \</p>
+<p>A_2(x) = \varPhi(\frac{x-a_1}{\sigma_1}) - \varPhi(\frac{x-a_2}{\sigma_2})</p>
+<p>$$</p>
+<h3 id="3-二元对比排序法"><a href="#3-二元对比排序法" class="headerlink" title="3.二元对比排序法"></a>3.二元对比排序法</h3><p>当我们在做多相F统计的时候，被调查这往往很难从众多的F集中选择出唯一的一个隶属度为1的F集。实际上，我们只需要找到各个F集之间的相互次序关系，就能够知道隶属关系的次序。</p>
+<h4 id="3-1-相对比较法"><a href="#3-1-相对比较法" class="headerlink" title="3.1 相对比较法"></a>3.1 相对比较法</h4><p>下面是相对比较法的具体步骤：以书中例3讲解</p>
+<ul>
+<li>建立对偶函数</li>
+</ul>
+<p>$(f_y(x),f_x(y)) = (0.8,0.7)$ ，注意，这里$f_y(x)$<br>指的是相对于y而言，x隶属于该隶属函数的值。我的理解其实更偏向于<strong>相对函数</strong>，而非<strong>对偶函数</strong></p>
+<ul>
+<li>建立相及矩阵</li>
+</ul>
+<p>根据下面这个公式来建立相及矩阵：<br>$$<br>c_{xy} = \frac{f_y(x)}{max(f_y(x),f_x(y))}<br>$$</p>
+<p>$$<br>c_{yx} = \frac{f_x(y)}{max(f_y(x),f_x(y))}<br>$$</p>
+<p>最后，各个元素组成矩阵：<br>$$<br>\left[ \begin{matrix} c_{xx} &amp; c_{xy} &amp; c_{xz}\ c_{yx} &amp; c_{yy} &amp; c_{yz}\ c_{zz} &amp; c_{zy} &amp; c_{zz} \end{matrix} \right]<br>$$</p>
+<ul>
+<li>求隶属函数</li>
+</ul>
+<p>最后，在相及矩阵中，各行取最小值。</p>
+<p>$\mu_P(u_i) = min(c_{ij}) , i,j = 1,2,3$作为每一个元素的隶属度。</p>
+<h4 id="3-2-择优比较法"><a href="#3-2-择优比较法" class="headerlink" title="3.2 择优比较法"></a>3.2 择优比较法</h4><h4 id="3-3-对比平均法"><a href="#3-3-对比平均法" class="headerlink" title="3.3 对比平均法"></a>3.3 对比平均法</h4><p>对比平均法和相对比较法其实是差不太多的。</p>
+<ul>
+<li>建立对偶函数</li>
+</ul>
+<p>建立对偶函数的方法没啥区别。</p>
+<ul>
+<li>建立对偶函数矩阵</li>
+</ul>
+<p>建立对偶函数矩阵的方法更为简单：</p>
+<p>$$<br>b_{ij} = \begin{cases}<br>f_j(i) &amp; i \neq j \<br>1 &amp; i = j<br>\end{cases}<br>$$</p>
+<ul>
+<li>求隶属函数</li>
+</ul>
+<p>这一步不同是因为需要赋权重：</p>
+<p>$$<br>\mu_{A}(u_i) = \sum_{i=1}^{n}W_j*b_{ij}<br>$$</p>
+<p>一般来说，如果没有特别特殊偏爱的话，那就是直接平均赋值。</p>
+<h3 id="5-F分布法"><a href="#5-F分布法" class="headerlink" title="5.F分布法"></a>5.F分布法</h3><p>我们把实数集R上的F集的隶属函数称为F分布。那么我们的问题就转化成了一个优化问题，去寻找一个具体分布的<strong>最优参数</strong>。</p>
+<p>我们这里简单介绍一些具体的F分布：</p>
+<ul>
+<li><p><strong>矩形分布和半矩形分布</strong></p>
+</li>
+<li><p><strong>梯型分布和半梯型分布</strong></p>
+</li>
+<li><p><strong>抛物线分布</strong></p>
+</li>
+<li><p><strong>正态分布</strong></p>
+</li>
+<li><p><strong>柯西分布</strong></p>
+</li>
+</ul>
+<p>实际上，根据这些F分布，我们通过指派的方法找到合适的隶属函数。</p>
+<h3 id="6-人工神经网络方法"><a href="#6-人工神经网络方法" class="headerlink" title="6.人工神经网络方法"></a>6.人工神经网络方法</h3><p>通过神经网络进行隶属函数的确定是本章的一个重点。</p>
+<p>首先神经网络的出现是符号主义变成连接主义的一次大的改进，使得显式的表达变成像人类的神经元一样隐式的表现。</p>
+<ul>
+<li>树突：输入层</li>
+<li>细胞体：加权和</li>
+<li>轴突：响应函数</li>
+<li>突触：输出层</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">模糊数学</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/23/%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6%E7%AC%94%E8%AE%B004/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-ch02-Task03" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -195,8 +454,9 @@
 <p>(ii) 计算每个点$x_1,…,x_N$至$\vec{u}_1$方向上的投影：$(x_i-\bar{x})\vec{u}_1,;;;||\vec{u}_1|| = 1$                             </p>
 <p>(iii) 计算投影方差：$J = \frac{1}{N}\sum\limits_{i=1}^{N}[(x_i-\bar{x})^T\vec{u}_1]^2,;;;||\vec{u}_1|| = 1$                           </p>
 <p>(iv) 最大化投影方差求$\vec{u}_1$：                       </p>
-<p>$$<br>\bar{u}<em>1 = argmax</em>{u_1}\frac{1}{N}\sum\limits_{i=1}^{N}[(x_i-\bar{x})^T\vec{u}_1]^2<br>$$</p>
-<p>$$<br>s.t. \vec{u}_1^T\vec{u}_1 = 1 (\vec{u}_1往后不带向量符号)<br>$$                         </p>
+<p>$\bar{u}_1$</p>
+<p>$$<br>= argmax_{u_1}\frac{1}{N}\sum\limits_{i=1}^{N}[(x_i-\bar{x})^T\vec{u}_1]^2<br>$$</p>
+<p>$$<br>s.t. \vec{u}_1^T\vec{u}_1<br>= 1 (\vec{u}_1往后不带向量符号)<br>$$                         </p>
 <p>得到： </p>
 <p>$$<br>J = \frac{1}{N}\sum\limits_{i=1}^{N}[(x_i-\bar{x})^T\vec{u}_1]^2<br>$$</p>
 <p>$$<br>= \frac{1}{N}\sum\limits_{i=1}^{N}[u_1^T(x_i-\bar{x})(x_i-\bar{x})^Tu_1]<br>$$</p>
@@ -2110,441 +2370,6 @@ finish search, find 2 scheme
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/03/02/%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6%E7%AC%94%E8%AE%B001/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Python-Database-fundmentals" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/02/14/Python-Database-fundmentals/">Python数据库知识基础</a>
-    </h1>
-  
-
-        
-        <a href="/2021/02/14/Python-Database-fundmentals/" class="archive-article-date">
-  	<time datetime="2021-02-14T14:01:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- TOC -->
-
-<ul>
-<li><a href="#1python%E6%93%8D%E4%BD%9Cmysql">1.Python操作MySQL</a><ul>
-<li><a href="#11-download-necessary-package">1.1 Download necessary package</a></li>
-<li><a href="#12-db-api">1.2 DB-API</a><ul>
-<li><a href="#121-connect-%E5%87%BD%E6%95%B0">1.2.1 Connect 函数</a></li>
-<li><a href="#122-%E6%B8%B8%E6%A0%87%E5%AF%B9%E8%B1%A1-cursor">1.2.2 游标对象 Cursor</a></li>
-<li><a href="#123-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%85%B7%E4%BD%93%E6%93%8D%E4%BD%9C">1.2.3 数据库具体操作</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#2-python%E6%93%8D%E4%BD%9Csqlite3-%E6%95%B0%E6%8D%AE%E5%BA%93">2. Python操作sqlite3 数据库</a></li>
-</ul>
-<!-- /TOC -->
-
-<p>这里不再重复学习SQL的基础操作（增删改查），我一般来说就是查看《MySQL必知必会》这本手册来查缺补漏。<br>我的电脑配置如下：</p>
-<ul>
-<li>MacOS Catalina 10.15.7</li>
-<li>MySQl 8.0.23</li>
-<li>Navicat Premium 12.0.22</li>
-<li>Python 3.8 </li>
-</ul>
-<p>主要学习如何利用Python来操作MySql数据库，利用Python提供的应用程序接口</p>
-<h2 id="1-Python操作MySQL"><a href="#1-Python操作MySQL" class="headerlink" title="1.Python操作MySQL"></a>1.Python操作MySQL</h2><h3 id="1-1-Download-necessary-package"><a href="#1-1-Download-necessary-package" class="headerlink" title="1.1 Download necessary package"></a>1.1 Download necessary package</h3><p>我们利用其中一个模块来实现对MySQL的操作，可以用以下语句进行安装：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pip install pymysql</span><br><span class="line"><span class="keyword">or</span></span><br><span class="line">conda install pymysql <span class="comment"># if you are a conda user</span></span><br></pre></td></tr></table></figure>
-<h3 id="1-2-DB-API"><a href="#1-2-DB-API" class="headerlink" title="1.2 DB-API"></a>1.2 DB-API</h3><p>使用这个程序接口时必须要遵守相应的规范：<br>DB-API的模块定义如下：</p>
-<table>
-<thead>
-<tr>
-<th>Module</th>
-<th>Definition</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>apilevel</td>
-<td>该模块可以兼容DB-API版本</td>
-</tr>
-<tr>
-<td>threadsafety</td>
-<td>线程的安全级别</td>
-</tr>
-<tr>
-<td>paramstyle</td>
-<td>支持的SQL语句参数风格</td>
-</tr>
-<tr>
-<td>connect</td>
-<td>链接数据库函数</td>
-</tr>
-</tbody></table>
-<p>Python 调用 MySQL 需要导入相应的库，代码为：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pymysql</span><br></pre></td></tr></table></figure>
-
-<p>相应的函数： </p>
-<table>
-<thead>
-<tr>
-<th>Function</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>connection</td>
-<td>创建connection对象</td>
-</tr>
-<tr>
-<td>cursor()</td>
-<td>使用该链接创建+返回游标</td>
-</tr>
-<tr>
-<td>commint()</td>
-<td>提交当前事务</td>
-</tr>
-<tr>
-<td>rollback()</td>
-<td>回滚当前事务</td>
-</tr>
-<tr>
-<td>close()</td>
-<td>关闭连接</td>
-</tr>
-</tbody></table>
-<h4 id="1-2-1-Connect-函数"><a href="#1-2-1-Connect-函数" class="headerlink" title="1.2.1 Connect 函数"></a>1.2.1 Connect 函数</h4><p>链接数据库的函数是 connect() 函数，其生成一个 connect 对象，用于访问数据库，介绍一下connection的参数</p>
-<ul>
-<li>host mysql服务器地址</li>
-<li>port 数字类型 端口</li>
-<li>user 用户名</li>
-<li>passwd 密码</li>
-<li>db 数据库名称</li>
-<li>charset 连接编码，需要显式指明编码方式</li>
-</ul>
-<p>实例代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conn = pymysql.Connect(host=<span class="string">&#x27;127.0.0.1&#x27;</span>,port=<span class="number">3306</span>,user=<span class="string">&#x27;root&#x27;</span>,passwd=<span class="string">&#x27;dyx240030&#x27;</span>,db=<span class="string">&#x27;imooc&#x27;</span>,charset=<span class="string">&#x27;utf8&#x27;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="1-2-2-游标对象-Cursor"><a href="#1-2-2-游标对象-Cursor" class="headerlink" title="1.2.2 游标对象 Cursor"></a>1.2.2 游标对象 Cursor</h4><p>游标是SQL 的一种数据访问机制 ，游标是一种处理数据的方法。众所周知，使用SQL的select查询操作返回的结果是一个包含一行或者是多行的数据集，如果我们要对查询的结果再进行查询，比如（查看结果的第一行、下一行、最后一行、前十行等等操作）简单的通过select语句是无法完成的，因为这时候索要查询的结果不是数据表，而是已经查询出来的结果集。所以要对数据库进行操作仍然需要使用游标对象。</p>
-<table>
-<thead>
-<tr>
-<th>Function</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>execute(op[,args])</td>
-<td>执行数据库操作，参数就是SQL语句</td>
-</tr>
-<tr>
-<td>fetchone()</td>
-<td>取得结果集下一行</td>
-</tr>
-<tr>
-<td>fetchmany(size)</td>
-<td>取得结果集size行</td>
-</tr>
-<tr>
-<td>fetchall()</td>
-<td>取得结果集剩下所有行</td>
-</tr>
-<tr>
-<td>rowcount()</td>
-<td>最后一次执行影响对行数</td>
-</tr>
-<tr>
-<td>close()</td>
-<td>关闭cursor</td>
-</tr>
-</tbody></table>
-<h4 id="1-2-3-数据库具体操作"><a href="#1-2-3-数据库具体操作" class="headerlink" title="1.2.3 数据库具体操作"></a>1.2.3 数据库具体操作</h4><ul>
-<li>1.查询数据库名称<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    conn = pymysql.connect(host=<span class="string">&#x27;localhost&#x27;</span>, db=db, user=user, passwd=pas, port=<span class="number">3306</span>, charset=<span class="string">&#x27;utf8&#x27;</span>)</span><br><span class="line">    cur = conn.cursor()</span><br><span class="line">    <span class="comment"># 显示受影响的数据库数</span></span><br><span class="line">    res = cur.execute(<span class="string">&quot;show databases&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(res)</span><br><span class="line">    <span class="comment"># 返回查询结果</span></span><br><span class="line">    <span class="keyword">for</span> data <span class="keyword">in</span> cur.fetchall():</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;%s&#x27;</span> % data)</span><br><span class="line">    cur.close()</span><br><span class="line">    conn.close()</span><br><span class="line"><span class="keyword">except</span> pymysql.Error <span class="keyword">as</span> e:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;MySQL Error %d: %s&#x27;</span> % (e.args[<span class="number">0</span>], e.args[<span class="number">1</span>]))</span><br></pre></td></tr></table></figure></li>
-<li>2.查询表<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    conn = pymysql.connect(host=<span class="string">&#x27;localhost&#x27;</span>,db=db,user=user,passwd=pas,port=<span class="number">3306</span>,charset=<span class="string">&#x27;utf8&#x27;</span>)</span><br><span class="line">    cur = conn.cursor()</span><br><span class="line">    res = cur.execute(<span class="string">&quot;select * from products&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;表中含有&#x27;</span>,res,<span class="string">&quot;条数据\n&quot;</span>)</span><br><span class="line">    <span class="keyword">for</span> data <span class="keyword">in</span> cur.fetchall():</span><br><span class="line">        <span class="built_in">print</span>( data)</span><br><span class="line">    cur.close()</span><br><span class="line">    conn.close()</span><br><span class="line"><span class="keyword">except</span> pymysql.Error <span class="keyword">as</span> e:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;MySQL Error &#123;0&#125;:&#x27;</span>.<span class="built_in">format</span>(e))</span><br></pre></td></tr></table></figure></li>
-<li>3.新建表构建sql语句，然后进行赋值，commit（）提交<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 3.新建表</span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    conn = pymysql.connect(host=<span class="string">&#x27;localhost&#x27;</span>,db=db,user=user,passwd=pas,port=<span class="number">3306</span>,charset=<span class="string">&#x27;utf8&#x27;</span>)</span><br><span class="line">    cur = conn.cursor()</span><br><span class="line">    sql = <span class="string">&quot;CREATE TABLE students (id int NOT NULL primary key auto_increment,&quot;</span>\</span><br><span class="line">    <span class="string">&quot;name char(30) not null,&quot;</span>\</span><br><span class="line">    <span class="string">&quot;sex char(20) not null)&quot;</span></span><br><span class="line">    cur.execute(sql)</span><br><span class="line">    <span class="comment"># check out</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;插入新表后：&quot;</span>)</span><br><span class="line">    cur.execute(<span class="string">&quot;show tables&quot;</span>)</span><br><span class="line">    <span class="keyword">for</span> data <span class="keyword">in</span> cur.fetchall():</span><br><span class="line">        <span class="built_in">print</span>(data)</span><br><span class="line">    cur.close()</span><br><span class="line">    conn.commit()</span><br><span class="line">    conn.close()</span><br><span class="line"><span class="keyword">except</span> pymysql.Error <span class="keyword">as</span> e:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;MySQL Error %d: %s&#x27;</span> % (e.args[<span class="number">0</span>], e.args[<span class="number">1</span>]))</span><br></pre></td></tr></table></figure></li>
-<li>4.插入数据先定义好sql语句，然后调用execute()函数进行实现，插入的新数据需要通过变量来进行赋值，其值是不固定的。</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    conn = pymysql.connect(host=<span class="string">&#x27;localhost&#x27;</span>,db=db,user=user,passwd=pas,port=<span class="number">3306</span>,charset=<span class="string">&#x27;utf8&#x27;</span>)</span><br><span class="line">    cur = conn.cursor()</span><br><span class="line">    sql = <span class="string">&quot;insert into students values(%s, %s, %s)&quot;</span></span><br><span class="line">    cur.execute(sql,(<span class="string">&#x27;3&#x27;</span>, <span class="string">&#x27;Leborn James&#x27;</span>, <span class="string">&#x27;male&#x27;</span>))</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;插入数据：&#x27;</span>)</span><br><span class="line">    cur.execute(<span class="string">&quot;select * from students&quot;</span>)</span><br><span class="line">    <span class="keyword">for</span> data <span class="keyword">in</span> cur.fetchall():</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;%s %s %s&#x27;</span>% data)</span><br><span class="line">    cur.close()</span><br><span class="line">    conn.commit()</span><br><span class="line">    conn.close()</span><br><span class="line"><span class="keyword">except</span> pymysql.Error <span class="keyword">as</span> e:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;MySQL Error %d: %s&#x27;</span> % (e.args[<span class="number">0</span>], e.args[<span class="number">1</span>]))    </span><br></pre></td></tr></table></figure>
-
-<p>结果如下：</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">插入数据：</span><br><span class="line">  3 Leborn James male</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-Python操作sqlite3-数据库"><a href="#2-Python操作sqlite3-数据库" class="headerlink" title="2. Python操作sqlite3 数据库"></a>2. Python操作sqlite3 数据库</h2><p>SQLite 3 的使用方法与前文介绍的 pymysql 库类似，首先必须创建一个表示数据库的连接对象，然后有选择地创建光标对象，再定义 SQL 语句执行，最后关闭对象和连接。sqlite3 常用方法总结：</p>
-<table>
-<thead>
-<tr>
-<th>模块</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>sqlite.connect(…)</td>
-<td>打开一个到 SQLite 数据库文件 database 的连接</td>
-</tr>
-<tr>
-<td>connection.cursor()</td>
-<td>创建一个 curor，将在 Python 数据库编程中用到</td>
-</tr>
-<tr>
-<td>cursor.execute(sql)</td>
-<td>执行一个 SQL 语句，注意SQL 语句可以被参数化</td>
-</tr>
-<tr>
-<td>cursor.executescript(sql)</td>
-<td>一旦接收到脚本，就会执行多个 SQL 语句。SQL语句应用分号分隔</td>
-</tr>
-<tr>
-<td>connection.commit()</td>
-<td>提交当前的事务</td>
-</tr>
-<tr>
-<td>connection.rollback()</td>
-<td>回滚至上一次调用 commit() 对数据库所做的更改</td>
-</tr>
-<tr>
-<td>connection.close()</td>
-<td>关闭数据库连接</td>
-</tr>
-<tr>
-<td>cursor.fetchone()</td>
-<td>获取查询结果集中的下一行，返回一个单一的序列，当没有更多可用的数据时返回 None</td>
-</tr>
-<tr>
-<td>cursor.fetchmany()</td>
-<td>获取查询结果集中的下一行组数据，返回一个列表</td>
-</tr>
-<tr>
-<td>cursor.fetchall()</td>
-<td>获取查询结果集中所有的数据行，返回一个列表</td>
-</tr>
-</tbody></table>
-<p>sqlite3 实例：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sqlite3</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 连接数据库，如果数据库不存在则创建</span></span><br><span class="line">conn = sqlite3.connect(<span class="string">&#x27;test.db&#x27;</span>)</span><br><span class="line">cur = conn.cursor()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;数据库创建成功\n&#x27;</span>)</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">cur.execute(&quot;drop table player&quot;)</span></span><br><span class="line"><span class="string">conn.commit()</span></span><br><span class="line"><span class="string">cur.close()</span></span><br><span class="line"><span class="string">conn.close()</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="comment"># 创建表 Player（序号、姓名、年龄、球队、得分）</span></span><br><span class="line">cur.execute(<span class="string">&#x27;create table player&#x27;</span></span><br><span class="line">            <span class="string">&#x27;(id int primary key not null,&#x27;</span></span><br><span class="line">            <span class="string">&#x27;name text not null,&#x27;</span></span><br><span class="line">            <span class="string">&#x27;age int not null,&#x27;</span></span><br><span class="line">            <span class="string">&#x27;team char(50),&#x27;</span></span><br><span class="line">            <span class="string">&#x27;points real);&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;player 表创建成功！\n&#x27;</span>)</span><br><span class="line"></span><br><span class="line">conn.commit()</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"><span class="comment"># 插入数据</span></span><br><span class="line">cur.execute(<span class="string">&#x27;insert into player(id, name, age, team, points) &#x27;</span></span><br><span class="line">            <span class="string">&#x27;values(1, &quot;Michael Jordan&quot;,26, &quot;Chicago Bulls&quot;, 32.0)&#x27;</span>);</span><br><span class="line">cur.execute(<span class="string">&#x27;insert into player(id, name, age, team, points) &#x27;</span></span><br><span class="line">            <span class="string">&#x27;values(2, &quot;Leborn James&quot;,26, &quot;Cleveland  Cavaliers&quot;, 27.0)&#x27;</span>);</span><br><span class="line">cur.execute(<span class="string">&#x27;insert into player(id, name, age, team, points) &#x27;</span></span><br><span class="line">            <span class="string">&#x27;values(3, &quot;Kobe Byrant&quot;,28, &quot;Los Angeles Lakers&quot;, 25.5)&#x27;</span>);</span><br><span class="line">conn.commit()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;插入数据成功！\n&#x27;</span>)</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 查询操作</span></span><br><span class="line">cursor = cur.execute(<span class="string">&#x27;select id, name, age, team, points from player&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;数据查询成功！&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;序号&#x27;</span>,<span class="string">&#x27;姓名&#x27;</span>,<span class="string">&#x27;年龄&#x27;</span>,<span class="string">&#x27;球队&#x27;</span>,<span class="string">&#x27;得分&#x27;</span>)</span><br><span class="line"><span class="keyword">for</span> row <span class="keyword">in</span> cursor:</span><br><span class="line">    <span class="built_in">print</span>(row[<span class="number">0</span>], row[<span class="number">1</span>], row[<span class="number">2</span>], row[<span class="number">3</span>], row[<span class="number">4</span>])</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;&#x27;</span>)</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 更新操作</span></span><br><span class="line">cur.execute(<span class="string">&#x27;update player set team = &quot;Los Angeles Lakers&quot; where id=2&#x27;</span>)</span><br><span class="line">conn.commit()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;数据更新成功！&#x27;</span>)</span><br><span class="line">cursor = cur.execute(<span class="string">&#x27;select id, name, team from player&#x27;</span>)</span><br><span class="line"><span class="keyword">for</span> row <span class="keyword">in</span> cursor:</span><br><span class="line">    <span class="built_in">print</span>(row[<span class="number">0</span>], row[<span class="number">1</span>], row[<span class="number">2</span>])</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;&#x27;</span>)</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 删除操作</span></span><br><span class="line">cur.execute(<span class="string">&#x27;delete from player where team=&quot;Los Angeles Lakers&quot;;&#x27;</span>)</span><br><span class="line">conn.commit()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;数据删除成功！&#x27;</span>)</span><br><span class="line">cursor = cur.execute(<span class="string">&#x27;select id, name, team from player&#x27;</span>)</span><br><span class="line"><span class="keyword">for</span> row <span class="keyword">in</span> cursor:</span><br><span class="line">    <span class="built_in">print</span>(row[<span class="number">0</span>], row[<span class="number">1</span>], row[<span class="number">2</span>])</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 关闭连接</span></span><br><span class="line">conn.close()</span><br></pre></td></tr></table></figure>
-
-<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">数据库创建成功</span><br><span class="line"></span><br><span class="line">player 表创建成功！</span><br><span class="line"></span><br><span class="line">插入数据成功！</span><br><span class="line"></span><br><span class="line">数据查询成功！</span><br><span class="line">序号 姓名 年龄 球队 得分</span><br><span class="line">1 Michael Jordan 26 Chicago Bulls 32.0</span><br><span class="line">2 Leborn James 26 Cleveland  Cavaliers 27.0</span><br><span class="line">3 Kobe Byrant 28 Los Angeles Lakers 25.5</span><br><span class="line"></span><br><span class="line">数据更新成功！</span><br><span class="line">1 Michael Jordan Chicago Bulls</span><br><span class="line">2 Leborn James Los Angeles Lakers</span><br><span class="line">3 Kobe Byrant Los Angeles Lakers</span><br><span class="line"></span><br><span class="line">数据删除成功！</span><br><span class="line">1 Michael Jordan Chicago Bulls</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</code></pre>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/02/14/Python-Database-fundmentals/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-BeautifulSoup" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/02/13/BeautifulSoup/">采集豆瓣Top250的电影信息</a>
-    </h1>
-  
-
-        
-        <a href="/2021/02/13/BeautifulSoup/" class="archive-article-date">
-  	<time datetime="2021-02-12T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- TOC -->
-
-<ul>
-<li><a href="#1%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3beautifulsoup">1.深入理解BeautifulSoup</a><ul>
-<li><a href="#11-%E5%AF%B9%E8%B1%A1%E7%A7%8D%E7%B1%BB">1.1 对象种类</a><ul>
-<li><a href="#111-tag">1.1.1 Tag</a></li>
-<li><a href="#112-navigablestring">1.1.2 NavigableString</a></li>
-<li><a href="#113-beautifulsoup">1.1.3 BeautifulSoup</a></li>
-<li><a href="#114-comment">1.1.4 Comment</a></li>
-</ul>
-</li>
-<li><a href="#12-%E9%81%8D%E5%8E%86%E6%96%87%E6%A1%A3%E6%A0%91">1.2 遍历文档树</a><ul>
-<li><a href="#121-%E5%AD%90%E8%8A%82%E7%82%B9">1.2.1 子节点</a></li>
-<li><a href="#122-%E7%88%B6%E8%8A%82%E7%82%B9">1.2.2 父节点</a></li>
-<li><a href="#123-%E5%85%84%E5%BC%9F%E8%8A%82%E7%82%B9">1.2.3 兄弟节点</a></li>
-<li><a href="#124--%E5%89%8D%E5%90%8E%E8%8A%82%E7%82%B9">1.2.4  前后节点</a></li>
-</ul>
-</li>
-<li><a href="#13-%E6%90%9C%E7%B4%A2%E6%96%87%E6%A1%A3%E6%A0%91">1.3 搜索文档树</a></li>
-</ul>
-</li>
-<li><a href="#2-%E5%88%A9%E7%94%A8beautifulsoup%E7%88%AC%E5%8F%96%E8%B1%86%E7%93%A3top250%E5%BD%B1%E7%89%87%E4%BF%A1%E6%81%AF">2. 利用BeautifulSoup爬取豆瓣Top250影片信息</a><ul>
-<li><a href="#21-%E7%88%AC%E5%8F%96%E8%B1%86%E7%93%A3%E7%94%B5%E5%BD%B1%E6%8E%92%E5%90%8D%E4%BF%A1%E6%81%AF">2.1 爬取豆瓣电影排名信息</a><ul>
-<li><a href="#211-%E5%88%86%E6%9E%90%E7%BD%91%E9%A1%B5%E7%BB%93%E6%9E%84">2.1.1 分析网页结构</a></li>
-<li><a href="#212-%E5%AE%9A%E4%BD%8D%E4%BF%A1%E6%81%AF%E6%89%80%E5%9C%A8%E6%A0%87%E7%AD%BE">2.1.2 定位信息所在标签</a></li>
-<li><a href="#213-%E5%AE%8C%E6%88%90%E7%BD%91%E9%A1%B5%E7%BF%BB%E9%A1%B5">2.1.3 完成网页翻页</a></li>
-</ul>
-</li>
-<li><a href="#22-%E7%88%AC%E5%8F%96%E8%B1%86%E7%93%A3%E8%B7%B3%E8%BD%AC%E9%A1%B5%E9%9D%A2%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF">2.2 爬取豆瓣跳转页面详细信息</a></li>
-</ul>
-</li>
-<li><a href="#end">End</a></li>
-</ul>
-<!-- /TOC -->
-<h2 id="1-深入理解BeautifulSoup"><a href="#1-深入理解BeautifulSoup" class="headerlink" title="1.深入理解BeautifulSoup"></a>1.深入理解BeautifulSoup</h2><p>学习BeautifulSoup的最好资料是官方文档：<a target="_blank" rel="noopener" href="https://beautifulsoup.readthedocs.io/zh_CN/v4.4.0/">BeautifulSoup官方文档-中文版</a><br>使用方法如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="comment"># 创建本地文件 soup 对象</span></span><br><span class="line">soup = BeautifulSoup(<span class="built_in">open</span>(<span class="string">r&#x27;静夜思.html&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>),<span class="string">&#x27;html.parser&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-<h3 id="1-1-对象种类"><a href="#1-1-对象种类" class="headerlink" title="1.1 对象种类"></a>1.1 对象种类</h3><p>Beautiful Soup将复杂HTML文档转换成一个复杂的树形结构,每个节点都是Python对象,所有对象可以归纳为4种: Tag , N aNavigableString , BeautifulSoup , Comment</p>
-<ul>
-<li>Tag（其中最重要的就是name 和 attrs）</li>
-<li>NavigableString (获取标签中对应的内容)</li>
-<li>BeautifulSoup</li>
-<li>Comment</li>
-</ul>
-<h4 id="1-1-1-Tag"><a href="#1-1-1-Tag" class="headerlink" title="1.1.1 Tag"></a>1.1.1 Tag</h4><p> Tag对象表示 XML 或 HTML 文档中的标签，通俗地讲就是 HTML 中的一个标签，该对象与 HTML 或 XML 原生文档中的标签相同。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(soup.name)</span><br><span class="line"><span class="built_in">print</span>(soup.title.name)</span><br><span class="line"><span class="built_in">print</span>(soup.a.name)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(soup.a.attrs)</span><br><span class="line"><span class="comment">#如果要单独获取某个属性，则可以使用如下两种方法来获取超链接的 class 属性值。</span></span><br><span class="line"><span class="built_in">print</span>(soup.a.attrs[<span class="string">&#x27;class&#x27;</span>])</span><br><span class="line"><span class="built_in">print</span>(soup.a.attrs.get(<span class="string">&#x27;class&#x27;</span>))</span><br></pre></td></tr></table></figure>
-
-<p>BeautifulSoup 的每个标签 Tag 可能有多个属性，可以通过 “.attrs” 获取其属性。Tag 的属性可以被修改、删除、添加。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 该段代码输出的是该对象的类型，即Tag对象</span></span><br><span class="line"></span><br><span class="line">tag = soup.b</span><br><span class="line"><span class="built_in">print</span>(tag)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(tag))</span><br><span class="line"> </span><br><span class="line"><span class="comment"># NAME</span></span><br><span class="line"><span class="built_in">print</span>(tag.name)</span><br><span class="line"><span class="built_in">print</span>(tag.string)</span><br><span class="line"> </span><br><span class="line"><span class="comment"># Attributes</span></span><br><span class="line"><span class="built_in">print</span>(tag.attrs)</span><br><span class="line"><span class="built_in">print</span>(tag[<span class="string">&#x27;class&#x27;</span>])</span><br><span class="line"><span class="built_in">print</span>(tag.get(<span class="string">&#x27;id&#x27;</span>))</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 修改属性，增加属性name</span></span><br><span class="line">tag[<span class="string">&#x27;class&#x27;</span>] = <span class="string">&#x27;abc&#x27;</span></span><br><span class="line">tag[<span class="string">&#x27;id&#x27;</span>] = <span class="string">&#x27;1&#x27;</span></span><br><span class="line">tag[<span class="string">&#x27;name&#x27;</span>] = <span class="string">&#x27;2&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(tag)</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 删除属性</span></span><br><span class="line"><span class="keyword">del</span> tag[<span class="string">&#x27;class&#x27;</span>]</span><br><span class="line"><span class="keyword">del</span> tag[<span class="string">&#x27;name&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(tag)</span><br><span class="line"><span class="comment"># print(tag[&#x27;class&#x27;]) # 此语句会报错</span></span><br></pre></td></tr></table></figure>
-<h4 id="1-1-2-NavigableString"><a href="#1-1-2-NavigableString" class="headerlink" title="1.1.2 NavigableString"></a>1.1.2 NavigableString</h4><p>BeautifulSoup 用 NavigableString 类来包装 Tag 中的字符串，其中，NavigableString 表示可遍历的字符串。一个 NavigableString 字符串与 Python 中的 Unicode 字符串相同，并且支持包含在遍历文档树和搜索文档树中的一些特性。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(soup.a.string)</span><br><span class="line"><span class="comment">#杜甫</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(soup.a.string))</span><br><span class="line"><span class="comment">#&lt;class &#x27;bs4.element.NavigableString&#x27;&gt;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(<span class="built_in">str</span>(soup.a.string)))</span><br><span class="line"></span><br><span class="line"><span class="comment"># print(type(unicode(soup.a.string))) 报错</span></span><br></pre></td></tr></table></figure>
-<p>python3 中已经没有 <em>unicode()</em> 方法了，改成str（）方法</p>
-<p>用replace（）方法替换标签中的内容，但是标签中的内容只能替换不能编辑<br>    tag.string.replace(“替换前的内容”, “ 替换后的内容 “)</p>
-<h4 id="1-1-3-BeautifulSoup"><a href="#1-1-3-BeautifulSoup" class="headerlink" title="1.1.3 BeautifulSoup"></a>1.1.3 BeautifulSoup</h4><p>BeautifulSoup 对象表示的是一个文档的全部内容，通常情况下把它当做 Tag 对象。 BeautifulSoup 对象支持遍历文档树和搜索文档树中描述的大部分方法。</p>
-<h4 id="1-1-4-Comment"><a href="#1-1-4-Comment" class="headerlink" title="1.1.4 Comment"></a>1.1.4 Comment</h4><p>Comment 对象是一个特殊类型的 NavigableString 对象，用于处理注释对象。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 本段代码用于读取注释内容</span></span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"> </span><br><span class="line">markup = <span class="string">&quot;&lt;b&gt;&lt;!--This is comment code.--&gt;&lt;/b&gt;&quot;</span></span><br><span class="line">soup = BeautifulSoup(markup, <span class="string">&quot;html.parser&quot;</span>)</span><br><span class="line">comment = soup.b.string</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(comment))</span><br><span class="line"><span class="built_in">print</span>(comment)</span><br></pre></td></tr></table></figure>
-
-<h3 id="1-2-遍历文档树"><a href="#1-2-遍历文档树" class="headerlink" title="1.2 遍历文档树"></a>1.2 遍历文档树</h3><p> 在 BeautifulSoup 中，一个标签可能包含多个字符串或其他的标签，这些称为该标签的子标签。</p>
-<h4 id="1-2-1-子节点"><a href="#1-2-1-子节点" class="headerlink" title="1.2.1 子节点"></a>1.2.1 子节点</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment"># 本段代码用于获取 &lt;head&gt; 标签子节点内容</span></span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建本地文件 soup 对象</span></span><br><span class="line">soup = BeautifulSoup(<span class="built_in">open</span>(<span class="string">&#x27;t.html&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>), <span class="string">&quot;html.parser&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(soup.head.contents)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(soup.head.contents[<span class="number">3</span>])</span><br><span class="line"><span class="comment"># 这种方法和上面的方法类似</span></span><br><span class="line"><span class="built_in">print</span>(soup.head.children)</span><br><span class="line"><span class="keyword">for</span> child <span class="keyword">in</span> soup.head.children:</span><br><span class="line">    <span class="built_in">print</span>(child)</span><br></pre></td></tr></table></figure>
-
-<p>前面介绍的 contents 和 children 属性仅包含标签的直接子节点，如果需要获取 Tag 的所有子节点，甚至是子孙节点，则需要使用 descendants 属性。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> child <span class="keyword">in</span> soup.descendants:</span><br><span class="line">    <span class="built_in">print</span>(child)</span><br></pre></td></tr></table></figure>
-<h4 id="1-2-2-父节点"><a href="#1-2-2-父节点" class="headerlink" title="1.2.2 父节点"></a>1.2.2 父节点</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">p = soup.p</span><br><span class="line"><span class="built_in">print</span>(p.parent)</span><br><span class="line"><span class="built_in">print</span>(p.parent.name)</span><br></pre></td></tr></table></figure>
-<p>用parents属性来获取所有的父节点</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">content = soup.head.title.string</span><br><span class="line"><span class="keyword">for</span> parent <span class="keyword">in</span> content.parents:</span><br><span class="line">    <span class="built_in">print</span>(parent.name)</span><br></pre></td></tr></table></figure>
-<h4 id="1-2-3-兄弟节点"><a href="#1-2-3-兄弟节点" class="headerlink" title="1.2.3 兄弟节点"></a>1.2.3 兄弟节点</h4><p>兄弟节点是指和本节点位于同一级的节点，其中，next_sibling 属性是获取该节点的下一个兄弟节点，precious_sibling 则与之相反，取该节点的上一个兄弟节点，如果节点不存在，则返回 None。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(soup.p.next_sibling)</span><br><span class="line"><span class="built_in">print</span>(souo.precious_sibing)</span><br></pre></td></tr></table></figure>
-<h4 id="1-2-4-前后节点"><a href="#1-2-4-前后节点" class="headerlink" title="1.2.4  前后节点"></a>1.2.4  前后节点</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(soup.p.next_element)</span><br><span class="line"><span class="built_in">print</span>(soup.p.precious_element)</span><br></pre></td></tr></table></figure>
-<h3 id="1-3-搜索文档树"><a href="#1-3-搜索文档树" class="headerlink" title="1.3 搜索文档树"></a>1.3 搜索文档树</h3><p>对于搜索文档树，最常用的方法是 find_all() 方法。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(soup.find_all(<span class="string">&#x27;a&#x27;</span>,class_= <span class="string">&#x27;poet&#x27;</span>)) <span class="comment"># 接受多个参数</span></span><br><span class="line"><span class="built_in">print</span>(soup.find_all(<span class="built_in">id</span> = <span class="string">&#x27;link1&#x27;</span>))  <span class="comment"># 指定节点搜索</span></span><br><span class="line"><span class="built_in">print</span>(soup.find_all(<span class="string">&#x27;a&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(soup.find_all([<span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>])) <span class="comment"># 匹配正则表达式</span></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="built_in">print</span>(soup.find_all(re.<span class="built_in">compile</span>(<span class="string">&#x27;^b&#x27;</span>)))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="2-利用BeautifulSoup爬取豆瓣Top250影片信息"><a href="#2-利用BeautifulSoup爬取豆瓣Top250影片信息" class="headerlink" title="2. 利用BeautifulSoup爬取豆瓣Top250影片信息"></a>2. 利用BeautifulSoup爬取豆瓣Top250影片信息</h2><h3 id="2-1-爬取豆瓣电影排名信息"><a href="#2-1-爬取豆瓣电影排名信息" class="headerlink" title="2.1 爬取豆瓣电影排名信息"></a>2.1 爬取豆瓣电影排名信息</h3><h4 id="2-1-1-分析网页结构"><a href="#2-1-1-分析网页结构" class="headerlink" title="2.1.1 分析网页结构"></a>2.1.1 分析网页结构</h4><p>豆瓣Top250的页面结构如下：<br><img src="/assets/img/douban_1.png" alt="首页页面结构"><br>会发现所有信息都存放在  &lt; li&gt;  &lt; /li&gt; 标签对中，包括电影的标题、排名、评分和评价人数。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">crawler</span>(<span class="params">url</span>):</span></span><br><span class="line">    <span class="comment"># 伪装请求头</span></span><br><span class="line">    headers = &#123;<span class="string">&#x27;User-Agent&#x27;</span>: <span class="string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36&#x27;</span>&#125;</span><br><span class="line">    html = requests.get(url,headers=headers).text</span><br><span class="line">    <span class="comment"># lxml：html解析库（把HTML代码转化成Python对象）</span></span><br><span class="line">    soup = BeautifulSoup(html,<span class="string">&#x27;lxml&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;豆瓣电影250：序号 \t 影片名 \t 评分 \t 评价人数&quot;</span>)</span><br><span class="line">    <span class="keyword">for</span> tag <span class="keyword">in</span> soup.find_all(attrs=&#123;<span class="string">&quot;class&quot;</span>:<span class="string">&quot;item&quot;</span>&#125;):</span><br><span class="line">        content = tag.get_text()</span><br><span class="line">        content = content.replace(<span class="string">&#x27;\n&#x27;</span>, <span class="string">&#x27;&#x27;</span>)   <span class="comment"># 删除多余换行</span></span><br><span class="line">        <span class="built_in">print</span>(content, <span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">url = <span class="string">&#x27;https://movie.douban.com/top250?format=text&#x27;</span></span><br><span class="line">crawler(url)</span><br></pre></td></tr></table></figure>
-<p>初步爬取结果如下所示：<br><img src="/assets/img/douban_3.png" alt="初步爬取结果"><br>可以看到爬取信息比较凌乱，而且没有定位到我们想要的信息，因为大多数情况下进行文本分析都需要特定的信息内容。下面我们将聚焦一些我们需要的内容。</p>
-<h4 id="2-1-2-定位信息所在标签"><a href="#2-1-2-定位信息所在标签" class="headerlink" title="2.1.2 定位信息所在标签"></a>2.1.2 定位信息所在标签</h4><p>比方说，我们要爬取电影信息的标题、排名、评价人数等信息。<br>可以通过以下方法完成：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">crawler2</span>(<span class="params">url</span>):</span></span><br><span class="line">    headers = &#123;<span class="string">&#x27;User-Agent&#x27;</span>: <span class="string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36&#x27;</span>&#125;</span><br><span class="line">    html = requests.get(url,headers=headers).text</span><br><span class="line">    <span class="comment"># lxml：html解析库（把HTML代码转化成Python对象）</span></span><br><span class="line">    soup = BeautifulSoup(html,<span class="string">&#x27;lxml&#x27;</span>)</span><br><span class="line">    <span class="keyword">for</span> tag <span class="keyword">in</span> soup.find_all(attrs=&#123;<span class="string">&#x27;class&#x27;</span>:<span class="string">&#x27;item&#x27;</span>&#125;):</span><br><span class="line">        rank = tag.find(<span class="string">&#x27;em&#x27;</span>).get_text()</span><br><span class="line">        title = tag.find(attrs = &#123;<span class="string">&#x27;class&#x27;</span>:<span class="string">&#x27;title&#x27;</span>&#125;).get_text()</span><br><span class="line">        href = tag.find(<span class="string">&#x27;a&#x27;</span>).get(<span class="string">&#x27;href&#x27;</span>)</span><br><span class="line">        <span class="comment">#rating_num = tag.find(attrs = &#123;&#x27;class&#x27;:&#x27;rating_num&#x27;&#125;).get_text() # 分数</span></span><br><span class="line">        info = tag.find(attrs = &#123;<span class="string">&#x27;class&#x27;</span>:<span class="string">&#x27;star&#x27;</span>&#125;).get_text() <span class="comment"># 评价人数</span></span><br><span class="line">        info = info.replace(<span class="string">&#x27;\n&#x27;</span>,<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">        info = info.lstrip()</span><br><span class="line">        mode = re.<span class="built_in">compile</span>(<span class="string">r&#x27;\d+\.?\d*&#x27;</span>)  <span class="comment"># 正则表达式获取数字</span></span><br><span class="line">        info_li = <span class="built_in">list</span>(mode.findall(info))</span><br><span class="line">        star = info_li[<span class="number">0</span>]</span><br><span class="line">        comment = info_li[<span class="number">1</span>]</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;No&#x27;</span>,rank)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;[电影名称]&#x27;</span>,title)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;[网页链接]&#x27;</span>,href)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;[分数]&#x27;</span>,star)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;[评论数]&#x27;</span>,comment)</span><br><span class="line">url = <span class="string">r&#x27;https://movie.douban.com/top250?format=text&#x27;</span></span><br><span class="line">crawler2(url) </span><br></pre></td></tr></table></figure>
-<p>爬取的结果如下图所示：<br><img src="/assets/img/douban_2.png" alt="爬取首页Top250页面信息"></p>
-<h4 id="2-1-3-完成网页翻页"><a href="#2-1-3-完成网页翻页" class="headerlink" title="2.1.3 完成网页翻页"></a>2.1.3 完成网页翻页</h4><p>进行网页翻页的方法主要有一下三种：</p>
-<ul>
-<li>1.单击“后页”按钮分析 URL 网址，然后分析他们之间的规律。利用这种方法的网站通常采用 GET 方法进行传值，而有些网站采用局部刷新技术，翻页后的 URL 仍然不变。</li>
-<li>2.获取“后页”按钮或页码的超链接，然后依次调用 urllib2.urlopen(url) 函数来访问 URL 并实现网页跳转。</li>
-<li>3.采用网页自动操作技术，获取“后页”按钮或超链接进行自动单击跳转，如 Selenium 技术中的戍边单击事件。</li>
-</ul>
-<p>这里选择第一种，因为观察到豆瓣网站的页面跳转关系是这样的：</p>
-<pre><code>第一页：https://movie.douban.com/top250?start=0&amp;filter=
-第二页：https://movie.douban.com/top250?start=25&amp;filter=
-第三页：https://movie.douban.com/top250?start=50&amp;filter=
-</code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">url = <span class="string">&#x27;https://movie.douban.com/top250?format=text&#x27;</span></span><br><span class="line">    i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> i &lt; <span class="number">10</span>:</span><br><span class="line">        num = i * <span class="number">25</span></span><br><span class="line">        urls = <span class="string">r&#x27;https://movie.douban.com/top250?start=&#x27;</span> + <span class="built_in">str</span>(num) + <span class="string">&#x27;&amp;filter=&#x27;</span></span><br><span class="line">        crawler2(urls)</span><br><span class="line">        i += <span class="number">1</span></span><br></pre></td></tr></table></figure>
-<p>完成翻页之后，爬取的信息将其存储到一个txt文件中，<a href="../assets/img/Result_Douban.txt">豆瓣Top250爬取结果</a></p>
-<h3 id="2-2-爬取豆瓣跳转页面详细信息"><a href="#2-2-爬取豆瓣跳转页面详细信息" class="headerlink" title="2.2 爬取豆瓣跳转页面详细信息"></a>2.2 爬取豆瓣跳转页面详细信息</h3><p>当我们希望点开每个页面，获取某个电影的详细信息时，就需要获取新页面的链接</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">url_movie = tag.find(attrs=&#123;<span class="string">&quot;class&quot;</span>: <span class="string">&quot;hd&quot;</span>&#125;).a</span><br><span class="line">urls = url_movie.attrs[<span class="string">&#x27;href&#x27;</span>]</span><br></pre></td></tr></table></figure>
-<p>随即便可以利用上述代码进行详细页面的信息爬取，具体代码可以自行修改，读取相应标签内的文本内容：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getInfo</span>(<span class="params">url</span>):</span></span><br><span class="line">    headers = &#123;<span class="string">&#x27;User-Agent&#x27;</span>: <span class="string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36&#x27;</span>&#125;</span><br><span class="line">    html = requests.get(url,headers=headers).text</span><br><span class="line">    soup = BeautifulSoup(html,<span class="string">&#x27;lxml&#x27;</span>)</span><br><span class="line">    <span class="comment">#rank = soup.find(attrs = &#123;&#x27;class&#x27;:&#x27;top250-no&#x27;&#125;)</span></span><br><span class="line">    <span class="comment">#print(rank.get_text())</span></span><br><span class="line">    <span class="comment">#print(title.get_text())</span></span><br><span class="line">    info = soup.find(attrs = &#123;<span class="string">&#x27;id&#x27;</span>:<span class="string">&#x27;info&#x27;</span>&#125;)</span><br><span class="line">    <span class="built_in">print</span>(info.get_text())</span><br><span class="line">    summary = soup.find(attrs = &#123;<span class="string">&#x27;property&#x27;</span>:<span class="string">&#x27;v:summary&#x27;</span>&#125;)</span><br><span class="line">    <span class="comment">#summary = summary.get_text()</span></span><br><span class="line">    <span class="comment">#summary.replace(&#x27;\n&#x27;, &#x27;&#x27;).replace(&#x27;\t&#x27;, &#x27;&#x27;)</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;剧情介绍:&quot;</span>,summary.get_text())</span><br><span class="line">    infofile = codecs.<span class="built_in">open</span>(<span class="string">&quot;Result_Douban_content.txt&quot;</span>, <span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;utf-8&#x27;</span>)  <span class="comment"># 打开文件</span></span><br><span class="line">    infofile.write(info.get_text()+<span class="string">&quot;\n&quot;</span>)</span><br><span class="line">    infofile.write(<span class="string">&quot;剧情介绍:&quot;</span>+summary.get_text()+ <span class="string">&#x27;\r\n&#x27;</span>+<span class="string">&#x27;\r\n&#x27;</span>)</span><br><span class="line">    infofile.close()</span><br></pre></td></tr></table></figure>
-<p>最终爬取结果如下：<a href="/assets/img/Result_Douban_content.txt">豆瓣Top250具体信息</a></p>
-<h2 id="End"><a href="#End" class="headerlink" title="End"></a>End</h2><p>我在爬取页面详细信息的时候，发现老是会爬取到None内容，一方面可以考虑是否登录了豆瓣账号，另一方面也是豆瓣网站将ip地址识别成了危险ip，所以将无法继续爬取，换一个ip就行了。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Python爬虫</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/02/13/BeautifulSoup/">展开全文 >></a>
         </p>
       
 
