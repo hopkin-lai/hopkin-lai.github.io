@@ -158,6 +158,342 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-模糊数学笔记02" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/09/%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6%E7%AC%94%E8%AE%B002/">模糊数学笔记02</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/09/%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6%E7%AC%94%E8%AE%B002/" class="archive-article-date">
+  	<time datetime="2021-03-08T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({ tex2jax: {inlineMath: [['$', '$']]}, messageStyle: "none" });
+</script>
+
+<!-- TOC -->
+
+<ul>
+<li><a href="#1-f%E9%9B%86%E7%9A%84%E5%85%B6%E4%BB%96%E7%AE%97%E5%AD%90">1. F集的其他算子</a></li>
+<li><a href="#2-f%E9%9B%86%E7%9A%84%E6%88%AA%E9%9B%86">2. F集的截集</a><ul>
+<li><a href="#21-%E6%88%AA%E9%9B%86%E7%9A%84%E6%80%A7%E8%B4%A8">2.1 截集的性质</a></li>
+<li><a href="#22-%E5%88%86%E8%A7%A3%E5%AE%9A%E7%90%86">2.2. 分解定理</a></li>
+</ul>
+</li>
+<li><a href="#3f%E9%9B%86%E7%9A%84%E6%A8%A1%E7%B3%8A%E5%BA%A6">3.F集的模糊度</a></li>
+</ul>
+<!-- /TOC -->
+
+<h2 id="1-F集的其他算子"><a href="#1-F集的其他算子" class="headerlink" title="1. F集的其他算子"></a>1. F集的其他算子</h2><p>在模糊数学中，除了上一节课的取大（$\bigvee$） 、取小（$\bigwedge$）运算外，还有很多新算子，本节的内容主要是想说明，模糊数学中可以根据自己的所需应用各种算子。</p>
+<h2 id="2-F集的截集"><a href="#2-F集的截集" class="headerlink" title="2. F集的截集"></a>2. F集的截集</h2><p>在F集和普通集合相互转化中的一个重要概念就是$\lambda$水平截集。</p>
+<ul>
+<li>$\lambda$截集</li>
+</ul>
+<p>$A_{\lambda}$ = {$u| u \in U, A(u) \geqslant \lambda$}</p>
+<ul>
+<li>$\lambda$强截集</li>
+</ul>
+<p>$A_{\lambda}$ = {$u| u \in U, A(u) &gt; \lambda$}</p>
+<ul>
+<li>$SuppA$,大于0的截集</li>
+</ul>
+<p>$SuppA$ = {$u| u \in U, A(u) &gt; 0$}</p>
+<ul>
+<li>$KerA$,大于1的截集</li>
+</ul>
+<p>$KerA$ = {$u| u \in U, A(u) = 1$}</p>
+<h3 id="2-1-截集的性质"><a href="#2-1-截集的性质" class="headerlink" title="2.1 截集的性质"></a>2.1 截集的性质</h3><p>$\color{orange}{我实在是太懒了，因为手敲数学代码太累了，我直接写在纸上吧。}$</p>
+<ul>
+<li>性质1：</li>
+</ul>
+<p>$A \subset B$  $\implies$ $A_\lambda \subset B_\lambda$</p>
+<ul>
+<li>性质2:</li>
+</ul>
+<p>$\lambda ≤ \mu$ $\implies$ $A_\lambda \supset A_\mu$</p>
+<ul>
+<li>性质3：<br><img src="../assets/img/%E6%88%AA%E9%9B%86%E6%80%A7%E8%B4%A81.jpeg" alt="\lambda截集性质3"></li>
+<li>性质4：<br><img src="../assets/img/%E6%80%A7%E8%B4%A84.jpeg"></li>
+</ul>
+<p>上述式子表明：</p>
+<blockquote>
+<p>各模糊集先“并”后求截集所得的集合包含先求截集后“并”得的集合；</p>
+</blockquote>
+<blockquote>
+<p>而若是“交运算” 和截集，则运算次序无关</p>
+</blockquote>
+<h3 id="2-2-分解定理"><a href="#2-2-分解定理" class="headerlink" title="2.2. 分解定理"></a>2.2. 分解定理</h3><p>分解定理是模糊集合三大定理之一（分解、表现、扩张定理），它反映了模糊集和普通相互转化的关系。</p>
+<p>那么为什么要学习分解定理呢？</p>
+<p>实际上，我们的目的是为了</p>
+<blockquote>
+<p>$\color{lightblue}{推论}:$已知模糊集的所有截集，则可以反求模糊集本身。</p>
+</blockquote>
+<ul>
+<li>分解定理1:</li>
+</ul>
+<p>$$<br>A=\bigcup_{\lambda \in[0,1]} \lambda A_{\lambda}<br>$$<br>上述定理也可以写成：</p>
+<p>$$<br>A(x)=\bigvee_{\lambda \in[0,1]}\left[\lambda \wedge \chi_{A_{\lambda}}(x)\right]<br>$$</p>
+<p>或者<br>$$<br>A(x)=\bigvee\left{\lambda \in[0,1] ; x \in A_{\lambda}\right}<br>$$</p>
+<p>分解定理与普通集合的转化关系图可以这样表示：</p>
+<p><img src="../assets/img/%E6%A8%A1%E7%B3%8A%E9%9B%86%E5%92%8C%E7%BB%8F%E5%85%B8%E9%9B%86%E7%9A%84%E8%BD%AC%E5%8C%96.jpeg">​    </p>
+<ul>
+<li><p>分解定理2：<br>实际上，就是在分解定理1的基础上，推广到了强截集<br>$$<br>A=\bigcup_{\lambda \in[0,1]} \lambda A_{\underset{.}{\lambda}}<br>$$</p>
+</li>
+<li><p>分解定理3:</p>
+</li>
+</ul>
+<p>$$<br>A=\bigcup_{\lambda \in[0,1]} \lambda H_{\lambda}<br>$$<br>实际上，分解定理3就是在集合套的概念上的一个推广，$H_\lambda$是集合值映射，可以认为是在$A_\lambda$ 和<br>$A_{\underset{.}{\lambda}}$之间的一个集合，但是要注意</p>
+<p>  $H_\lambda$既不是F集也不是普通集，只有在 $\lambda$确定值时，$H_\lambda$才变成普通集。</p>
+<p>它实际上一个集合大家族。</p>
+<p>$\color{lightblue}{在上课的时候，集合套和表现定理其实讲的很少很少，在这做个标记，复习时候再看}$</p>
+<h2 id="3-F集的模糊度"><a href="#3-F集的模糊度" class="headerlink" title="3.F集的模糊度"></a>3.F集的模糊度</h2><p>实际问题中，当用F集来刻画模糊性概念时，常常还需要用一个数量来刻画这一个概念的整体模糊度，这个数量就是所谓的模糊度。</p>
+<p>定义如下</p>
+<p>$若映射 d:F(U)\rightarrow [0,1]满足条件：$</p>
+<p>$$<br>(1)当且仅当A \in F(U)时，d(A) = 0\tag{清晰性}<br>$$</p>
+<p>$$<br>(2)\forall u \in U,当且仅当A(u) \equiv \frac{1}{2}\tag{模糊性}<br>$$</p>
+<p>$$<br>(3)\forall u \in U,B(u)\le A(u) \le \frac{1}{2},d(B)\le d(A)\tag{单调性}<br>$$</p>
+<p>$$<br>(4)A \in F(u),d(A) = d(A^c)\tag{对称性}<br>$$</p>
+<p>之所以介绍模糊度这个概念，是因为满足定理的三个条件，就可以构造自己的模糊度，也就是上面三个  对称性、单调性、$f(0)=0$。这三个条件 </p>
+<p>具体的：<br>我们有Haming模糊度、Euclid模糊度。其实就是看每一个元素的隶属度与1的距离。</p>
+<p>我们单独讲一下模糊熵（Fuzzy Shannon）。一听就是知道离不开Shannon老爷子（$\color{lightblue}{信息论之父}$）真的是到哪都能见到他。</p>
+<p>要懂得如何证明Shannon Function是F集的模糊度，书上有完整的证明过程，我这就bu<br>赘述了。</p>
+<p>课后习题是13、14、20、21、25、26、27、28.</p>
+<p>这节讲的主要内容就是在模糊集的概念上，多推展的几个定义和简单计算，下一章开始我们可能会更多的接触到模糊数学的应用和范例。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">模糊数学</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/09/%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6%E7%AC%94%E8%AE%B002/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-模糊数学笔记01" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/02/%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6%E7%AC%94%E8%AE%B001/">模糊数学笔记01</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/02/%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6%E7%AC%94%E8%AE%B001/" class="archive-article-date">
+  	<time datetime="2021-03-01T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({ tex2jax: {inlineMath: [['$', '$']]}, messageStyle: "none" });
+</script>
+<!-- TOC -->
+
+<ul>
+<li><a href="#00-%E7%BB%AA%E8%AE%BA--%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6%E7%9A%84%E5%BC%95%E5%85%A5">00 绪论–模糊数学的引入</a></li>
+<li><a href="#01-%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6f%E9%9B%86%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5">01 模糊数学F集的基本概念</a></li>
+<li><a href="#02-f%E9%9B%86%E7%9A%84%E8%BF%90%E7%AE%97">02 F集的运算</a><ul>
+<li><a href="#%E5%B9%B6%E4%BA%A4%E4%BD%99%E7%9A%84%E8%BF%90%E7%AE%97%E6%80%A7%E8%B4%A8">并、交、余的运算性质</a></li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+
+<h2 id="00-绪论–模糊数学的引入"><a href="#00-绪论–模糊数学的引入" class="headerlink" title="00 绪论–模糊数学的引入"></a>00 绪论–模糊数学的引入</h2><p>在现实生活中有很多模糊现象存在，例如自然口语表达中很多概念存在模糊性：</p>
+<ul>
+<li>个子很高的人</li>
+<li>年纪大的老人</li>
+<li>很胖的人  等等概念具有非常大的模糊性</li>
+</ul>
+<p>典型的问题有：</p>
+<ul>
+<li><p>秃顶悖论：如果一个有X根头发的人被称为秃子，那么，有X + 1根头发的人也是秃子。所以，(X + 1) + 1根头发的还是秃子。以此类推，无论你有几根头发都是秃子。</p>
+</li>
+<li><p>朋友悖论：如果一个刚认识的人被称为你的新朋友，那么刚认识+1 s的人也是你的新朋友，以此类推，认识50年的人也是你的新朋友。</p>
+</li>
+<li><p>著名的沙堆问题：从一个沙堆里拿走一粒沙子，它仍然是沙堆，那么类推下去，最后只剩一粒沙子它也是沙堆。这显然和人们的常识相背离。</p>
+</li>
+</ul>
+<p>以上问题说明，$\color{red}{精确的数学语言与模糊的思维习惯产生了矛盾}$。</p>
+<p>模糊数学就希望通过精确的数学方法研究和处理模糊性和模糊现象，Zadeh提出Fuzzy Sets希望通过语言变量来替代数值变量。</p>
+<p>那么$\color{green}{经典二值模型与模糊逻辑的关系}$是什么<br>在模糊数学中，一个命题不再是非真即假，取消了非此即彼的概念，可以被认为是部分属于，而$\color{orange}{隶属度}$就是表述二值之间的过渡状态的值。</p>
+<p>模糊数学解决了从单一的二值到二值之间连续取值的问题。</p>
+<p>（0，1）   ———————————— [0,1]</p>
+<p>模糊数学的应用有：</p>
+<ul>
+<li>模糊聚类</li>
+<li>模糊模式识别</li>
+<li>模糊综合评价</li>
+<li>模糊控制</li>
+<li>模糊逻辑</li>
+<li>模糊决策</li>
+<li>模糊自动机</li>
+<li>模糊神经网络 </li>
+<li>等等</li>
+</ul>
+<p>在这里通过一个引例来区分模糊数学中隶属函数和数理统计中的概率的区别。<br>假设有以下两瓶水：</p>
+<ul>
+<li>A 是纯净水的概率为95%</li>
+<li>B 是纯净水的隶属度为95%<br>显然，我们会选择B，因为A是纯净水的概率为95%，但是一旦当另外5%发生，那么A不是纯净水的事实就是确定的了。而B属于纯净水的程度是95%，也许只是不那么纯而已。</li>
+</ul>
+<h2 id="01-模糊数学F集的基本概念"><a href="#01-模糊数学F集的基本概念" class="headerlink" title="01 模糊数学F集的基本概念"></a>01 模糊数学F集的基本概念</h2><p>设在论域 U 上给定了一个映射<br>$$<br>A: U  → [0,1],且<br>u → A（u）<br>$$</p>
+<p>对于某个模糊集，我们称之为F集，$A（u)$ 被称为A的隶属函数（或称 u 对A对隶属度）</p>
+<p>我们来看一个例子：<br>P4 例3<br>设U = {1,2,3,4,5,6} , A表示“靠近4”的数集，则A $\in$ $\mathcal{F}$ （U） ，各数属于A的程度$A（u_{i})$ 如下表所示</p>
+<table>
+<thead>
+<tr>
+<th>u</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A(u)</td>
+<td>0</td>
+<td>0.2</td>
+<td>0.8</td>
+<td>1</td>
+<td>0.8</td>
+<td>0.2</td>
+</tr>
+</tbody></table>
+<p>那么A可以用不同的方式来表达：</p>
+<ul>
+<li>虚偶表示法：A = {(1,0),(2,0.2),(3,0.8),(4,1),(5,0.8),(6,0.2)}</li>
+<li>Zadeh表示法：$\frac{0}{1}+\frac{0.2}{2}+\frac{0.8}{3}+\frac{1}{4}+\frac{0.8}{5}+\frac{0.2}{6}$</li>
+<li>矢量表示法：A = (0,0.2,0.8,1,0.8,0.2)</li>
+</ul>
+<p>注意：在第三种表示方法中，由于没有顺序，隶属度是0的项也不能舍弃，且次序不能随意调换。</p>
+<h2 id="02-F集的运算"><a href="#02-F集的运算" class="headerlink" title="02 F集的运算"></a>02 F集的运算</h2><p>这里我们主要定义取大 和 取小运算，也就是交集和并集运算</p>
+<p>(A $\bigcup$ B)(u) = A(u) $\bigvee$ B(u) = max (A(u),B(u))</p>
+<p>(A $\bigcap$ B)(u) = A(u) $\bigwedge$ B(u) = min (A(u),B(u))</p>
+<h3 id="并、交、余的运算性质"><a href="#并、交、余的运算性质" class="headerlink" title="并、交、余的运算性质"></a>并、交、余的运算性质</h3><p>幂等律<br>A $\bigcup$A = A, A $\bigcap$ A = A</p>
+<p>交换律<br>A $\bigcup$ B = B $\bigcup$ A, A $\bigcap$ B = B $\bigcap$ A</p>
+<p>结合律<br>(A $\bigcup$ B)$\bigcup$ C = A $\bigcup$ (B$\bigcup$ C),<br>(A $\bigcap$ B)$\bigcap$ C = A $\bigcap$ (B$\bigcap$C )</p>
+<p>吸收律<br>(A $\bigcup$ B) $\bigcap$ A = A，<br>(A $\bigcap$ B)$\bigcup$ A = A</p>
+<p>分配律<br>(A $\bigcup$ B)$\bigcap$ C =(A $\bigcap$ C)$\bigcup$(B $\bigcap$ C),<br>(A $\bigcap$ B)$\bigcup$ C =(A $\bigcup$ C)$\bigcap$(B $\bigcup$ C),</p>
+<p>0-1 律<br>A $\bigcup$ $\phi$ = A, A$\bigcap$ $\phi$ = $\phi$, A $\bigcup$ U = U ， A $\bigcap$ U= A</p>
+<p>还原律<br>$(A^c)^c$ = A</p>
+<p>对偶律<br> (A $\bigcup$ B ) $^c$ = $A^c$ $\bigcap$   $B^c$<br> (A $\bigcap$ B ) $^c$ = $A^c$ $\bigcup$   $B^c$  </p>
+<p> 课后的习题为1-4题，第一周的任务主要是构建模糊数学的概念，初步了解模糊数学的体系来源，要理解模糊数学不是凭空产生的一个模糊集，实际上，模糊集的元素就是普通集合，只不过在此基础上增加了隶属函数。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">模糊数学</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/02/%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6%E7%AC%94%E8%AE%B001/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Python-Database-fundmentals" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -656,6 +992,7 @@
 <h3 id="1-1-计算香农熵中的概率："><a href="#1-1-计算香农熵中的概率：" class="headerlink" title="1.1 计算香农熵中的概率："></a>1.1 计算香农熵中的概率：</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 我的专利数据结构是这样的：</span></span><br><span class="line"><span class="comment"># 利用Excel自带的分列功能，将所有的IPC号单独分出来</span></span><br><span class="line">raw_data = pd.read_excel(<span class="string">r&quot;/Users/yourname/Documents/CaculateEntropy.xlsx&quot;</span>,header=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 首先建立一个IPC列表，记录的是这个数据集中所有的IPC号，然后进行去重处理</span></span><br><span class="line"><span class="keyword">del</span> (raw_data[<span class="string">&#x27;PN&#x27;</span>])   <span class="comment"># 先删掉无用的PN号这一列</span></span><br><span class="line"><span class="keyword">del</span>(raw_data[<span class="string">&#x27;IP&#x27;</span>])</span><br><span class="line"><span class="built_in">print</span>(raw_data.head())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 遍历df中的每一个元素，然后读取成一列</span></span><br><span class="line">IPC = []</span><br><span class="line"><span class="keyword">for</span> index, row <span class="keyword">in</span> raw_data.iteritems():</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(row)):</span><br><span class="line">        IPC.append(row[i])</span><br><span class="line">        </span><br><span class="line">IPC = pd.DataFrame(IPC)</span><br><span class="line">IPC.columns = [<span class="string">&#x27;IPC&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(IPC.head(<span class="number">15</span>))</span><br><span class="line"><span class="comment"># 下面开始去重</span></span><br><span class="line">IPC.drop_duplicates(subset=<span class="string">&#x27;IPC&#x27;</span>,keep=<span class="string">&#x27;first&#x27;</span>,inplace=<span class="literal">True</span>)</span><br><span class="line"><span class="built_in">len</span>(IPC)   <span class="comment"># 去重后只剩下2525，也就是说</span></span><br><span class="line"><span class="comment"># 注意，这里有一个坑，去重之后直接替换的数据，这里的dataframe的index不再连续！！！记得修改成连续的数值，否则循环将报错。</span></span><br><span class="line">IPC = IPC.reset_index(drop=<span class="literal">True</span>)<span class="comment">#重设索引</span></span><br><span class="line">IPC[<span class="string">&quot;count_i&quot;</span>] = <span class="number">0</span></span><br><span class="line"><span class="comment"># 计算count_i: </span></span><br><span class="line">dat = pd.read_excel(<span class="string">r&#x27;/Users/CaculateEntropy.xlsx&#x27;</span>,header = <span class="number">0</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(IPC)):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(dat)):</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">str</span>(IPC[<span class="string">&#x27;IPC&#x27;</span>][i]) <span class="keyword">in</span> <span class="built_in">str</span>(dat[<span class="string">&#x27;IP&#x27;</span>][j]):</span><br><span class="line">            IPC[<span class="string">&#x27;count_i&#x27;</span>][i]  = IPC[<span class="string">&#x27;count_i&#x27;</span>][i] + <span class="number">1</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">str</span>(IPC[<span class="string">&#x27;IPC&#x27;</span>][i]) + <span class="string">&quot;已经计算好了&quot;</span> + <span class="built_in">str</span>(i))</span><br></pre></td></tr></table></figure>
 <p>那么每一个IPC code都会有一个 count_i，结果我就直接放截图了：</p>
 <p><img src="/assets/img/count_i.png" alt="count_i"> </p>
+<p>/Users/laihuapeng/blog/source/assets/img/count_i.png</p>
 <p>当然真实数据集远远不止这些……此时真的希望我的电脑能扛住，因为后面还有更多…..</p>
 <h3 id="1-2-计算每一个IPC-code的香农熵"><a href="#1-2-计算每一个IPC-code的香农熵" class="headerlink" title="1.2 计算每一个IPC code的香农熵"></a>1.2 计算每一个IPC code的香农熵</h3><p>我写到这里的时候突然脑子不好用了，想了半天应该怎么写好，只能先用两层循环试试，结果发现问题不小，两层循环都跑了我20多分钟。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 我用简单的双层循环来搞清楚逻辑</span></span><br><span class="line">Entropy_j_0 = <span class="number">0</span> </span><br><span class="line"><span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="built_in">len</span>(IPC)):</span><br><span class="line">    count_j_0 = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> m <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(dat)):</span><br><span class="line">        keywords =(<span class="built_in">str</span>(IPC[<span class="string">&#x27;IPC&#x27;</span>][<span class="number">0</span>])+<span class="string">&#x27;;&#x27;</span>+<span class="built_in">str</span>(IPC[<span class="string">&#x27;IPC&#x27;</span>][j]))</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">all</span>([w <span class="keyword">in</span> dat[<span class="string">&#x27;IP&#x27;</span>][m] <span class="keyword">and</span> w <span class="keyword">for</span> w <span class="keyword">in</span> keywords.split(<span class="string">&#x27;;&#x27;</span>)]):</span><br><span class="line">            count_j_0 += <span class="number">1</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;count_&#123;0&#125;_0 已经计算好了  &quot;</span>.<span class="built_in">format</span>(j) + <span class="built_in">str</span>(count_j_0) )</span><br><span class="line">    Entropy_j_0 += -((count_j_0 / IPC[<span class="string">&#x27;count_i&#x27;</span>][<span class="number">0</span>]) * log(count_j_0 / IPC[<span class="string">&#x27;count_i&#x27;</span>][<span class="number">0</span>]+<span class="number">0.0001</span>,<span class="number">2</span>)) <span class="comment"># log函数中加上0.0001是因为避免math.log（0，2）出现负无穷的bug</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>

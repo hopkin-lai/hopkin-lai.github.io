@@ -158,6 +158,244 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Topic-Modeling" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/06/08/Topic-Modeling/">Topic Modeling</a>
+    </h1>
+  
+
+        
+        <a href="/2021/06/08/Topic-Modeling/" class="archive-article-date">
+  	<time datetime="2021-06-07T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- TOC -->
+
+<ul>
+<li><a href="#machine-learning-pipeline">Machine Learning Pipeline</a><ul>
+<li><a href="#data">Data</a></li>
+<li><a href="#tasks--to-be-finished">Tasks  （To be finished）</a></li>
+<li><a href="#models">Models</a></li>
+<li><a href="#features">Features</a></li>
+<li><a href="#model-evalution">Model Evalution</a></li>
+</ul>
+</li>
+<li><a href="#%E5%BC%95%E5%85%A5">引入</a></li>
+<li><a href="#%E6%A2%B3%E7%90%86topic-model">梳理Topic Model</a></li>
+</ul>
+<!-- /TOC -->
+<h2 id="Machine-Learning-Pipeline"><a href="#Machine-Learning-Pipeline" class="headerlink" title="Machine Learning Pipeline"></a>Machine Learning Pipeline</h2><p>把我们的问题和一个典型的（state-of-art）机器学习系统联系起来，完善我们的思路和处理流程</p>
+<h3 id="Data"><a href="#Data" class="headerlink" title="Data"></a>Data</h3><ul>
+<li>real world patent data in AI field</li>
+<li>give us a picture of the techology frontiers in AI (maybe)</li>
+<li>missing pieces and messy noise (too much)</li>
+</ul>
+<h3 id="Tasks-（To-be-finished）"><a href="#Tasks-（To-be-finished）" class="headerlink" title="Tasks  （To be finished）"></a>Tasks  （To be finished）</h3><ul>
+<li>How to understand AI better? </li>
+<li>How to get a comprehensive picture of AI field?</li>
+<li>Discover the most popular spots/techologies of AI?  </li>
+<li><em><strong>Not about Clustering! Not about Classification!</strong></em></li>
+</ul>
+<h3 id="Models"><a href="#Models" class="headerlink" title="Models"></a>Models</h3><p>We will use Generative Models instead! </p>
+<ul>
+<li>Topic Modeling (metioned below)</li>
+</ul>
+<h3 id="Features"><a href="#Features" class="headerlink" title="Features"></a>Features</h3><p>Considering we r using text data,so the feature engineering will be a little bit tricky, it’s part of NLP. But actually we have had this experience：Word Embedding(词嵌入)，通俗一点讲，就是把不定长的文本嵌入到定长的空间里.</p>
+<ul>
+<li>Traditional way:one-hot,N-gram,Bag-of-words,<strong>TF-IDF</strong></li>
+<li>Deeping Learning:FastText,<strong>Word2vec</strong>,Bert…..(maybe <strong>Doc2vec</strong> is one of them as well)</li>
+</ul>
+<p>BUUUT！！！ don’t worry about that anymore, as far as I know, Topic Model won’t need that.</p>
+<h3 id="Model-Evalution"><a href="#Model-Evalution" class="headerlink" title="Model Evalution"></a>Model Evalution</h3><ul>
+<li>Feed your data into the model and train it!</li>
+<li>Find the best version of your model (high performance,best parameters,convinced results)</li>
+<li>How to train model and get desired insights is another topic to go.</li>
+</ul>
+<h2 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h2><p>Topic Modeling （主题建模）<br>部分教材和资料也会翻译成话题分析</p>
+<p>在文本信息的处理中，传统的方法是用单词向量表示文本内容，其实这种思路是有所欠缺的，因为这些单词向量缺乏语义信息（Semantic Content），用单词向量空间中的度量（求距离）表示文本之间的语义相似度，这种方法往往成功率不高（事实上，我们也证实了这一点，TF-IDF直接聚类、Doc2Vec直接聚类效果都不好）。上述运算并没有告诉我们词背后的含义，所以我们需要一些新的方法去对文档的内容（也就是我们的专利）去做更多包含语义意义的事情。</p>
+<p>首先我们可以通过下面两个问题来说明一下为什么需要引入主题模型，因为用单词向量解决不了诸多问题：</p>
+<ul>
+<li>一词多义： Bank既有银行，又有河岸的意思</li>
+<li>同义词：car和automobile其实表示的是同一个意思</li>
+</ul>
+<h2 id="梳理Topic-Model"><a href="#梳理Topic-Model" class="headerlink" title="梳理Topic Model"></a>梳理Topic Model</h2><ul>
+<li><p>1990年 LSA（Latent Semantic Analysis/Indexing，潜在语义分析) </p>
+<ul>
+<li>优势：刻画近义词，有效提取语义，可以求word和doc的相似度</li>
+<li>缺点：用SVD的方法求解，矩阵运算很复杂</li>
+</ul>
+</li>
+<li><p>1999年 pLSA（probabilitic Latent Semantic Analysis，概率潜在语义分析)，是受到LSA的启发，引入<strong>概率化</strong></p>
+<ul>
+<li>优点：更好的刻画一词多义，开始引入概率分布去阐述问题，用多项式分布词频向量。每个文档是由话题分布决定的、每个话题是由单词分布决定的。</li>
+<li>缺点：用EM算法求解，要迭代，计算量大；而且概率模型不够完善</li>
+</ul>
+</li>
+<li><p>2003年 LDA（Latent Dirichlet Allocation，潜在狄利克雷分布) 引入了<strong>贝叶斯化</strong> 实际上就在pLSA的基础上加了贝叶斯框架。</p>
+<ul>
+<li>优点：基于贝叶斯的推断</li>
+<li>缺点：还是要手动确定主题数，不过别担心我们可以通过（perplexity、coherence）来帮助判断主题数</li>
+</ul>
+</li>
+<li><p>2005年 HDP （Hierarchical Dirichlet Process，分层狄利克雷过程) 对于LDA的改进，实现了<strong>非参数化</strong></p>
+<ul>
+<li>优点：不用手动设置主题数目，可以在后面延伸很多的模型</li>
+<li>缺点：计算量大</li>
+</ul>
+</li>
+</ul>
+<p>上面的几种模型，附上原始论文和研究：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.iro.umontreal.ca/~nie/IFT6255/Hofmann-UAI99.pdf">Hofmann T. Probabilistic latent semantic indexing[C]//Proceedings of the 22nd annual international ACM SIGIR conference on Research and development in information retrieval. 1999: 50-57.</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf">Blei D M, Ng A Y, Jordan M I. Latent dirichlet allocation[J]. the Journal of machine Learning research, 2003, 3: 993-1022.</a></li>
+<li><a target="_blank" rel="noopener" href="https://kns.cnki.net/kcms/detail/detail.aspx?dbcode=CJFD&dbname=CJFD2014&filename=JYRJ201408002&v=LC07AObpZUdAxlNKpf%25mmd2FDruH3ZrfR%25mmd2B1rIvB9pq3A6QVKAIbGLuizpwGLvzI0xkNdb">周志敏,高申勇.分层Dirichlet过程原理及应用综述[J].计算机应用与软件,2014,31(08):1-5+41.</a></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">论文</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/06/08/Topic-Modeling/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-模糊数学笔记06" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/04/18/%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6%E7%AC%94%E8%AE%B006/">模糊数学笔记06</a>
+    </h1>
+  
+
+        
+        <a href="/2021/04/18/%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6%E7%AC%94%E8%AE%B006/" class="archive-article-date">
+  	<time datetime="2021-04-17T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="F关系和F聚类"><a href="#F关系和F聚类" class="headerlink" title="F关系和F聚类"></a>F关系和F聚类</h2><p>这章从最基本的二元关系入手，过渡到F关系，然后通过构建F矩阵来给出3大性质。本章主要探讨的是在离散领域中的F关系。</p>
+<h3 id="F关系-和-F矩阵"><a href="#F关系-和-F矩阵" class="headerlink" title="F关系 和 F矩阵"></a>F关系 和 F矩阵</h3><p>首先回顾一下什么是普通二元关系。</p>
+<p>还记得笛卡尔坐标系嘛？实际上，笛卡尔坐标系来源与笛卡尔乘积，这个乘积表示的是两个论域U和V之间的某种特殊关系。</p>
+<p><strong>普通二元关系</strong>：指的是两个元素之间要么有关系，要么没有关系，即取值是两个独立的值，(0,1);由普通二元关系构成的矩阵我们称为布尔矩阵。</p>
+<p><strong>F关系</strong>： 指的是两个元素之间有关系的程度。由F关系构成的矩阵我们称为F矩阵。</p>
+<h3 id="F关系的基本性质："><a href="#F关系的基本性质：" class="headerlink" title="F关系的基本性质："></a>F关系的基本性质：</h3><p>主要就是三大性质：<strong>对称性</strong> 、<strong>自反性</strong> 、<strong>传递性</strong></p>
+<ul>
+<li>对称性：这个比较好理解，和所有矩阵一样，沿着对角线对元素对称。</li>
+<li>自反性：这个更为直观，看对角线元素是不是为1即可。</li>
+<li>传递性：是整个章节中最为重要的性质。稍后我们单独来解决这个性质。</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">模糊数学</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/04/18/%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6%E7%AC%94%E8%AE%B006/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-模糊数学笔记05" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -204,6 +442,42 @@
 </ul>
 <p>遗传算法的具体实现过程如下：</p>
 <p><img src="/assets/img/GA.png" alt="Genetic Algorithm"></p>
+<p>我们从遗传算法的具体步骤开始说起：</p>
+<h5 id="1-编码"><a href="#1-编码" class="headerlink" title="1.编码"></a>1.编码</h5><ul>
+<li>二进制编码</li>
+</ul>
+<p>一个位能表示出2种状态的信息量，因此足够长的二进制染色体便能表示所有的特征。这便是二进制编码</p>
+<ul>
+<li>浮点数编码</li>
+</ul>
+<p>所谓浮点法，是指个体的每个基因值用某一范围内的一个浮点数来表示</p>
+<ul>
+<li>符号编码</li>
+</ul>
+<h5 id="2-群体初始化"><a href="#2-群体初始化" class="headerlink" title="2.群体初始化"></a>2.群体初始化</h5><p>在解空间中均匀采样（随机数初始化）</p>
+<h5 id="3-适应值评价"><a href="#3-适应值评价" class="headerlink" title="3.适应值评价"></a>3.适应值评价</h5><p>适应度函数也称评价函数，是根据目标函数确定的用于区分群体中个体好坏的标准。（常用目标函数）</p>
+<h5 id="4-选择算法"><a href="#4-选择算法" class="headerlink" title="4.选择算法"></a>4.选择算法</h5><ul>
+<li>轮盘赌</li>
+<li>随机竞争</li>
+<li>最佳保留</li>
+<li>无放回随机选择</li>
+</ul>
+<h5 id="5-交叉算子"><a href="#5-交叉算子" class="headerlink" title="5.交叉算子"></a>5.交叉算子</h5><h5 id="6-变异算子"><a href="#6-变异算子" class="headerlink" title="6.变异算子"></a>6.变异算子</h5><p>那么在遗传算法中，参数的设置有哪些呢？</p>
+<ul>
+<li>群体规模（N）</li>
+</ul>
+<p>一般根据具体问题进行设置</p>
+<ul>
+<li><p>染色体长度（L）</p>
+</li>
+<li><p>交叉概率（$P_c$）</p>
+</li>
+</ul>
+<p>0.4～0.99</p>
+<ul>
+<li>变异概率（$P_m$） 0.001～0.1</li>
+</ul>
+<p>增加种群的多样性</p>
 
       
 
@@ -2034,342 +2308,6 @@ finish search, find 2 scheme
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/03/12/Assignment01/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-模糊数学笔记02" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/03/09/%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6%E7%AC%94%E8%AE%B002/">模糊数学笔记02</a>
-    </h1>
-  
-
-        
-        <a href="/2021/03/09/%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6%E7%AC%94%E8%AE%B002/" class="archive-article-date">
-  	<time datetime="2021-03-08T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({ tex2jax: {inlineMath: [['$', '$']]}, messageStyle: "none" });
-</script>
-
-<!-- TOC -->
-
-<ul>
-<li><a href="#1-f%E9%9B%86%E7%9A%84%E5%85%B6%E4%BB%96%E7%AE%97%E5%AD%90">1. F集的其他算子</a></li>
-<li><a href="#2-f%E9%9B%86%E7%9A%84%E6%88%AA%E9%9B%86">2. F集的截集</a><ul>
-<li><a href="#21-%E6%88%AA%E9%9B%86%E7%9A%84%E6%80%A7%E8%B4%A8">2.1 截集的性质</a></li>
-<li><a href="#22-%E5%88%86%E8%A7%A3%E5%AE%9A%E7%90%86">2.2. 分解定理</a></li>
-</ul>
-</li>
-<li><a href="#3f%E9%9B%86%E7%9A%84%E6%A8%A1%E7%B3%8A%E5%BA%A6">3.F集的模糊度</a></li>
-</ul>
-<!-- /TOC -->
-
-<h2 id="1-F集的其他算子"><a href="#1-F集的其他算子" class="headerlink" title="1. F集的其他算子"></a>1. F集的其他算子</h2><p>在模糊数学中，除了上一节课的取大（$\bigvee$） 、取小（$\bigwedge$）运算外，还有很多新算子，本节的内容主要是想说明，模糊数学中可以根据自己的所需应用各种算子。</p>
-<h2 id="2-F集的截集"><a href="#2-F集的截集" class="headerlink" title="2. F集的截集"></a>2. F集的截集</h2><p>在F集和普通集合相互转化中的一个重要概念就是$\lambda$水平截集。</p>
-<ul>
-<li>$\lambda$截集</li>
-</ul>
-<p>$A_{\lambda}$ = {$u| u \in U, A(u) \geqslant \lambda$}</p>
-<ul>
-<li>$\lambda$强截集</li>
-</ul>
-<p>$A_{\lambda}$ = {$u| u \in U, A(u) &gt; \lambda$}</p>
-<ul>
-<li>$SuppA$,大于0的截集</li>
-</ul>
-<p>$SuppA$ = {$u| u \in U, A(u) &gt; 0$}</p>
-<ul>
-<li>$KerA$,大于1的截集</li>
-</ul>
-<p>$KerA$ = {$u| u \in U, A(u) = 1$}</p>
-<h3 id="2-1-截集的性质"><a href="#2-1-截集的性质" class="headerlink" title="2.1 截集的性质"></a>2.1 截集的性质</h3><p>$\color{orange}{我实在是太懒了，因为手敲数学代码太累了，我直接写在纸上吧。}$</p>
-<ul>
-<li>性质1：</li>
-</ul>
-<p>$A \subset B$  $\implies$ $A_\lambda \subset B_\lambda$</p>
-<ul>
-<li>性质2:</li>
-</ul>
-<p>$\lambda ≤ \mu$ $\implies$ $A_\lambda \supset A_\mu$</p>
-<ul>
-<li>性质3：<br><img src="../assets/img/%E6%88%AA%E9%9B%86%E6%80%A7%E8%B4%A81.jpeg" alt="\lambda截集性质3"></li>
-<li>性质4：<br><img src="../assets/img/%E6%80%A7%E8%B4%A84.jpeg"></li>
-</ul>
-<p>上述式子表明：</p>
-<blockquote>
-<p>各模糊集先“并”后求截集所得的集合包含先求截集后“并”得的集合；</p>
-</blockquote>
-<blockquote>
-<p>而若是“交运算” 和截集，则运算次序无关</p>
-</blockquote>
-<h3 id="2-2-分解定理"><a href="#2-2-分解定理" class="headerlink" title="2.2. 分解定理"></a>2.2. 分解定理</h3><p>分解定理是模糊集合三大定理之一（分解、表现、扩张定理），它反映了模糊集和普通相互转化的关系。</p>
-<p>那么为什么要学习分解定理呢？</p>
-<p>实际上，我们的目的是为了</p>
-<blockquote>
-<p>$\color{lightblue}{推论}:$已知模糊集的所有截集，则可以反求模糊集本身。</p>
-</blockquote>
-<ul>
-<li>分解定理1:</li>
-</ul>
-<p>$$<br>A=\bigcup_{\lambda \in[0,1]} \lambda A_{\lambda}<br>$$<br>上述定理也可以写成：</p>
-<p>$$<br>A(x)=\bigvee_{\lambda \in[0,1]}\left[\lambda \wedge \chi_{A_{\lambda}}(x)\right]<br>$$</p>
-<p>或者<br>$$<br>A(x)=\bigvee\left{\lambda \in[0,1] ; x \in A_{\lambda}\right}<br>$$</p>
-<p>分解定理与普通集合的转化关系图可以这样表示：</p>
-<p><img src="../assets/img/%E6%A8%A1%E7%B3%8A%E9%9B%86%E5%92%8C%E7%BB%8F%E5%85%B8%E9%9B%86%E7%9A%84%E8%BD%AC%E5%8C%96.jpeg">​    </p>
-<ul>
-<li><p>分解定理2：<br>实际上，就是在分解定理1的基础上，推广到了强截集<br>$$<br>A=\bigcup_{\lambda \in[0,1]} \lambda A_{\underset{.}{\lambda}}<br>$$</p>
-</li>
-<li><p>分解定理3:</p>
-</li>
-</ul>
-<p>$$<br>A=\bigcup_{\lambda \in[0,1]} \lambda H_{\lambda}<br>$$<br>实际上，分解定理3就是在集合套的概念上的一个推广，$H_\lambda$是集合值映射，可以认为是在$A_\lambda$ 和<br>$A_{\underset{.}{\lambda}}$之间的一个集合，但是要注意</p>
-<p>  $H_\lambda$既不是F集也不是普通集，只有在 $\lambda$确定值时，$H_\lambda$才变成普通集。</p>
-<p>它实际上一个集合大家族。</p>
-<p>$\color{lightblue}{在上课的时候，集合套和表现定理其实讲的很少很少，在这做个标记，复习时候再看}$</p>
-<h2 id="3-F集的模糊度"><a href="#3-F集的模糊度" class="headerlink" title="3.F集的模糊度"></a>3.F集的模糊度</h2><p>实际问题中，当用F集来刻画模糊性概念时，常常还需要用一个数量来刻画这一个概念的整体模糊度，这个数量就是所谓的模糊度。</p>
-<p>定义如下</p>
-<p>$若映射 d:F(U)\rightarrow [0,1]满足条件：$</p>
-<p>$$<br>(1)当且仅当A \in F(U)时，d(A) = 0\tag{清晰性}<br>$$</p>
-<p>$$<br>(2)\forall u \in U,当且仅当A(u) \equiv \frac{1}{2}\tag{模糊性}<br>$$</p>
-<p>$$<br>(3)\forall u \in U,B(u)\le A(u) \le \frac{1}{2},d(B)\le d(A)\tag{单调性}<br>$$</p>
-<p>$$<br>(4)A \in F(u),d(A) = d(A^c)\tag{对称性}<br>$$</p>
-<p>之所以介绍模糊度这个概念，是因为满足定理的三个条件，就可以构造自己的模糊度，也就是上面三个  对称性、单调性、$f(0)=0$。这三个条件 </p>
-<p>具体的：<br>我们有Haming模糊度、Euclid模糊度。其实就是看每一个元素的隶属度与1的距离。</p>
-<p>我们单独讲一下模糊熵（Fuzzy Shannon）。一听就是知道离不开Shannon老爷子（$\color{lightblue}{信息论之父}$）真的是到哪都能见到他。</p>
-<p>要懂得如何证明Shannon Function是F集的模糊度，书上有完整的证明过程，我这就bu<br>赘述了。</p>
-<p>课后习题是13、14、20、21、25、26、27、28.</p>
-<p>这节讲的主要内容就是在模糊集的概念上，多推展的几个定义和简单计算，下一章开始我们可能会更多的接触到模糊数学的应用和范例。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">模糊数学</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/03/09/%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6%E7%AC%94%E8%AE%B002/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-模糊数学笔记01" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/03/02/%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6%E7%AC%94%E8%AE%B001/">模糊数学笔记01</a>
-    </h1>
-  
-
-        
-        <a href="/2021/03/02/%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6%E7%AC%94%E8%AE%B001/" class="archive-article-date">
-  	<time datetime="2021-03-01T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({ tex2jax: {inlineMath: [['$', '$']]}, messageStyle: "none" });
-</script>
-<!-- TOC -->
-
-<ul>
-<li><a href="#00-%E7%BB%AA%E8%AE%BA--%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6%E7%9A%84%E5%BC%95%E5%85%A5">00 绪论–模糊数学的引入</a></li>
-<li><a href="#01-%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6f%E9%9B%86%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5">01 模糊数学F集的基本概念</a></li>
-<li><a href="#02-f%E9%9B%86%E7%9A%84%E8%BF%90%E7%AE%97">02 F集的运算</a><ul>
-<li><a href="#%E5%B9%B6%E4%BA%A4%E4%BD%99%E7%9A%84%E8%BF%90%E7%AE%97%E6%80%A7%E8%B4%A8">并、交、余的运算性质</a></li>
-</ul>
-</li>
-</ul>
-<!-- /TOC -->
-
-<h2 id="00-绪论–模糊数学的引入"><a href="#00-绪论–模糊数学的引入" class="headerlink" title="00 绪论–模糊数学的引入"></a>00 绪论–模糊数学的引入</h2><p>在现实生活中有很多模糊现象存在，例如自然口语表达中很多概念存在模糊性：</p>
-<ul>
-<li>个子很高的人</li>
-<li>年纪大的老人</li>
-<li>很胖的人  等等概念具有非常大的模糊性</li>
-</ul>
-<p>典型的问题有：</p>
-<ul>
-<li><p>秃顶悖论：如果一个有X根头发的人被称为秃子，那么，有X + 1根头发的人也是秃子。所以，(X + 1) + 1根头发的还是秃子。以此类推，无论你有几根头发都是秃子。</p>
-</li>
-<li><p>朋友悖论：如果一个刚认识的人被称为你的新朋友，那么刚认识+1 s的人也是你的新朋友，以此类推，认识50年的人也是你的新朋友。</p>
-</li>
-<li><p>著名的沙堆问题：从一个沙堆里拿走一粒沙子，它仍然是沙堆，那么类推下去，最后只剩一粒沙子它也是沙堆。这显然和人们的常识相背离。</p>
-</li>
-</ul>
-<p>以上问题说明，$\color{red}{精确的数学语言与模糊的思维习惯产生了矛盾}$。</p>
-<p>模糊数学就希望通过精确的数学方法研究和处理模糊性和模糊现象，Zadeh提出Fuzzy Sets希望通过语言变量来替代数值变量。</p>
-<p>那么$\color{green}{经典二值模型与模糊逻辑的关系}$是什么<br>在模糊数学中，一个命题不再是非真即假，取消了非此即彼的概念，可以被认为是部分属于，而$\color{orange}{隶属度}$就是表述二值之间的过渡状态的值。</p>
-<p>模糊数学解决了从单一的二值到二值之间连续取值的问题。</p>
-<p>（0，1）   ———————————— [0,1]</p>
-<p>模糊数学的应用有：</p>
-<ul>
-<li>模糊聚类</li>
-<li>模糊模式识别</li>
-<li>模糊综合评价</li>
-<li>模糊控制</li>
-<li>模糊逻辑</li>
-<li>模糊决策</li>
-<li>模糊自动机</li>
-<li>模糊神经网络 </li>
-<li>等等</li>
-</ul>
-<p>在这里通过一个引例来区分模糊数学中隶属函数和数理统计中的概率的区别。<br>假设有以下两瓶水：</p>
-<ul>
-<li>A 是纯净水的概率为95%</li>
-<li>B 是纯净水的隶属度为95%<br>显然，我们会选择B，因为A是纯净水的概率为95%，但是一旦当另外5%发生，那么A不是纯净水的事实就是确定的了。而B属于纯净水的程度是95%，也许只是不那么纯而已。</li>
-</ul>
-<h2 id="01-模糊数学F集的基本概念"><a href="#01-模糊数学F集的基本概念" class="headerlink" title="01 模糊数学F集的基本概念"></a>01 模糊数学F集的基本概念</h2><p>设在论域 U 上给定了一个映射<br>$$<br>A: U  → [0,1],且<br>u → A（u）<br>$$</p>
-<p>对于某个模糊集，我们称之为F集，$A（u)$ 被称为A的隶属函数（或称 u 对A对隶属度）</p>
-<p>我们来看一个例子：<br>P4 例3<br>设U = {1,2,3,4,5,6} , A表示“靠近4”的数集，则A $\in$ $\mathcal{F}$ （U） ，各数属于A的程度$A（u_{i})$ 如下表所示</p>
-<table>
-<thead>
-<tr>
-<th>u</th>
-<th>1</th>
-<th>2</th>
-<th>3</th>
-<th>4</th>
-<th>5</th>
-<th>6</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>A(u)</td>
-<td>0</td>
-<td>0.2</td>
-<td>0.8</td>
-<td>1</td>
-<td>0.8</td>
-<td>0.2</td>
-</tr>
-</tbody></table>
-<p>那么A可以用不同的方式来表达：</p>
-<ul>
-<li>虚偶表示法：A = {(1,0),(2,0.2),(3,0.8),(4,1),(5,0.8),(6,0.2)}</li>
-<li>Zadeh表示法：$\frac{0}{1}+\frac{0.2}{2}+\frac{0.8}{3}+\frac{1}{4}+\frac{0.8}{5}+\frac{0.2}{6}$</li>
-<li>矢量表示法：A = (0,0.2,0.8,1,0.8,0.2)</li>
-</ul>
-<p>注意：在第三种表示方法中，由于没有顺序，隶属度是0的项也不能舍弃，且次序不能随意调换。</p>
-<h2 id="02-F集的运算"><a href="#02-F集的运算" class="headerlink" title="02 F集的运算"></a>02 F集的运算</h2><p>这里我们主要定义取大 和 取小运算，也就是交集和并集运算</p>
-<p>(A $\bigcup$ B)(u) = A(u) $\bigvee$ B(u) = max (A(u),B(u))</p>
-<p>(A $\bigcap$ B)(u) = A(u) $\bigwedge$ B(u) = min (A(u),B(u))</p>
-<h3 id="并、交、余的运算性质"><a href="#并、交、余的运算性质" class="headerlink" title="并、交、余的运算性质"></a>并、交、余的运算性质</h3><p>幂等律<br>A $\bigcup$A = A, A $\bigcap$ A = A</p>
-<p>交换律<br>A $\bigcup$ B = B $\bigcup$ A, A $\bigcap$ B = B $\bigcap$ A</p>
-<p>结合律<br>(A $\bigcup$ B)$\bigcup$ C = A $\bigcup$ (B$\bigcup$ C),<br>(A $\bigcap$ B)$\bigcap$ C = A $\bigcap$ (B$\bigcap$C )</p>
-<p>吸收律<br>(A $\bigcup$ B) $\bigcap$ A = A，<br>(A $\bigcap$ B)$\bigcup$ A = A</p>
-<p>分配律<br>(A $\bigcup$ B)$\bigcap$ C =(A $\bigcap$ C)$\bigcup$(B $\bigcap$ C),<br>(A $\bigcap$ B)$\bigcup$ C =(A $\bigcup$ C)$\bigcap$(B $\bigcup$ C),</p>
-<p>0-1 律<br>A $\bigcup$ $\phi$ = A, A$\bigcap$ $\phi$ = $\phi$, A $\bigcup$ U = U ， A $\bigcap$ U= A</p>
-<p>还原律<br>$(A^c)^c$ = A</p>
-<p>对偶律<br> (A $\bigcup$ B ) $^c$ = $A^c$ $\bigcap$   $B^c$<br> (A $\bigcap$ B ) $^c$ = $A^c$ $\bigcup$   $B^c$  </p>
-<p> 课后的习题为1-4题，第一周的任务主要是构建模糊数学的概念，初步了解模糊数学的体系来源，要理解模糊数学不是凭空产生的一个模糊集，实际上，模糊集的元素就是普通集合，只不过在此基础上增加了隶属函数。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">模糊数学</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/03/02/%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6%E7%AC%94%E8%AE%B001/">展开全文 >></a>
         </p>
       
 

@@ -6,22 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>模糊数学笔记05 | Hop Lai的个人网站</title>
+  <title>Topic Modeling | Hop Lai的个人网站</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.遗传算法 （Genetic Algorithm）首先大致了解一下遗传算法的定义和应用。 遗传算法属于“随机搜索算法”，也是群体决策的一种经典算法。其他常见的群智能算法有：免疫算法、蚁群算法、蜂群算法。 之所以叫他们群体智能，是因为他们与传统的优化算法不同的是：他们的初始可行解不再是单一的解，而是在很多个解中利用方法寻找更优的解。 核心思想就是：物竞天择，适者生存 四大优点：  良好的并行性，可">
+  <meta name="description" content="Machine Learning Pipeline Data Tasks  （To be finished） Models Features Model Evalution   引入 梳理Topic Model   Machine Learning Pipeline把我们的问题和一个典型的（state-of-art）机器学习系统联系起来，完善我们的思路和处理流程 Data real worl">
 <meta property="og:type" content="article">
-<meta property="og:title" content="模糊数学笔记05">
-<meta property="og:url" content="http://example.com/2021/03/30/%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6%E7%AC%94%E8%AE%B005/index.html">
+<meta property="og:title" content="Topic Modeling">
+<meta property="og:url" content="http://example.com/2021/06/08/Topic-Modeling/index.html">
 <meta property="og:site_name" content="Hop Lai的个人网站">
-<meta property="og:description" content="1.遗传算法 （Genetic Algorithm）首先大致了解一下遗传算法的定义和应用。 遗传算法属于“随机搜索算法”，也是群体决策的一种经典算法。其他常见的群智能算法有：免疫算法、蚁群算法、蜂群算法。 之所以叫他们群体智能，是因为他们与传统的优化算法不同的是：他们的初始可行解不再是单一的解，而是在很多个解中利用方法寻找更优的解。 核心思想就是：物竞天择，适者生存 四大优点：  良好的并行性，可">
+<meta property="og:description" content="Machine Learning Pipeline Data Tasks  （To be finished） Models Features Model Evalution   引入 梳理Topic Model   Machine Learning Pipeline把我们的问题和一个典型的（state-of-art）机器学习系统联系起来，完善我们的思路和处理流程 Data real worl">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/assets/img/GA.png">
-<meta property="article:published_time" content="2021-03-29T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-04-01T09:00:38.597Z">
+<meta property="article:published_time" content="2021-06-07T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-06-10T14:03:51.579Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="模糊数学">
+<meta property="article:tag" content="论文">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/assets/img/GA.png">
   
     <link rel="alternative" href="/atom.xml" title="Hop Lai的个人网站" type="application/atom+xml">
   
@@ -163,88 +161,107 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-模糊数学笔记05" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Topic-Modeling" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      模糊数学笔记05
+      Topic Modeling
     </h1>
   
 
         
-        <a href="/2021/03/30/%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6%E7%AC%94%E8%AE%B005/" class="archive-article-date">
-  	<time datetime="2021-03-29T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-30</time>
+        <a href="/2021/06/08/Topic-Modeling/" class="archive-article-date">
+  	<time datetime="2021-06-07T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-08</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1-遗传算法-（Genetic-Algorithm）"><a href="#1-遗传算法-（Genetic-Algorithm）" class="headerlink" title="1.遗传算法 （Genetic Algorithm）"></a>1.遗传算法 （Genetic Algorithm）</h3><p>首先大致了解一下遗传算法的定义和应用。</p>
-<p>遗传算法属于“随机搜索算法”，也是群体决策的一种经典算法。其他常见的群智能算法有：免疫算法、蚁群算法、蜂群算法。</p>
-<p>之所以叫他们群体智能，是因为他们与传统的优化算法不同的是：他们的初始可行解不再是单一的解，而是在很多个解中利用方法寻找更优的解。</p>
-<p>核心思想就是：<strong>物竞天择，适者生存</strong></p>
-<p>四大优点：</p>
+        <!-- TOC -->
+
 <ul>
-<li>良好的并行性，可以多个解同时进行寻优</li>
-<li>强大的通用性，只需要利用目标的取值信息</li>
-<li>全局优化+鲁棒性强</li>
-<li>高操作性</li>
+<li><a href="#machine-learning-pipeline">Machine Learning Pipeline</a><ul>
+<li><a href="#data">Data</a></li>
+<li><a href="#tasks--to-be-finished">Tasks  （To be finished）</a></li>
+<li><a href="#models">Models</a></li>
+<li><a href="#features">Features</a></li>
+<li><a href="#model-evalution">Model Evalution</a></li>
 </ul>
-<p>两个缺点：</p>
-<ul>
-<li>未成熟收敛，没有找到最优解就停止了，无法找到比父代更优的子代</li>
-<li>收敛速度慢</li>
-</ul>
-<p>应用：</p>
-<ul>
-<li>函数优化</li>
-<li>组合优化</li>
-<li>生产调度</li>
-<li>自动控制</li>
-<li>机器人智能控制</li>
-</ul>
-<p>遗传算法的具体实现过程如下：</p>
-<p><img src="/assets/img/GA.png" alt="Genetic Algorithm"></p>
-<p>我们从遗传算法的具体步骤开始说起：</p>
-<h5 id="1-编码"><a href="#1-编码" class="headerlink" title="1.编码"></a>1.编码</h5><ul>
-<li>二进制编码</li>
-</ul>
-<p>一个位能表示出2种状态的信息量，因此足够长的二进制染色体便能表示所有的特征。这便是二进制编码</p>
-<ul>
-<li>浮点数编码</li>
-</ul>
-<p>所谓浮点法，是指个体的每个基因值用某一范围内的一个浮点数来表示</p>
-<ul>
-<li>符号编码</li>
-</ul>
-<h5 id="2-群体初始化"><a href="#2-群体初始化" class="headerlink" title="2.群体初始化"></a>2.群体初始化</h5><p>在解空间中均匀采样（随机数初始化）</p>
-<h5 id="3-适应值评价"><a href="#3-适应值评价" class="headerlink" title="3.适应值评价"></a>3.适应值评价</h5><p>适应度函数也称评价函数，是根据目标函数确定的用于区分群体中个体好坏的标准。（常用目标函数）</p>
-<h5 id="4-选择算法"><a href="#4-选择算法" class="headerlink" title="4.选择算法"></a>4.选择算法</h5><ul>
-<li>轮盘赌</li>
-<li>随机竞争</li>
-<li>最佳保留</li>
-<li>无放回随机选择</li>
-</ul>
-<h5 id="5-交叉算子"><a href="#5-交叉算子" class="headerlink" title="5.交叉算子"></a>5.交叉算子</h5><h5 id="6-变异算子"><a href="#6-变异算子" class="headerlink" title="6.变异算子"></a>6.变异算子</h5><p>那么在遗传算法中，参数的设置有哪些呢？</p>
-<ul>
-<li>群体规模（N）</li>
-</ul>
-<p>一般根据具体问题进行设置</p>
-<ul>
-<li><p>染色体长度（L）</p>
 </li>
-<li><p>交叉概率（$P_c$）</p>
+<li><a href="#%E5%BC%95%E5%85%A5">引入</a></li>
+<li><a href="#%E6%A2%B3%E7%90%86topic-model">梳理Topic Model</a></li>
+</ul>
+<!-- /TOC -->
+<h2 id="Machine-Learning-Pipeline"><a href="#Machine-Learning-Pipeline" class="headerlink" title="Machine Learning Pipeline"></a>Machine Learning Pipeline</h2><p>把我们的问题和一个典型的（state-of-art）机器学习系统联系起来，完善我们的思路和处理流程</p>
+<h3 id="Data"><a href="#Data" class="headerlink" title="Data"></a>Data</h3><ul>
+<li>real world patent data in AI field</li>
+<li>give us a picture of the techology frontiers in AI (maybe)</li>
+<li>missing pieces and messy noise (too much)</li>
+</ul>
+<h3 id="Tasks-（To-be-finished）"><a href="#Tasks-（To-be-finished）" class="headerlink" title="Tasks  （To be finished）"></a>Tasks  （To be finished）</h3><ul>
+<li>How to understand AI better? </li>
+<li>How to get a comprehensive picture of AI field?</li>
+<li>Discover the most popular spots/techologies of AI?  </li>
+<li><em><strong>Not about Clustering! Not about Classification!</strong></em></li>
+</ul>
+<h3 id="Models"><a href="#Models" class="headerlink" title="Models"></a>Models</h3><p>We will use Generative Models instead! </p>
+<ul>
+<li>Topic Modeling (metioned below)</li>
+</ul>
+<h3 id="Features"><a href="#Features" class="headerlink" title="Features"></a>Features</h3><p>Considering we r using text data,so the feature engineering will be a little bit tricky, it’s part of NLP. But actually we have had this experience：Word Embedding(词嵌入)，通俗一点讲，就是把不定长的文本嵌入到定长的空间里.</p>
+<ul>
+<li>Traditional way:one-hot,N-gram,Bag-of-words,<strong>TF-IDF</strong></li>
+<li>Deeping Learning:FastText,<strong>Word2vec</strong>,Bert…..(maybe <strong>Doc2vec</strong> is one of them as well)</li>
+</ul>
+<p>BUUUT！！！ don’t worry about that anymore, as far as I know, Topic Model won’t need that.</p>
+<h3 id="Model-Evalution"><a href="#Model-Evalution" class="headerlink" title="Model Evalution"></a>Model Evalution</h3><ul>
+<li>Feed your data into the model and train it!</li>
+<li>Find the best version of your model (high performance,best parameters,convinced results)</li>
+<li>How to train model and get desired insights is another topic to go.</li>
+</ul>
+<h2 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h2><p>Topic Modeling （主题建模）<br>部分教材和资料也会翻译成话题分析</p>
+<p>在文本信息的处理中，传统的方法是用单词向量表示文本内容，其实这种思路是有所欠缺的，因为这些单词向量缺乏语义信息（Semantic Content），用单词向量空间中的度量（求距离）表示文本之间的语义相似度，这种方法往往成功率不高（事实上，我们也证实了这一点，TF-IDF直接聚类、Doc2Vec直接聚类效果都不好）。上述运算并没有告诉我们词背后的含义，所以我们需要一些新的方法去对文档的内容（也就是我们的专利）去做更多包含语义意义的事情。</p>
+<p>首先我们可以通过下面两个问题来说明一下为什么需要引入主题模型，因为用单词向量解决不了诸多问题：</p>
+<ul>
+<li>一词多义： Bank既有银行，又有河岸的意思</li>
+<li>同义词：car和automobile其实表示的是同一个意思</li>
+</ul>
+<h2 id="梳理Topic-Model"><a href="#梳理Topic-Model" class="headerlink" title="梳理Topic Model"></a>梳理Topic Model</h2><ul>
+<li><p>1990年 LSA（Latent Semantic Analysis/Indexing，潜在语义分析) </p>
+<ul>
+<li>优势：刻画近义词，有效提取语义，可以求word和doc的相似度</li>
+<li>缺点：用SVD的方法求解，矩阵运算很复杂</li>
+</ul>
+</li>
+<li><p>1999年 pLSA（probabilitic Latent Semantic Analysis，概率潜在语义分析)，是受到LSA的启发，引入<strong>概率化</strong></p>
+<ul>
+<li>优点：更好的刻画一词多义，开始引入概率分布去阐述问题，用多项式分布词频向量。每个文档是由话题分布决定的、每个话题是由单词分布决定的。</li>
+<li>缺点：用EM算法求解，要迭代，计算量大；而且概率模型不够完善</li>
+</ul>
+</li>
+<li><p>2003年 LDA（Latent Dirichlet Allocation，潜在狄利克雷分布) 引入了<strong>贝叶斯化</strong> 实际上就在pLSA的基础上加了贝叶斯框架。</p>
+<ul>
+<li>优点：基于贝叶斯的推断</li>
+<li>缺点：还是要手动确定主题数，不过别担心我们可以通过（perplexity、coherence）来帮助判断主题数</li>
+</ul>
+</li>
+<li><p>2005年 HDP （Hierarchical Dirichlet Process，分层狄利克雷过程) 对于LDA的改进，实现了<strong>非参数化</strong></p>
+<ul>
+<li>优点：不用手动设置主题数目，可以在后面延伸很多的模型</li>
+<li>缺点：计算量大</li>
+</ul>
 </li>
 </ul>
-<p>0.4～0.99</p>
+<p>上面的几种模型，附上原始论文和研究：</p>
 <ul>
-<li>变异概率（$P_m$） 0.001～0.1</li>
+<li><a target="_blank" rel="noopener" href="https://www.iro.umontreal.ca/~nie/IFT6255/Hofmann-UAI99.pdf">Hofmann T. Probabilistic latent semantic indexing[C]//Proceedings of the 22nd annual international ACM SIGIR conference on Research and development in information retrieval. 1999: 50-57.</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf">Blei D M, Ng A Y, Jordan M I. Latent dirichlet allocation[J]. the Journal of machine Learning research, 2003, 3: 993-1022.</a></li>
+<li><a target="_blank" rel="noopener" href="https://kns.cnki.net/kcms/detail/detail.aspx?dbcode=CJFD&dbname=CJFD2014&filename=JYRJ201408002&v=LC07AObpZUdAxlNKpf%25mmd2FDruH3ZrfR%25mmd2B1rIvB9pq3A6QVKAIbGLuizpwGLvzI0xkNdb">周志敏,高申勇.分层Dirichlet过程原理及应用综述[J].计算机应用与软件,2014,31(08):1-5+41.</a></li>
 </ul>
-<p>增加种群的多样性</p>
 
       
 
@@ -284,7 +301,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">模糊数学</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">论文</a>
         		</li>
       		
 		</ul>
@@ -340,7 +357,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/03/30/%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6%E7%AC%94%E8%AE%B005/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/06/08/Topic-Modeling/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -354,18 +371,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/04/18/%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6%E7%AC%94%E8%AE%B006/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          模糊数学笔记06
-        
-      </div>
-    </a>
   
-  
-    <a href="/2021/03/23/%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6%E7%AC%94%E8%AE%B004/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">模糊数学笔记04</div>
+    <a href="/2021/04/18/%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6%E7%AC%94%E8%AE%B006/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">模糊数学笔记06</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -395,7 +403,7 @@
   
 
   
-  <div id="SOHUCS" sid="模糊数学笔记05" ></div> 
+  <div id="SOHUCS" sid="Topic-Modeling" ></div> 
 <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
 <script type="text/javascript">
     window.changyan.api.config({
